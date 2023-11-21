@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -26,11 +27,107 @@ namespace ProjetFinal
         public MainWindow()
         {
             this.InitializeComponent();
+            Singleton.getInstance().firstTimeAdmin();
+            mainFrame.Navigate(typeof(AfficherProjets));
         }
 
-        private void myButton_Click(object sender, RoutedEventArgs e)
+        private async void navView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
-            myButton.Content = "Clicked";
+            NavigationViewItem selectedNavItem = args.SelectedItem as NavigationViewItem;
+
+            if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "Options")
+            {
+                navView.SelectedItem = null;
+            }
+            else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "ListeProjet")
+            {
+                mainFrame.Navigate(typeof(AfficherProjets));
+                navView.SelectedItem = null;
+            }
+            else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "AddProjet")
+            {
+
+            }
+            else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "ModifyProjet")
+            {
+
+            }
+            else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "RemoveProjet")
+            {
+
+            }
+            else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "ListeClient")
+            {
+                mainFrame.Navigate(typeof(AfficherClients));
+                navView.SelectedItem = null;
+            }
+            else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "AddClient")
+            {
+
+            }
+            else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "ModifyClient")
+            {
+
+            }
+            else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "RemoveClient")
+            {
+
+            }
+            else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "ListeEmplo")
+            {
+                mainFrame.Navigate(typeof(AfficherEmployes));
+                navView.SelectedItem = null;
+            }
+            else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "AddEmplo")
+            {
+
+            }
+            else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "ModifyEmplo")
+            {
+
+            }
+            else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "RemoveEmplo")
+            {
+
+            }
+            else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "SaveFile")
+            {
+                var picker = new Windows.Storage.Pickers.FileSavePicker();
+
+                var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
+                WinRT.Interop.InitializeWithWindow.Initialize(picker, hWnd);
+
+                picker.SuggestedFileName = "Projets";
+                picker.FileTypeChoices.Add("Fichier CSV", new List<string>() { ".csv" });
+
+                //crée le fichier
+                Windows.Storage.StorageFile monFichier = await picker.PickSaveFileAsync();
+
+                if (monFichier != null)
+                {
+                    List<Projet> liste = new List<Projet>(Singleton.getInstance().GetListeProjets());
+
+                    await Windows.Storage.FileIO.WriteLinesAsync(monFichier, liste.ConvertAll(x => x.ToStringWrite()), Windows.Storage.Streams.UnicodeEncoding.Utf8);
+                }
+
+                navView.SelectedItem = null;
+            }
+            else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "Admin")
+            {
+                LoginAdministrateur dialog = new LoginAdministrateur();
+                dialog.XamlRoot = testgrid.XamlRoot;
+                dialog.Title = "Authentification";
+                dialog.PrimaryButtonText = "Se connecter";
+                dialog.CloseButtonText = "Annuler";
+
+
+                ContentDialogResult resultat = await dialog.ShowAsync();
+                selectedNavItem = null;
+                if (resultat == ContentDialogResult.Primary)
+                    Singleton.getInstance().ConnexionAdmin(dialog.Username, dialog.Password);
+                navView.SelectedItem = null;
+            }
         }
+
     }
 }

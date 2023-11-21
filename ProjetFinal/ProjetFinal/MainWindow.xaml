@@ -8,9 +8,46 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <Grid>
+    <Grid x:Name="testgrid">
 
-        </Grid>
-    </StackPanel>
+        <NavigationView x:Name="navView"
+                            PaneDisplayMode="Left"
+                            SelectionChanged="navView_SelectionChanged"
+                            IsSettingsVisible="False"
+                            IsBackButtonVisible="Collapsed" 
+                            SelectedItem=""
+                            PaneTitle="Gestion" >
+            <NavigationView.MenuItems>
+                <NavigationViewItem Content="Options des projets" Icon="Library" Tag="Options">
+                    <NavigationViewItem.MenuItems>
+                        <NavigationViewItem Content="Liste des projets" Tag="ListeProjet" Icon="List" />
+                        <NavigationViewItem Content="Ajouter un projet" Tag="AddProjet" Icon="Add" />
+                        <NavigationViewItem Content="Modifier un client" Tag="ModifyProjet" Icon="Edit" />
+                        <NavigationViewItem Content="Supprimer un projet" Tag="RemoveProjet" Icon="Remove" />
+                    </NavigationViewItem.MenuItems>
+                </NavigationViewItem>
+                <NavigationViewItem Content="Options des clients" Icon="Contact" Tag="Options">
+                    <NavigationViewItem.MenuItems>
+                        <NavigationViewItem Content="Liste des clients" Tag="ListeClient" Icon="List" />
+                        <NavigationViewItem Content="Ajouter un client" Tag="AddClient" Icon="AddFriend" />
+                        <NavigationViewItem Content="Modifier un client" Tag="ModifyClient" Icon="Edit" />
+                        <NavigationViewItem Content="Supprimer un client" Tag="RemoveClient" Icon="BlockContact" />
+                    </NavigationViewItem.MenuItems>
+                </NavigationViewItem>
+                <NavigationViewItem Content="Options des employés" Icon="People" Tag="Options">
+                    <NavigationViewItem.MenuItems>
+                        <NavigationViewItem Content="Liste des employés" Tag="ListeEmplo" Icon="List" />
+                        <NavigationViewItem Content="Ajouter un employé" Tag="AddEmplo" Icon="AddFriend" />
+                        <NavigationViewItem Content="Modifier un employé" Tag="ModifyEmplo" Icon="Edit" />
+                        <NavigationViewItem Content="Supprimer un employé" Tag="RemoveEmplo" Icon="BlockContact" />
+                    </NavigationViewItem.MenuItems>
+                </NavigationViewItem>
+            </NavigationView.MenuItems>
+            <NavigationView.FooterMenuItems>
+                <NavigationViewItem Content="Sauvegarder les projets" Tag="SaveFile" Icon="Save" />
+                <NavigationViewItem Content="Compte Administrateur" Tag="Admin" Icon="Permissions" />
+            </NavigationView.FooterMenuItems>
+            <Frame x:Name="mainFrame" Grid.Row="1"/>
+        </NavigationView>
+    </Grid>
 </Window>
