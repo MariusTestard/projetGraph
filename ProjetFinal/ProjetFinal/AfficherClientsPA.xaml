@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="ProjetFinal.AfficherClients"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ProjetFinal"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <!-- LA LISTE  -->
+        <ListView 
+            x:Name="lvListeClients"
+            ItemTemplate="{StaticResource ContactListViewTemplate}"
+            SelectionMode="Single"
+            ShowsScrollingPlaceholders="True"
+            Height="400"
+            Width="400"
+            BorderThickness="1"
+            BorderBrush="{ThemeResource SystemControlForegroundBaseMediumLowBrush}"/>
+
+        <!-- POUR FILTRER -->
+        <StackPanel Width="200">
+            <TextBlock 
+                Margin="8,8,8,4" 
+                Style="{ThemeResource BaseTextBlockStyle}">Filtrer par...</TextBlock>
+            <TextBox 
+                x:Name="FilterByName" 
+                Width="150" 
+                Header="First name" 
+                Margin="8"
+	            HorizontalAlignment="Left" 
+                TextChanged="OnFilterChanged"/>
+        </StackPanel>
+    </Grid>
+</Page>

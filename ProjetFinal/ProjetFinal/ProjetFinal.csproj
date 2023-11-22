@@ -12,11 +12,11 @@
     <EnableMsixTooling>true</EnableMsixTooling>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="AfficherClients.xaml" />
-    <None Remove="AfficherEmployes.xaml" />
-    <None Remove="AfficherProjets.xaml" />
-    <None Remove="LoginAdministrateur.xaml" />
-    <None Remove="zoomProjet.xaml" />
+    <None Remove="AfficherClientsPA.xaml" />
+    <None Remove="AfficherEmployesPA.xaml" />
+    <None Remove="AfficherProjetsPA.xaml" />
+    <None Remove="LoginAdminCD.xaml" />
+    <None Remove="zoomProjetPA.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -45,27 +45,27 @@
     <ProjectCapability Include="Msix" />
   </ItemGroup>
   <ItemGroup>
-    <Page Update="zoomProjet.xaml">
+    <Page Update="zoomProjetPA.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="AfficherEmployes.xaml">
+    <Page Update="AfficherEmployesPA.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="AfficherProjets.xaml">
+    <Page Update="AfficherProjetsPA.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="AfficherClients.xaml">
+    <Page Update="AfficherClientsPA.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="LoginAdministrateur.xaml">
+    <Page Update="LoginAdminCD.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

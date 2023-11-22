@@ -27,7 +27,6 @@ namespace ProjetFinal
         public MainWindow()
         {
             this.InitializeComponent();
-            Singleton.getInstance().firstTimeAdmin();
             mainFrame.Navigate(typeof(AfficherProjets));
         }
 
@@ -105,7 +104,7 @@ namespace ProjetFinal
 
                 if (monFichier != null)
                 {
-                    List<Projet> liste = new List<Projet>(Singleton.getInstance().GetListeProjets());
+                    List<Projet> liste = new List<Projet>(SingletonProjet.getInstance().getListeProjets());
 
                     await Windows.Storage.FileIO.WriteLinesAsync(monFichier, liste.ConvertAll(x => x.ToStringWrite()), Windows.Storage.Streams.UnicodeEncoding.Utf8);
                 }
@@ -124,7 +123,7 @@ namespace ProjetFinal
                 ContentDialogResult resultat = await dialog.ShowAsync();
                 selectedNavItem = null;
                 if (resultat == ContentDialogResult.Primary)
-                    Singleton.getInstance().ConnexionAdmin(dialog.Username, dialog.Password);
+                    SingletonAdmin.getInstance().connexionAdmin(dialog.Username, dialog.Password);
                 navView.SelectedItem = null;
             }
         }

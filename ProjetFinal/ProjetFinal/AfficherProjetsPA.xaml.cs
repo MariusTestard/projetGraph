@@ -29,20 +29,20 @@ namespace ProjetFinal
         public AfficherProjets()
         {
             this.InitializeComponent();
-            Singleton.getInstance().GetListeProjetsEnCours().Clear();
-            lvListeProjets.ItemsSource = Singleton.getInstance().GetListeProjetsEnCours();
+            SingletonEmploye.getInstance().getListeEmployes().Clear();
+            lvListeProjets.ItemsSource = SingletonEmploye.getInstance().getListeEmployes();
         }
 
         private void btnEnCours_Click(object sender, RoutedEventArgs e)
         {
-            Singleton.getInstance().GetListeProjetsEnCours().Clear();
-            lvListeProjets.ItemsSource = Singleton.getInstance().GetListeProjetsEnCours();
+            SingletonEmploye.getInstance().getListeEmployes().Clear();
+            lvListeProjets.ItemsSource = SingletonEmploye.getInstance().getListeEmployes();
         }
 
         private void btnTerminer_Click(object sender, RoutedEventArgs e)
         {
-            Singleton.getInstance().GetListeProjetsTermine().Clear();
-            lvListeProjets.ItemsSource = Singleton.getInstance().GetListeProjetsTermine();
+            SingletonEmploye.getInstance().getListeEmployes().Clear();
+            lvListeProjets.ItemsSource = SingletonEmploye.getInstance().getListeEmployes();
         }
 
         private void lvListeProjets_SelectionChanged(object sender, SelectionChangedEventArgs e)

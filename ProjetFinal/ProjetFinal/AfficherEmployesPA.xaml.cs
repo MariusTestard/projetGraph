@@ -26,8 +26,8 @@ namespace ProjetFinal
         public AfficherEmployes()
         {
             this.InitializeComponent();
-            Singleton.getInstance().GetListeEmployes().Clear();
-            lvListeEmployes.ItemsSource = Singleton.getInstance().GetListeEmployes();
+            SingletonEmploye.getInstance().getListeEmployes().Clear();
+            lvListeEmployes.ItemsSource = SingletonEmploye.getInstance().getListeEmployes();
         }
 
         private void btnAjouterEmplo_Click(object sender, RoutedEventArgs e)
@@ -40,13 +40,13 @@ namespace ProjetFinal
         {
             CheckBox b = (CheckBox)sender;
             var c = b.Tag.ToString();
-            Singleton.getInstance().ChangeStatusFromEmploye(c);
+            SingletonEmploye.getInstance().changeStatusFromEmploye(c);
             if (b.IsChecked == true)
             {
                 b.IsEnabled = false;
                 b.Content = ("Permanent");
-                Singleton.getInstance().GetListeEmployes().Clear();
-                lvListeEmployes.ItemsSource = Singleton.getInstance().GetListeEmployes();
+                SingletonEmploye.getInstance().getListeEmployes().Clear();
+                lvListeEmployes.ItemsSource = SingletonEmploye.getInstance().getListeEmployes();
             }
         }
     }
