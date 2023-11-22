@@ -10,7 +10,7 @@
     PrimaryButtonClick="ContentDialog_PrimaryButtonClick">
 
     <StackPanel>
-        <TextBox x:Name="tbxuser" Margin="5" Header="Nom d'utilisateur"></TextBox>
-        <PasswordBox x:Name="mdp" Margin="5" Header="Mot de passe"></PasswordBox>
+        <TextBox x:Name="tbxuser" Margin="5" Header="Nom d'utilisateur" />
+        <PasswordBox x:Name="mdp" Margin="5" Header="Mot de passe" />
     </StackPanel>
 </ContentDialog>

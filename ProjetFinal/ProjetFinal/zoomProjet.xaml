@@ -10,9 +10,9 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-<StackPanel>
-</StackPa
-        <TextBlock Text=""
-                    x:Name="tblNumProjet"/>
+        <StackPanel>
+            <TextBlock Text=""
+             x:Name="tblNumProjet"/>
+        </StackPanel>
     </Grid>
 </Page>
