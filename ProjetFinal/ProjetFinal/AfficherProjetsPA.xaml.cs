@@ -12,7 +12,6 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
-using static System.Net.Mime.MediaTypeNames;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -22,34 +21,34 @@ namespace ProjetFinal
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class AfficherProjets : Page
+    public sealed partial class AfficherProjetsPA : Page
     {
         String strSelectedItem = "";
 
-        public AfficherProjets()
+        public AfficherProjetsPA()
         {
             this.InitializeComponent();
-            SingletonEmploye.getInstance().getListeEmployes().Clear();
-            lvListeProjets.ItemsSource = SingletonEmploye.getInstance().getListeEmployes();
+            SingletonProjet.getInstance().getListeProjets().Clear();
+            lvListeProjets.ItemsSource = SingletonProjet.getInstance().getListeProjets();
         }
 
         private void btnEnCours_Click(object sender, RoutedEventArgs e)
         {
-            SingletonEmploye.getInstance().getListeEmployes().Clear();
-            lvListeProjets.ItemsSource = SingletonEmploye.getInstance().getListeEmployes();
+            SingletonProjet.getInstance().getListeProjets().Clear();
+            lvListeProjets.ItemsSource = SingletonProjet.getInstance().getListeProjets();
         }
 
         private void btnTerminer_Click(object sender, RoutedEventArgs e)
         {
-            SingletonEmploye.getInstance().getListeEmployes().Clear();
-            lvListeProjets.ItemsSource = SingletonEmploye.getInstance().getListeEmployes();
+            SingletonProjet.getInstance().getListeProjets().Clear();
+            lvListeProjets.ItemsSource = SingletonProjet.getInstance().getListeProjets();
         }
 
         private void lvListeProjets_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Projet unProjet = lvListeProjets.SelectedItem as Projet;
             strSelectedItem = unProjet.numProjet;
-            Frame.Navigate(typeof(zoomProjet), strSelectedItem);
+            Frame.Navigate(typeof(ZoomProjetPA), strSelectedItem);
         }
     }
 }

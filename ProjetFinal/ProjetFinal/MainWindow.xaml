@@ -31,7 +31,6 @@
                         <NavigationViewItem Content="Liste des clients" Tag="ListeClient" Icon="List" />
                         <NavigationViewItem Content="Ajouter un client" Tag="AddClient" Icon="AddFriend" />
                         <NavigationViewItem Content="Modifier un client" Tag="ModifyClient" Icon="Edit" />
-                        <NavigationViewItem Content="Supprimer un client" Tag="RemoveClient" Icon="BlockContact" />
                     </NavigationViewItem.MenuItems>
                 </NavigationViewItem>
                 <NavigationViewItem Content="Options des employés" Icon="People" Tag="Options">

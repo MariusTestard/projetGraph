@@ -21,9 +21,9 @@ namespace ProjetFinal
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class zoomProjet : Page
+    public sealed partial class ZoomProjetPA : Page
     {
-        public zoomProjet()
+        public ZoomProjetPA()
         {
             this.InitializeComponent();
         }

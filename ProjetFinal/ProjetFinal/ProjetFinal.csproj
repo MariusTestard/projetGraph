@@ -15,8 +15,10 @@
     <None Remove="AfficherClientsPA.xaml" />
     <None Remove="AfficherEmployesPA.xaml" />
     <None Remove="AfficherProjetsPA.xaml" />
+    <None Remove="AjouterClientCD.xaml" />
     <None Remove="LoginAdminCD.xaml" />
-    <None Remove="zoomProjetPA.xaml" />
+    <None Remove="ModifierClientCD.xaml" />
+    <None Remove="ZoomProjetPA.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -45,12 +47,12 @@
     <ProjectCapability Include="Msix" />
   </ItemGroup>
   <ItemGroup>
-    <Page Update="zoomProjetPA.xaml">
+    <Page Update="AjouterClientCD.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="AfficherEmployesPA.xaml">
+    <Page Update="ModifierClientCD.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
@@ -60,7 +62,17 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="AfficherEmployesPA.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
     <Page Update="AfficherClientsPA.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="ZoomProjetPA.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

@@ -123,12 +123,11 @@ namespace ProjetFinal
         }
 
         // SUPPRIMER UN CLIENT DANS LA BASE DE DONNÉES
-        public MySqlConnection supprimerClients(Client client)
+        public MySqlConnection supprimerClients(String idClient)
         {
-            idClient = client.IdClient.ToString();
             try
             {
-                MySqlCommand cmd = new MySqlCommand("modifier_client");
+                MySqlCommand cmd = new MySqlCommand("supprimer_client");
                 cmd.Connection = conn;
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("_idClient", idClient);

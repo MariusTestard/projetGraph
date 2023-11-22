@@ -27,7 +27,7 @@ namespace ProjetFinal
         public MainWindow()
         {
             this.InitializeComponent();
-            mainFrame.Navigate(typeof(AfficherProjets));
+            mainFrame.Navigate(typeof(AfficherProjetsPA));
         }
 
         private async void navView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
@@ -40,7 +40,7 @@ namespace ProjetFinal
             }
             else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "ListeProjet")
             {
-                mainFrame.Navigate(typeof(AfficherProjets));
+                mainFrame.Navigate(typeof(AfficherProjetsPA));
                 navView.SelectedItem = null;
             }
             else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "AddProjet")
@@ -57,7 +57,7 @@ namespace ProjetFinal
             }
             else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "ListeClient")
             {
-                mainFrame.Navigate(typeof(AfficherClients));
+                mainFrame.Navigate(typeof(AfficherClientsPA));
                 navView.SelectedItem = null;
             }
             else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "AddClient")
@@ -74,7 +74,7 @@ namespace ProjetFinal
             }
             else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "ListeEmplo")
             {
-                mainFrame.Navigate(typeof(AfficherEmployes));
+                mainFrame.Navigate(typeof(AfficherEmployesPA));
                 navView.SelectedItem = null;
             }
             else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "AddEmplo")
@@ -113,7 +113,7 @@ namespace ProjetFinal
             }
             else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "Admin")
             {
-                LoginAdministrateur dialog = new LoginAdministrateur();
+                LoginAdminCD dialog = new LoginAdminCD();
                 dialog.XamlRoot = testgrid.XamlRoot;
                 dialog.Title = "Authentification";
                 dialog.PrimaryButtonText = "Se connecter";

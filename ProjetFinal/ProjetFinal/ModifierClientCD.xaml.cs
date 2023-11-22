@@ -18,23 +18,16 @@ using Windows.Foundation.Collections;
 
 namespace ProjetFinal
 {
-    public sealed partial class LoginAdminCD : ContentDialog
+    public sealed partial class ModifierClientCD : ContentDialog
     {
-        string username;
-        string password;
-
-        public LoginAdminCD()
+        public ModifierClientCD()
         {
             this.InitializeComponent();
         }
 
-        public string Username { get => username; }
-        public string Password { get => password; }
-
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            username = tbxuser.Text;
-            password = mdp.Password;
+
         }
     }
 }

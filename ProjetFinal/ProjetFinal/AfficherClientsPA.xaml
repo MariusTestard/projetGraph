@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Page
-    x:Class="ProjetFinal.AfficherClients"
+    x:Class="ProjetFinal.AfficherClientsPA"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:ProjetFinal"
@@ -9,30 +9,114 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-        <!-- LA LISTE  -->
+    <Grid x:Name="afficherClientsPA">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Row="0"
+                    Grid.Column="1"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom">
+            <Button 
+                x:Name="btnAjouter"
+                Content="Ajouter"
+                Background="DarkOliveGreen"
+                Click="btnAjouter_Click"/>
+        </StackPanel>
+
+        <!-- LA LISTVIEW -->
         <ListView 
             x:Name="lvListeClients"
-            ItemTemplate="{StaticResource ContactListViewTemplate}"
             SelectionMode="Single"
             ShowsScrollingPlaceholders="True"
-            Height="400"
+            Height="800"
             Width="400"
             BorderThickness="1"
-            BorderBrush="{ThemeResource SystemControlForegroundBaseMediumLowBrush}"/>
+            BorderBrush="{ThemeResource SystemControlForegroundBaseMediumLowBrush}"
+            Grid.Row="1"
+            Grid.Column="1"
+            SelectionChanged="lvListeClients_SelectionChanged">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="local:Client">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Ellipse 
+                                    x:Name="Ellipse"
+                                    Grid.RowSpan="4"
+                                    Width ="32"
+                                    Height="32"
+                                    Margin="6"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center"
+                                    Fill="{ThemeResource SystemControlBackgroundBaseMediumBrush}"/>
+                            <TextBlock 
+                                    Grid.Column="1"
+                                    Text="{x:Bind IdClient}"
+                                    x:Phase="1"
+                                    Style="{ThemeResource BaseTextBlockStyle}"
+                                    Margin="12,6,0,6"
+                                    FontWeight="Bold"/>
+                            <TextBlock  
+                                    Grid.Column="1"
+                                    Grid.Row="1"
+                                    Text="{x:Bind Nom}"
+                                    x:Phase="2"
+                                    Style="{ThemeResource BodyTextBlockStyle}"
+                                    Margin="12,0,0,6"/>
+                            <TextBlock  
+                                    Grid.Column="1"
+                                    Grid.Row="2"
+                                    Text="{x:Bind Adresse}"
+                                    x:Phase="2"
+                                    Style="{ThemeResource BodyTextBlockStyle}"
+                                    Margin="12,0,0,6"/>
+                            <TextBlock  
+                                    Grid.Column="1"
+                                    Grid.Row="3"
+                                    Text="{x:Bind Email}"
+                                    x:Phase="2"
+                                    Style="{ThemeResource BodyTextBlockStyle}"
+                                    Margin="12,0,0,6"/>
 
-        <!-- POUR FILTRER -->
-        <StackPanel Width="200">
-            <TextBlock 
-                Margin="8,8,8,4" 
-                Style="{ThemeResource BaseTextBlockStyle}">Filtrer par...</TextBlock>
-            <TextBox 
-                x:Name="FilterByName" 
-                Width="150" 
-                Header="First name" 
-                Margin="8"
-	            HorizontalAlignment="Left" 
-                TextChanged="OnFilterChanged"/>
-        </StackPanel>
+                        </Grid>
+                        <StackPanel 
+                            Grid.Column="1"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center">
+                            <Button 
+                                x:Name="btnSuppr"
+                                Click="btnSuppr_Click"
+                                Content="Suppr"
+                                Grid.Column="3"
+                                Tag="{x:Bind IdClient}"/>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Page>
