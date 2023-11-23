@@ -28,11 +28,31 @@ namespace ProjetFinal
             this.InitializeComponent();
             SingletonEmploye.getInstance().getListeEmployes().Clear();
             lvListeEmployes.ItemsSource = SingletonEmploye.getInstance().getListeEmployes();
+            /*
+            if (tblStatut.Content == "False")
+            {
+                tblStatut.Content == "Journalier";
+            }
+            else
+            {
+                tblStatut.Content == "Permanent";
+            }
+            */
+            if (SingletonAdmin.getInstance().LoginAdmin())
+            {
+
+                //btnSuppr.Visibility = Visibility.Visible;
+            }
+            else
+            {
+
+                //btnSuppr.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void btnTogglePermanent_Click(object sender, RoutedEventArgs e)
         {
-            btnTogglePermanent.Content = "Permanent";
+            //btnTogglePermanent.Content = "Permanent";
         }
     }
 }

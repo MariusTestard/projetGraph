@@ -7,6 +7,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -52,15 +53,31 @@ namespace ProjetFinal
             }
             else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "AddProjet")
             {
-
+                /*
+                 * 
+                 * À enlever lorsque ajouter un projet sera programmé
+                 * 
+                if (SingletonAdmin.getInstance().LoginAdmin())
+                {
+                    
+                }
+                else
+                {
+                    ErreurAdmin dialog = new ErreurAdmin();
+                    dialog.XamlRoot = testgrid.XamlRoot;
+                    dialog.Title = "Erreur";
+                    dialog.CloseButtonText = "Annuler";
+                    ContentDialogResult resultat = await dialog.ShowAsync();
+                }
+                */
             }
             else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "ModifyProjet")
             {
-
+                
             }
             else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "RemoveProjet")
             {
-
+                
             }
             else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "ListeClient")
             {
@@ -71,18 +88,6 @@ namespace ProjetFinal
             {
                 mainFrame.Navigate(typeof(AfficherEmployesPA));
                 navView.SelectedItem = null;
-            }
-            else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "AddEmplo")
-            {
-
-            }
-            else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "ModifyEmplo")
-            {
-
-            }
-            else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "RemoveEmplo")
-            {
-
             }
             else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "SaveFile")
             {
@@ -116,10 +121,26 @@ namespace ProjetFinal
 
 
                 ContentDialogResult resultat = await dialog.ShowAsync();
-                selectedNavItem = null;
+
                 if (resultat == ContentDialogResult.Primary)
+                {
                     SingletonAdmin.getInstance().connexionAdmin(dialog.Username, dialog.Password);
+                    selectedNavItem.Tag = "Connecté";
+                    selectedNavItem.Content = "Déconnexion";
+                }
+                    
+
+
                 navView.SelectedItem = null;
+            }
+            else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "Connecté")
+            {
+
+                SingletonAdmin.getInstance().deconnexionAdmin();
+                selectedNavItem.Tag = "Admin";
+                selectedNavItem.Content = "Compte Administrateur";
+                navView.SelectedItem = null;
+                
             }
         }
 

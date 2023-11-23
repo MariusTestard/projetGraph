@@ -28,6 +28,17 @@ namespace ProjetFinal
         {
             this.InitializeComponent();
             lvListeClients.ItemsSource = SingletonClient.getInstance().getListeClients();
+            
+            if (SingletonAdmin.getInstance().LoginAdmin())
+            {
+                btnAjouter.Visibility = Visibility.Visible;
+                //btnSuppr.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                btnAjouter.Visibility = Visibility.Collapsed;
+                //btnSuppr.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void btnSuppr_Click(object sender, RoutedEventArgs e)

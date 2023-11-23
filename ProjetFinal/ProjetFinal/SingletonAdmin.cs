@@ -12,6 +12,9 @@ namespace ProjetFinal
     {
         MySqlConnection conn;
         static SingletonAdmin instance = null;
+        bool AdminLogin = false;
+
+
 
         public SingletonAdmin() 
         {
@@ -55,7 +58,7 @@ namespace ProjetFinal
         {
             try
             {
-                MySqlCommand cmd = new MySqlCommand("see_admin");
+                MySqlCommand cmd = new MySqlCommand("lookup_admin");
                 cmd.Connection = conn;
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("_username", username);
@@ -65,6 +68,7 @@ namespace ProjetFinal
                 if (result.HasRows)
                 {
                     Debug.WriteLine("Connecté");
+                    AdminLogin = true;
                 }
                 else { Debug.WriteLine("Champ invalide"); }
                 result.Close();
@@ -77,5 +81,14 @@ namespace ProjetFinal
             }
         }
 
+        public void deconnexionAdmin()
+        {
+            AdminLogin = false;
+        }
+
+        public bool LoginAdmin() 
+        { 
+            return AdminLogin;
+        }
     }
 }
