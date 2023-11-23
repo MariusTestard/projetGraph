@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProjetFinal
 {
-    internal class Client
+    public class Client
     {
         public Client(int idClient, string nom, string adresse, string numTel, string email)
         {

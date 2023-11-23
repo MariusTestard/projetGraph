@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ProjetFinal
 {
-    internal class Employe
+    public class Employe
     {
         public Employe(string matricule, string nom, string prenom, string dateNaissance, string email, string adresse, string dateEmbauche, double tauxHoraire, string photo, bool statut)
         {

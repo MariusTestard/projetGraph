@@ -10,6 +10,23 @@
     PrimaryButtonClick="ContentDialog_PrimaryButtonClick">
 
     <Grid>
-        
+        <StackPanel Orientation="Vertical">
+            <TextBox 
+                x:Name="tbxNom"
+                Margin="0 8 0 8"
+                PlaceholderText="Nom"/>
+            <TextBox 
+                x:Name="tbxAdresse"
+                Margin="0 8 0 8"
+                PlaceholderText="Adresse"/>
+            <TextBox 
+                x:Name="tbxNumTel"
+                Margin="0 8 0 8"
+                PlaceholderText="Téléphone"/>
+            <TextBox 
+                x:Name="tbxEmail"
+                Margin="0 8 0 0"
+                PlaceholderText="Email"/>
+        </StackPanel>
     </Grid>
 </ContentDialog>

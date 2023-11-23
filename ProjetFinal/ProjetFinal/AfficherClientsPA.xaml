@@ -30,7 +30,8 @@
                 x:Name="btnAjouter"
                 Content="Ajouter"
                 Background="DarkOliveGreen"
-                Click="btnAjouter_Click"/>
+                Click="btnAjouter_Click"
+                Margin="0 0 0 2"/>
         </StackPanel>
 
         <!-- LA LISTVIEW -->
@@ -38,8 +39,8 @@
             x:Name="lvListeClients"
             SelectionMode="Single"
             ShowsScrollingPlaceholders="True"
-            Height="800"
-            Width="400"
+            Height="650"
+            Width="420"
             BorderThickness="1"
             BorderBrush="{ThemeResource SystemControlForegroundBaseMediumLowBrush}"
             Grid.Row="1"
@@ -112,7 +113,8 @@
                                 Click="btnSuppr_Click"
                                 Content="Suppr"
                                 Grid.Column="3"
-                                Tag="{x:Bind IdClient}"/>
+                                Tag="{x:Bind IdClient}"
+                                Background="DarkRed"/>
                         </StackPanel>
                     </Grid>
                 </DataTemplate>

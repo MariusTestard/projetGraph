@@ -33,8 +33,15 @@ namespace ProjetFinal
         private async void navView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
             NavigationViewItem selectedNavItem = args.SelectedItem as NavigationViewItem;
-
-            if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "Options")
+            if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "listeClients")
+            {
+                mainFrame.Navigate(typeof(AfficherClientsPA));
+            }
+            else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "listeEmployes")
+            {
+                mainFrame.Navigate(typeof(AfficherEmployesPA));
+            }
+            else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "Options")
             {
                 navView.SelectedItem = null;
             }
@@ -59,18 +66,6 @@ namespace ProjetFinal
             {
                 mainFrame.Navigate(typeof(AfficherClientsPA));
                 navView.SelectedItem = null;
-            }
-            else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "AddClient")
-            {
-
-            }
-            else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "ModifyClient")
-            {
-
-            }
-            else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "RemoveClient")
-            {
-
             }
             else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "ListeEmplo")
             {

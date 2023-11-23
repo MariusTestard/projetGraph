@@ -15,32 +15,19 @@
                             SelectionChanged="navView_SelectionChanged"
                             IsSettingsVisible="False"
                             IsBackButtonVisible="Collapsed" 
-                            SelectedItem=""
-                            PaneTitle="Gestion" >
+                            PaneTitle="Gestion">
             <NavigationView.MenuItems>
-                <NavigationViewItem Content="Options des projets" Icon="Library" Tag="Options">
+                <NavigationViewItem Content="Gérer les projets" Icon="Library" Tag="Options">
                     <NavigationViewItem.MenuItems>
                         <NavigationViewItem Content="Liste des projets" Tag="ListeProjet" Icon="List" />
                         <NavigationViewItem Content="Ajouter un projet" Tag="AddProjet" Icon="Add" />
-                        <NavigationViewItem Content="Modifier un client" Tag="ModifyProjet" Icon="Edit" />
+                        <NavigationViewItem Content="Modifier un projet" Tag="ModifyProjet" Icon="Edit" />
                         <NavigationViewItem Content="Supprimer un projet" Tag="RemoveProjet" Icon="Remove" />
                     </NavigationViewItem.MenuItems>
                 </NavigationViewItem>
-                <NavigationViewItem Content="Options des clients" Icon="Contact" Tag="Options">
-                    <NavigationViewItem.MenuItems>
-                        <NavigationViewItem Content="Liste des clients" Tag="ListeClient" Icon="List" />
-                        <NavigationViewItem Content="Ajouter un client" Tag="AddClient" Icon="AddFriend" />
-                        <NavigationViewItem Content="Modifier un client" Tag="ModifyClient" Icon="Edit" />
-                    </NavigationViewItem.MenuItems>
+                <NavigationViewItem Content="Gérer les employés" Icon="People" Tag="listeEmployes">
                 </NavigationViewItem>
-                <NavigationViewItem Content="Options des employés" Icon="People" Tag="Options">
-                    <NavigationViewItem.MenuItems>
-                        <NavigationViewItem Content="Liste des employés" Tag="ListeEmplo" Icon="List" />
-                        <NavigationViewItem Content="Ajouter un employé" Tag="AddEmplo" Icon="AddFriend" />
-                        <NavigationViewItem Content="Modifier un employé" Tag="ModifyEmplo" Icon="Edit" />
-                        <NavigationViewItem Content="Supprimer un employé" Tag="RemoveEmplo" Icon="BlockContact" />
-                    </NavigationViewItem.MenuItems>
-                </NavigationViewItem>
+                <NavigationViewItem Content="Gérer les clients" Icon="Contact" Tag="listeClients" />
             </NavigationView.MenuItems>
             <NavigationView.FooterMenuItems>
                 <NavigationViewItem Content="Sauvegarder les projets" Tag="SaveFile" Icon="Save" />

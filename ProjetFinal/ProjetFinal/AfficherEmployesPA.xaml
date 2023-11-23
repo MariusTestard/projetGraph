@@ -10,152 +10,78 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-
-        <StackPanel Orientation="Horizontal"
-            Grid.Row="0"
-            HorizontalAlignment="Center"
-            Height="50">
-            <Button x:Name="btnAjouterEmplo" 
-            Content="Ajouter"
-            Foreground="Black"
-            Background="White"
-            Width="200"
-            FontSize="30"
-            Click="btnAjouterEmplo_Click"/>
-        </StackPanel>
-        <GridView   x:Name="lvListeEmployes"
-                Grid.Row="1"
-                Padding="40 5 40 40"
-                HorizontalAlignment="Center">
+        <GridView   
+            x:Name="lvListeEmployes"
+            Grid.Row="1"
+            Padding="40 20 40 10"
+            HorizontalAlignment="Center">
             <GridView.ItemTemplate>
-                <DataTemplate   x:DataType="local:Employe">
-                    <StackPanel Padding="15"
-                Background="DarkOrange"
-                Width="375">
-                        <TextBlock  Text="{x:Bind Matricule}"
-                    Foreground="Black"
-                    FontSize="50"
-                    FontWeight="Bold"/>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock  Text="{x:Bind Photo}"
-                                    Foreground="Black"
-                                    FontSize="20"
-                                    FontWeight="SemiBold"
-                                    />
-                            <TextBlock  Text="Nom:"
-                        Foreground="Black"
-                        FontSize="20"
-                        Padding="0 0 5 0"/>
-                            <TextBlock  Text="{x:Bind Nom}"
-                        Foreground="Black"
-                        FontSize="20"
-                        FontWeight="SemiBold"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock  Text="Prénom:"
-                        Foreground="Black"
-                                Padding="0 0 5 0"
-                        FontSize="20"/>
-                            <TextBlock  Text="{x:Bind Prenom}"
-                        Foreground="Black"
-                        FontSize="20"
-                        FontWeight="SemiBold"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock  Text="Date de naissance:"
-                        Foreground="Black"
-                                Padding="0 0 5 0"
-                        FontSize="20"/>
-                            <TextBlock  Text="{x:Bind DateNaissance}"
-                        Foreground="Black"
-                        FontSize="20"
-                        FontWeight="SemiBold"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock  Text="Email:"
-                        Foreground="Black"
-                        Padding="0 0 5 0"
-                        FontSize="20"/>
-                            <TextBlock  Text="{x:Bind Email}"
-                        Foreground="Black"
-                        FontSize="20"
-                        FontWeight="SemiBold"/>
-                            <TextBlock  Text="$"
-                                Foreground="Black"
+                <DataTemplate x:DataType="local:Employe">
+                    <StackPanel Padding="20"
+                            BorderBrush="White"
+                            BorderThickness="1">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock 
+                                Text="{x:Bind Matricule}"
+                                FontWeight="Bold"
+                                FontSize="20"
+                                Grid.Column="0"/>
+                            <Button 
+                                x:Name="btnSuppr"
+                                Grid.Column="1"
+                                HorizontalAlignment="Right"
+                                Padding="1"
+                                Background="#00FFFFFF"
+                                BorderBrush="#00FFFFFF">
+                                <Image Source="https://www.pngall.com/wp-content/uploads/5/Delete-Red-X-Button-Transparent.png" Width="25"
+                                   />
+                            </Button>
+                        </Grid>
+                        <Image Stretch="UniformToFill" Source="{x:Bind Photo}" Width="192" Height="192"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock 
+                                Grid.Column="0"
+                                Grid.Row="0"
+                                Text="{x:Bind Prenom}"
                                 FontSize="20"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock  Text="Adresse:"
-                                  Foreground="Black"
-                                  Padding="0 0 5 0"
-                                  FontSize="20"/>
-                            <TextBlock  Text="{x:Bind Adresse}"
-                                  Foreground="Black"
-                                  FontSize="20"
-                                  FontWeight="SemiBold"/>
-                            <TextBlock  Text="$"
-                                 Foreground="Black"
-                                 FontSize="20"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock  Text="Date d'embauche:"
-                        Foreground="Black"
-                        FontSize="20"
-                        Padding="0 0 5 0"/>
-                            <TextBlock  Text="{x:Bind DateEmbauche}"
-                        Foreground="Black"
-                        FontSize="20"
-                        FontWeight="SemiBold"
-                        Margin="5 0 0 0"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock  Text="Taux horaire:"
-                                Foreground="Black"
+                            <TextBlock 
+                                Grid.Column="1"
+                                Grid.Row="0"
+                                Text="{x:Bind Nom}"
                                 FontSize="20"
-                                Padding="0 0 5 0"/>
-                            <TextBlock  Text="{x:Bind TauxHoraire}"
-                                Foreground="Black"
-                                FontSize="20"
-                                FontWeight="SemiBold"/>
-                            <TextBlock  Text="$"
-                                Foreground="Black"
-                                FontSize="20"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock  Text="Client:"
-                                Foreground="Black"
-                                FontSize="20"
-                                Padding="0 0 5 0"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock  Text="Statut:"
-                                Foreground="Black"
-                                FontSize="20"
-                                Padding="0 0 5 0"/>
-                            <TextBlock  Text="{x:Bind Statut}"
-                                Foreground="Black"
-                                FontSize="20"
-                                FontWeight="SemiBold"/>
-                        </StackPanel>
-                        <StackPanel>
-                            <CheckBox   Checked="cbxPerm_Checked"
-                                Foreground="Black"
-                                Content = "Journalier"
-                                Tag="{x:Bind Matricule}"     />
-                        </StackPanel>
-                        <StackPanel HorizontalAlignment="Left"
-                            Margin="0 10 0 0">
-                            <Button Content="Effacer"
-                            FontSize="20" 
-                            Background="OrangeRed"
-                            Foreground="Black"
-                                />
-                        </StackPanel>
+                                Margin="5 0 0 0"/>
+                        </Grid>
+                        <TextBlock 
+                            Text="{x:Bind DateNaissance}"
+                            FontSize="20"/>
+                        <TextBlock 
+                            Text="{x:Bind Email}"
+                            FontSize="20"/>
+                        <TextBlock 
+                            Text="{x:Bind Adresse}"
+                            FontSize="20"/>
+                        <TextBlock 
+                            Text="{x:Bind DateEmbauche}"
+                            FontSize="20"/>
+                        <TextBlock 
+                            Text="{x:Bind TauxHoraire}"
+                            FontSize="20"/>
+                        <TextBlock 
+                            Text="{x:Bind Statut}"
+                            FontSize="20"
+                            Margin="0 0 0 5"/>
+                        <ToggleButton 
+                            x:Name="btnTogglePermanent"
+                            Content="Journalier" 
+                            Click="btnTogglePermanent_Click" />
                     </StackPanel>
                 </DataTemplate>
             </GridView.ItemTemplate>

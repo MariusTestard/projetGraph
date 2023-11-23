@@ -47,6 +47,11 @@
     <ProjectCapability Include="Msix" />
   </ItemGroup>
   <ItemGroup>
+    <Page Update="AfficherEmployesPA.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
     <Page Update="AjouterClientCD.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -58,11 +63,6 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="AfficherProjetsPA.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Update="AfficherEmployesPA.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

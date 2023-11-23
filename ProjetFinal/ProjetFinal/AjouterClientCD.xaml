@@ -12,19 +12,19 @@
     <Grid>
         <StackPanel Orientation="Vertical">
             <TextBox 
-                x:Name="nom"
+                x:Name="tbxNom"
                 Margin="0 8 0 8"
                 PlaceholderText="Nom"/>
             <TextBox 
-                x:Name="adresse"
+                x:Name="tbxAdresse"
                 Margin="0 8 0 8"
                 PlaceholderText="Adresse"/>
             <TextBox 
-                x:Name="numTel"
+                x:Name="tbxNumTel"
                 Margin="0 8 0 8"
                 PlaceholderText="Téléphone"/>
             <TextBox 
-                x:Name="email"
+                x:Name="tbxEmail"
                 Margin="0 8 0 0"
                 PlaceholderText="Email"/>
         </StackPanel>

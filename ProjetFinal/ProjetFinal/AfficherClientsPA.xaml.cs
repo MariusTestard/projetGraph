@@ -39,13 +39,17 @@ namespace ProjetFinal
 
         private async void lvListeClients_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ModifierClientCD dialog = new ModifierClientCD();
-            dialog.XamlRoot = afficherClientsPA.XamlRoot;
-            dialog.Title = "Modifier un client";
-            dialog.PrimaryButtonText = "Modifier";
-            dialog.SecondaryButtonText = "Annuler";
-            dialog.DefaultButton = ContentDialogButton.Secondary;
-            var result = await dialog.ShowAsync();
+            if (lvListeClients.SelectedIndex != -1)
+            {
+                ModifierClientCD dialog = new ModifierClientCD();
+                dialog.setClient(lvListeClients.SelectedItem as Client);
+                dialog.XamlRoot = afficherClientsPA.XamlRoot;
+                dialog.Title = "Modifier un client";
+                dialog.PrimaryButtonText = "Modifier";
+                dialog.SecondaryButtonText = "Annuler";
+                dialog.DefaultButton = ContentDialogButton.Secondary;
+                var result = await dialog.ShowAsync();
+            }
         }
 
         private async void btnAjouter_Click(object sender, RoutedEventArgs e)
