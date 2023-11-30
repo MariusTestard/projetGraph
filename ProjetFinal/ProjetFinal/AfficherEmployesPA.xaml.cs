@@ -12,6 +12,7 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using System.Collections.ObjectModel;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -28,20 +29,13 @@ namespace ProjetFinal
             this.InitializeComponent();
             SingletonEmploye.getInstance().getListeEmployes().Clear();
             lvListeEmployes.ItemsSource = SingletonEmploye.getInstance().getListeEmployes();
-            /*
-            if (tblStatut.Content == "False")
-            {
-                tblStatut.Content == "Journalier";
-            }
-            else
-            {
-                tblStatut.Content == "Permanent";
-            }
-            */
+            
+            
             if (SingletonAdmin.getInstance().LoginAdmin())
             {
 
                 //btnSuppr.Visibility = Visibility.Visible;
+                
             }
             else
             {
@@ -52,7 +46,24 @@ namespace ProjetFinal
 
         private void btnTogglePermanent_Click(object sender, RoutedEventArgs e)
         {
-            //btnTogglePermanent.Content = "Permanent";
+            int pos = 0;
+            ToggleButton b = (ToggleButton)sender;
+            var c = b.Tag.ToString();
+            for(int i = 0; i < lvListeEmployes.Items.Count(); i++)
+            {
+                Employe unEmploye = lvListeEmployes.Items[i] as Employe;
+                if (c.Equals(unEmploye.Matricule))
+                {
+                    pos = i;
+                    break;
+                }
+            }
+            Employe emp = lvListeEmployes.Items[pos] as Employe;
+            emp.Statut = true;
+            SingletonEmploye.getInstance().getListeEmployes()[pos] = emp;
+            SingletonEmploye.getInstance().changeStatusFromEmploye(c);
+            SingletonEmploye.getInstance().getListeEmployes().Clear();
+            SingletonEmploye.getInstance().getListeEmployes();
         }
     }
 }

@@ -10,6 +10,8 @@ namespace ProjetFinal
 {
     public class Employe
     {
+        public Employe() { }
+
         public Employe(string matricule, string nom, string prenom, string dateNaissance, string email, string adresse, string dateEmbauche, double tauxHoraire, string photo, bool statut)
         {
             Matricule = matricule;
@@ -34,6 +36,13 @@ namespace ProjetFinal
         public double TauxHoraire { get; set; }
         public string Photo { get; set; }
         public bool Statut { get; set; }
+
+        public string StatutString
+        {
+            get {
+                return Statut == false ? "Journalier" : "Permanent";
+            }
+        }
 
 
         public override string ToString()

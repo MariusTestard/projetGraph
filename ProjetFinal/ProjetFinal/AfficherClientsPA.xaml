@@ -108,13 +108,7 @@
                             Grid.Column="1"
                             HorizontalAlignment="Right"
                             VerticalAlignment="Center">
-                            <Button 
-                                x:Name="btnSuppr"
-                                Click="btnSuppr_Click"
-                                Content="Suppr"
-                                Grid.Column="3"
-                                Tag="{x:Bind IdClient}"
-                                Background="DarkRed"/>
+                            
                         </StackPanel>
                     </Grid>
                 </DataTemplate>

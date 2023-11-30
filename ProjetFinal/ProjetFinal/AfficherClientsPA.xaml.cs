@@ -32,12 +32,13 @@ namespace ProjetFinal
             if (SingletonAdmin.getInstance().LoginAdmin())
             {
                 btnAjouter.Visibility = Visibility.Visible;
-                //btnSuppr.Visibility = Visibility.Visible;
+
+                
             }
             else
             {
                 btnAjouter.Visibility = Visibility.Collapsed;
-                //btnSuppr.Visibility = Visibility.Collapsed;
+
             }
         }
 
