@@ -16,9 +16,11 @@
     <None Remove="AfficherEmployesPA.xaml" />
     <None Remove="AfficherProjetsPA.xaml" />
     <None Remove="AjouterClientCD.xaml" />
+    <None Remove="AjouterEmployeCD.xaml" />
     <None Remove="ErreurAdmin.xaml" />
     <None Remove="LoginAdminCD.xaml" />
     <None Remove="ModifierClientCD.xaml" />
+    <None Remove="ModifierEmployeCD.xaml" />
     <None Remove="ZoomProjetPA.xaml" />
   </ItemGroup>
 
@@ -46,6 +48,16 @@
   -->
   <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
     <ProjectCapability Include="Msix" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="AjouterEmployeCD.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="ModifierEmployeCD.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="ErreurAdmin.xaml">

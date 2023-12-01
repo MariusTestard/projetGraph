@@ -127,9 +127,10 @@ namespace ProjetFinal
                     SingletonAdmin.getInstance().connexionAdmin(dialog.Username, dialog.Password);
                     selectedNavItem.Tag = "Connecté";
                     selectedNavItem.Content = "Déconnexion";
-                }
                     
+                   // mainFrame.Navigate(mainFrame.CurrentSourcePageType);
 
+                }
 
                 navView.SelectedItem = null;
             }
@@ -140,7 +141,7 @@ namespace ProjetFinal
                 selectedNavItem.Tag = "Admin";
                 selectedNavItem.Content = "Compte Administrateur";
                 navView.SelectedItem = null;
-                
+                mainFrame.Navigate(mainFrame.CurrentSourcePageType);
             }
         }
 

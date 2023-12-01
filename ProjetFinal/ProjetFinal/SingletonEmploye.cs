@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Microsoft.UI.Xaml.Controls;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -29,9 +30,12 @@ namespace ProjetFinal
             return instance;
         }
 
+        public ObservableCollection<Employe> ListeEmploye { get { return listeEmployes; } }
+
         // RÉCUPÈRE TOUS LES EMPLOYÉS DE LA BASE DE DONNÉES
         public ObservableCollection<Employe> getListeEmployes()
         {
+            listeEmployes.Clear();
             try
             {
                 MySqlCommand cmd = new MySqlCommand("affiche_listeEmploye");
@@ -95,7 +99,9 @@ namespace ProjetFinal
             }
             return conn;
         }
+
         
+
         // MODIFIE LES INFORMATIONS D'UN EMPLOYÉ DANS LA BASE DE DONNÉES
         public MySqlConnection modifierEmploye(string matricule, string nom, string prenom, string dateNaissance, string email, string adresse, string dateEmbauche, double tauxHoraire, string photo)
         {
@@ -131,6 +137,12 @@ namespace ProjetFinal
             return conn;
         }
 
+        public void swap(Employe employe, int position)
+        {
+            listeEmployes[position] = employe;
+        }
+
+
         // SUPPRIME UN EMPLOYÉ DANS LA BASE DE DONNÉES
         public MySqlConnection supprimerEmploye(Employe employe)
         {
@@ -158,7 +170,7 @@ namespace ProjetFinal
         }
 
         // CHANGE LE STATUT D'UN EMPLOYÉ DE JOURNALIER À PERMANENT DANS LA BASE DE DONNÉES
-        public ObservableCollection<Employe> changeStatusFromEmploye(String _matricule)
+        public void changeStatusFromEmploye(Employe employe, int pos)
         {
             try
             {
@@ -166,16 +178,17 @@ namespace ProjetFinal
                 cmd.Connection = conn;
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 conn.Open();
-                cmd.Parameters.AddWithValue("_matricule", _matricule);
+                cmd.Parameters.AddWithValue("_matricule", employe.Matricule);
                 cmd.ExecuteNonQuery();
                 conn.Close();
+                swap(employe, pos);
             }
             catch (MySqlException ex)
             {
                 if (conn.State == System.Data.ConnectionState.Open)
                     conn.Close();
             }
-            return listeEmployes;
+            
         }
     }
 }

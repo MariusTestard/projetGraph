@@ -37,10 +37,23 @@ namespace ProjetFinal
         public string Photo { get; set; }
         public bool Statut { get; set; }
 
+        public bool IsEnable 
+        { 
+            get { return !Statut; } 
+        }
+
         public string StatutString
         {
             get {
                 return Statut == false ? "Journalier" : "Permanent";
+            }
+        }
+
+        public string Couleur
+        {
+            get
+            {
+                return Statut == false ? "green" : "red";
             }
         }
 

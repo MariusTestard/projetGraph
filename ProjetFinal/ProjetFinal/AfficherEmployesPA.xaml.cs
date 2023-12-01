@@ -29,8 +29,9 @@ namespace ProjetFinal
             this.InitializeComponent();
             SingletonEmploye.getInstance().getListeEmployes().Clear();
             lvListeEmployes.ItemsSource = SingletonEmploye.getInstance().getListeEmployes();
-            
-            
+
+
+
             if (SingletonAdmin.getInstance().LoginAdmin())
             {
 
@@ -46,24 +47,40 @@ namespace ProjetFinal
 
         private void btnTogglePermanent_Click(object sender, RoutedEventArgs e)
         {
-            int pos = 0;
-            ToggleButton b = (ToggleButton)sender;
-            var c = b.Tag.ToString();
-            for(int i = 0; i < lvListeEmployes.Items.Count(); i++)
-            {
-                Employe unEmploye = lvListeEmployes.Items[i] as Employe;
-                if (c.Equals(unEmploye.Matricule))
-                {
-                    pos = i;
-                    break;
-                }
-            }
-            Employe emp = lvListeEmployes.Items[pos] as Employe;
+            Button b = (Button)sender;
+            var contexte = b.DataContext as Employe;
+            int pos = lvListeEmployes.Items.IndexOf(contexte);
+
+            
+            Employe emp = new Employe { 
+                Nom = SingletonEmploye.getInstance().ListeEmploye[pos].Nom,
+                Prenom = SingletonEmploye.getInstance().ListeEmploye[pos].Prenom,
+                DateEmbauche = SingletonEmploye.getInstance().ListeEmploye[pos].DateEmbauche,
+                DateNaissance = SingletonEmploye.getInstance().ListeEmploye[pos].DateNaissance,
+                Matricule = SingletonEmploye.getInstance().ListeEmploye[pos].Matricule,
+                Email = SingletonEmploye.getInstance().ListeEmploye[pos].Email,
+                Photo = SingletonEmploye.getInstance().ListeEmploye[pos].Photo,
+                TauxHoraire = SingletonEmploye.getInstance().ListeEmploye[pos].TauxHoraire,
+                Adresse = SingletonEmploye.getInstance().ListeEmploye[pos].Adresse,
+                Statut = true
+            };
+            
             emp.Statut = true;
-            SingletonEmploye.getInstance().getListeEmployes()[pos] = emp;
-            SingletonEmploye.getInstance().changeStatusFromEmploye(c);
-            SingletonEmploye.getInstance().getListeEmployes().Clear();
-            SingletonEmploye.getInstance().getListeEmployes();
+            
+            SingletonEmploye.getInstance().changeStatusFromEmploye(emp, pos);
+            //SingletonEmploye.getInstance().swap(emp, pos);
+            //b.Visibility = Visibility.Collapsed;
+        }
+
+        private async void btnAjouter_Click(object sender, RoutedEventArgs e)
+        {
+            AjouterClientCD dialog = new AjouterClientCD();
+            dialog.XamlRoot = afficherEmployePA.XamlRoot;
+            dialog.Title = "Ajouter un employé";
+            dialog.PrimaryButtonText = "Ajouter";
+            dialog.SecondaryButtonText = "Annuler";
+            dialog.DefaultButton = ContentDialogButton.Secondary;
+            var result = await dialog.ShowAsync();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Microsoft.UI.Xaml.Controls;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -13,6 +14,7 @@ namespace ProjetFinal
         MySqlConnection conn;
         static SingletonAdmin instance = null;
         bool AdminLogin = false;
+        
 
 
 
@@ -20,6 +22,8 @@ namespace ProjetFinal
         {
             conn = new MySqlConnection("Server=cours.cegep3r.info;Database=1865294-gabryel-poisson;Uid=1865294;Pwd=1865294;");
         }
+
+        public Button Bt { get; set; }
 
         // RÉCUPÈRE L'INSTANCE DE L'OBJET 
         public static SingletonAdmin getInstance()
@@ -69,6 +73,7 @@ namespace ProjetFinal
                 {
                     Debug.WriteLine("Connecté");
                     AdminLogin = true;
+                    Bt.Visibility = Microsoft.UI.Xaml.Visibility.Visible;
                 }
                 else { Debug.WriteLine("Champ invalide"); }
                 result.Close();
@@ -84,6 +89,7 @@ namespace ProjetFinal
         public void deconnexionAdmin()
         {
             AdminLogin = false;
+            Bt.Visibility = Microsoft.UI.Xaml.Visibility.Collapsed;
         }
 
         public bool LoginAdmin() 

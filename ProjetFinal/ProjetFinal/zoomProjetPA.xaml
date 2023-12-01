@@ -13,6 +13,9 @@
         <StackPanel>
             <TextBlock Text=""
           x:Name="tblNumProjet"/>
+  <TextBlock Text=""
+x:Name="tblTitre"/>
+
         </StackPanel>
     </Grid>
 </Page>

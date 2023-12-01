@@ -32,14 +32,12 @@ namespace ProjetFinal
             if (SingletonAdmin.getInstance().LoginAdmin())
             {
                 btnAjouter.Visibility = Visibility.Visible;
-
-                
             }
             else
             {
                 btnAjouter.Visibility = Visibility.Collapsed;
-
             }
+            SingletonAdmin.getInstance().Bt = btnAjouter;
         }
 
         private void btnSuppr_Click(object sender, RoutedEventArgs e)

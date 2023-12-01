@@ -9,10 +9,37 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Grid x:Name="afficherEmployePA">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Row="0"
+            Grid.Column="1"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Bottom">
+        <Button 
+            x:Name="btnAjouter"
+            Content="Ajouter"
+            Background="DarkOliveGreen"
+            Click="btnAjouter_Click"
+            Margin="0 20 0 -15"
+            Height="50"
+            Width="100"
+            FontSize="18"/>
+        </StackPanel>
         <GridView   
             x:Name="lvListeEmployes"
             Grid.Row="1"
+            Grid.Column="1"
             Padding="40 20 40 10"
             HorizontalAlignment="Center">
             <GridView.ItemTemplate>
@@ -69,14 +96,17 @@
                             FontSize="20"/>
                         <TextBlock 
                             x:Name="tblStatut"
+                            Foreground="{x:Bind Couleur}"
                             Text="{x:Bind StatutString}"
                             FontSize="20"
                             Margin="0 0 0 5"/>
-                        <ToggleButton 
+                        
+                        <Button 
                             x:Name="btnTogglePermanent"
                             Content="Mettre Permanent" 
                             Tag="{x:Bind Matricule}"
-                            Click="btnTogglePermanent_Click" />
+                            IsEnabled="{x:Bind IsEnable}"
+                            Click="btnTogglePermanent_Click" />         
                     </StackPanel>
                 </DataTemplate>
             </GridView.ItemTemplate>
