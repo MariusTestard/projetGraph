@@ -12,7 +12,7 @@ namespace ProjetFinal
     internal class SingletonEmploye
     {
         ObservableCollection<Employe> listeEmployes;
-        ObservableCollection<Employe> empProjet;
+        ObservableCollection<EmployeProjet> empProjet;
         MySqlConnection conn;
         static SingletonEmploye instance = null;
         string matricule;
@@ -20,6 +20,7 @@ namespace ProjetFinal
         public SingletonEmploye() 
         {
             listeEmployes = new ObservableCollection<Employe>();
+            empProjet = new ObservableCollection<EmployeProjet>();
             conn = new MySqlConnection("Server=cours.cegep3r.info;Database=1865294-gabryel-poisson;Uid=1865294;Pwd=1865294;");
         }
 
@@ -31,7 +32,7 @@ namespace ProjetFinal
             return instance;
         }
 
-        public ObservableCollection<Employe> ListeEmployeProjet { get { return empProjet; } }
+        public ObservableCollection<EmployeProjet> ListeEmployeProjet { get { return empProjet; } }
 
         public ObservableCollection<Employe> ListeEmploye { get { return listeEmployes; } }
 
@@ -69,6 +70,39 @@ namespace ProjetFinal
                     conn.Close();
             }
             return listeEmployes;
+        }
+
+        public ObservableCollection<EmployeProjet> getEmployeFromAProject(String idProjet)
+        {
+            empProjet.Clear();
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand("employe_dans_projet");
+                cmd.Connection = conn;
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("_idProjet", idProjet);
+                conn.Open();
+                MySqlDataReader result = cmd.ExecuteReader();
+                while (result.Read())
+                {
+                    EmployeProjet employe = new EmployeProjet(matricule: result["matricule"].ToString(),
+                        nom: result["nom"].ToString(),
+                        prenom: result["prenom"].ToString(),
+                        tauxHoraire: (double)result["tauxHoraire"],
+                        nbrHeureTravail: (int)result["nbrHeureTravail"],
+                        totSalaireAPay: (double)result["totSalaireAPay"],
+                        photo: result["photo"].ToString());
+                    empProjet.Add(employe);
+                }
+                result.Close();
+                conn.Close();
+            }
+            catch (MySqlException ex)
+            {
+                if (conn.State == System.Data.ConnectionState.Open)
+                    conn.Close();
+            }
+            return empProjet;
         }
 
         // AJOUTE UN EMPLOYÉ DANS LA BASE DE DONNÉES

@@ -26,6 +26,7 @@ namespace ProjetFinal
         public ZoomProjetPA()
         {
             this.InitializeComponent();
+            lvListeEmployes.ItemsSource = SingletonEmploye.getInstance().getListeEmployes();
         }
         //(, double budget, int nbrEmplo, double totSalaireApay, int client, bool statut)
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -33,24 +34,22 @@ namespace ProjetFinal
             if (e.Parameter is not null)
             {
                 Projet leProjet = e.Parameter as Projet;
-                
+                lvEmployesProjet.ItemsSource = SingletonEmploye.getInstance().getEmployeFromAProject(leProjet.numProjet);
                 tblNumProjet.Text = leProjet.numProjet.ToString();
-                tblDescription.Text = leProjet.description.ToString();
-                tblTitre.Text = leProjet.titre.ToString();
-                tblDateDeb.Text = leProjet.dateDeb;
-                tblBudget.Text = leProjet.budget.ToString();
-                tblNbrEmplo.Text = leProjet.nbrEmplo.ToString();
-                tblTotSalaireApay.Text = leProjet.totSalaireApay.ToString();
-                tblClient.Text = leProjet.client.ToString();
-                tblStatut.Text = leProjet.statut.ToString();
-
-
-                SingletonProjet.getInstance().getEmployesDansProjet(leProjet.numProjet.ToString());
-                tbltest1.Text = SingletonEmploye.getInstance().ListeEmployeProjet[0].Matricule;
-                tbltest2.Text = SingletonEmploye.getInstance().ListeEmployeProjet[0].Nom;
-                tbltest3.Text = SingletonEmploye.getInstance().ListeEmployeProjet[0].Prenom;
+                tblDescription.Text = "Description: " + leProjet.description.ToString();
+                tblTitre.Text = "Titre: " + leProjet.titre.ToString();
+                tblDateDeb.Text = "Date de début: " + leProjet.dateDeb;
+                tblBudget.Text = "Budget: " + leProjet.budget.ToString() + "$";
+                tblNbrEmplo.Text = "Nombre d'employés: " + leProjet.nbrEmplo.ToString();
+                tblTotSalaireApay.Text = "Salaire à payer total: " + leProjet.totSalaireApay.ToString();
+                tblClient.Text = "Le client: " + leProjet.client.ToString();
+                if (leProjet.statut)
+                    tblStatut.Text = "Le statut: Terminé";
+                else
+                    tblStatut.Text = "Le statut: En cours";
             }
 
         }
+
     }
 }

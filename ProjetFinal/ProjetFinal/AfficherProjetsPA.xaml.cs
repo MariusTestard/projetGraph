@@ -23,7 +23,6 @@ namespace ProjetFinal
     /// </summary>
     public sealed partial class AfficherProjetsPA : Page
     {
-        String strSelectedItem = "";
 
         public AfficherProjetsPA()
         {

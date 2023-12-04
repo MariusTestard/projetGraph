@@ -223,39 +223,6 @@ namespace ProjetFinal
             return listeProjets;
         }
 
-        public void getEmployesDansProjet(String idProjet)
-        {
-            try
-            {
-                MySqlCommand cmd = new MySqlCommand("employe_dans_projet");
-                cmd.Connection = conn;
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("_idProjet", idProjet);
-                conn.Open();
-                cmd.Prepare();
-                cmd.ExecuteNonQuery();
-   
-                MySqlDataReader result = cmd.ExecuteReader();
-                while (result.Read())
-                {
-                    Employe employe = new Employe(matricule: result["matricule"].ToString(),
-                        nom: result["nom"].ToString(),
-                        prenom: result["prenom"].ToString(),
-
-
-                        tauxHoraire: (double)result["tauxHoraire"]);
-                    SingletonEmploye.getInstance().ListeEmployeProjet.Add(employe);
-                }
-                result.Close();
-                conn.Close();
-            }
-            catch (MySqlException ex)
-            {
-                if (conn.State == System.Data.ConnectionState.Open)
-                    conn.Close();
-            }
-        }
-
     }
 
 
