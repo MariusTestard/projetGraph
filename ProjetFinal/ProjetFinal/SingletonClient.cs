@@ -19,7 +19,6 @@ namespace ProjetFinal
         ObservableCollection<Client> listeClients;
         MySqlConnection conn;
         static SingletonClient instance = null;
-        string idClient;
 
         public SingletonClient()
         {

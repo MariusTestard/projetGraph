@@ -6,13 +6,16 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using Org.BouncyCastle.Utilities;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using static System.Net.Mime.MediaTypeNames;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -21,40 +24,34 @@ namespace ProjetFinal
 {
     public sealed partial class ModifierEmployeCD : ContentDialog
     {
-
-        string matricule;//dadw
-        string nom;
-        string prenom;
-        string dateNaissance;//dwada
-        string email;
-        string adresse;
-        string dateEmbauche;//dawda
-        double tauxHoraire;
-        string photo;
-        bool statut;
+        string matricule;
 
         public ModifierEmployeCD()
         {
             this.InitializeComponent();
             tbxNom.BorderBrush = new SolidColorBrush(Colors.LightGray);
-            tbxAdresse.BorderBrush = new SolidColorBrush(Colors.LightGray);
             tbxPrenom.BorderBrush = new SolidColorBrush(Colors.LightGray);
-            tbxEmail.BorderBrush = new SolidColorBrush(Colors.LightGray);
-            tbxTauxHoraire.BorderBrush = new SolidColorBrush(Colors.LightGray);
+            DPdateEmbauche.BorderBrush = new SolidColorBrush(Colors.LightGray);
+            DPdateNais.BorderBrush = new SolidColorBrush(Colors.LightGray);
             tbxPhoto.BorderBrush = new SolidColorBrush(Colors.LightGray);
+            tbxAdresse.BorderBrush = new SolidColorBrush(Colors.LightGray);
+            tbxEmail.BorderBrush = new SolidColorBrush(Colors.LightGray);
+            tbxTauxH.BorderBrush = new SolidColorBrush(Colors.LightGray);
         }
 
         public void setEmploye(Employe e)
         {
-            matricule = e.Matricule;
-            dateNaissance = e.DateNaissance;
-            dateEmbauche = e.DateEmbauche;
+            matricule = e.Matricule.ToString();
             tbxNom.Text = e.Nom.ToString();
-            tbxAdresse.Text = e.Adresse.ToString();
             tbxPrenom.Text = e.Prenom.ToString();
-            tbxEmail.Text = e.Email.ToString();
-            tbxTauxHoraire.Text = e.TauxHoraire.ToString();
+            string[] dateEmbaucheSplit = e.DateEmbauche.Split('/');
+            string[] dateNaisSplit = e.DateEmbauche.Split('/');
+            DPdateEmbauche.SelectedDate = new DateTime(int.Parse(dateEmbaucheSplit[2].Substring(0, 4)), int.Parse(dateEmbaucheSplit[0]), int.Parse(dateEmbaucheSplit[1]));
+            DPdateNais.SelectedDate = new DateTime(int.Parse(dateNaisSplit[2].Substring(0, 4)), int.Parse(dateNaisSplit[0]), int.Parse(dateNaisSplit[1]));
             tbxPhoto.Text = e.Photo.ToString();
+            tbxAdresse.Text = e.Adresse.ToString();
+            tbxEmail.Text = e.Email.ToString();
+            tbxTauxH.Text = e.TauxHoraire.ToString();
         }
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
@@ -62,7 +59,7 @@ namespace ProjetFinal
             if (String.IsNullOrEmpty(tbxNom.Text))
             {
                 tbxNom.BorderBrush = new SolidColorBrush(Colors.Red);
-                tbxNom.PlaceholderText = "Requis";
+                tbxNom.PlaceholderText = "Nom requis !";
                 args.Cancel = true;
             }
             else
@@ -71,22 +68,10 @@ namespace ProjetFinal
                 tbxNom.PlaceholderText = String.Empty;
                 args.Cancel = true;
             }
-            if (String.IsNullOrEmpty(tbxAdresse.Text))
-            {
-                tbxAdresse.BorderBrush = new SolidColorBrush(Colors.Red);
-                tbxAdresse.PlaceholderText = "Requis";
-                args.Cancel = true;
-            }
-            else
-            {
-                tbxAdresse.BorderBrush = new SolidColorBrush(Colors.LightGray);
-                tbxAdresse.PlaceholderText = String.Empty;
-                args.Cancel = true;
-            }
             if (String.IsNullOrEmpty(tbxPrenom.Text))
             {
                 tbxPrenom.BorderBrush = new SolidColorBrush(Colors.Red);
-                tbxPrenom.PlaceholderText = "Requis";
+                tbxPrenom.PlaceholderText = "Prénom requis !";
                 args.Cancel = true;
             }
             else
@@ -98,7 +83,7 @@ namespace ProjetFinal
             if (String.IsNullOrEmpty(tbxEmail.Text))
             {
                 tbxEmail.BorderBrush = new SolidColorBrush(Colors.Red);
-                tbxEmail.PlaceholderText = "Requis";
+                tbxEmail.PlaceholderText = "Email requis !";
                 args.Cancel = true;
             }
             else
@@ -107,22 +92,22 @@ namespace ProjetFinal
                 tbxEmail.PlaceholderText = String.Empty;
                 args.Cancel = true;
             }
-            if (String.IsNullOrEmpty(tbxTauxHoraire.Text))
+            if (String.IsNullOrEmpty(tbxAdresse.Text))
             {
-                tbxTauxHoraire.BorderBrush = new SolidColorBrush(Colors.Red);
-                tbxTauxHoraire.PlaceholderText = "Requis";
+                tbxAdresse.BorderBrush = new SolidColorBrush(Colors.Red);
+                tbxAdresse.PlaceholderText = "Adresse requise !";
                 args.Cancel = true;
             }
             else
             {
-                tbxTauxHoraire.BorderBrush = new SolidColorBrush(Colors.LightGray);
-                tbxTauxHoraire.PlaceholderText = String.Empty;
+                tbxAdresse.BorderBrush = new SolidColorBrush(Colors.LightGray);
+                tbxAdresse.PlaceholderText = String.Empty;
                 args.Cancel = true;
             }
             if (String.IsNullOrEmpty(tbxPhoto.Text))
             {
                 tbxPhoto.BorderBrush = new SolidColorBrush(Colors.Red);
-                tbxPhoto.PlaceholderText = "Requis";
+                tbxPhoto.PlaceholderText = "Photo requise !";
                 args.Cancel = true;
             }
             else
@@ -131,10 +116,38 @@ namespace ProjetFinal
                 tbxPhoto.PlaceholderText = String.Empty;
                 args.Cancel = true;
             }
-            if (tbxNom.Text != String.Empty && tbxAdresse.Text != String.Empty && tbxPrenom.Text != String.Empty && tbxEmail.Text != String.Empty && tbxTauxHoraire.Text != String.Empty && tbxPhoto.Text != String.Empty)
+            if (String.IsNullOrEmpty(tbxTauxH.Text))
+            {
+                tbxTauxH.BorderBrush = new SolidColorBrush(Colors.Red);
+                tbxTauxH.PlaceholderText = "Taux horaire $ requis";
+                args.Cancel = true;
+            }
+            else
+            {
+                try
+                {
+                    if (Double.Parse(tbxTauxH.Text) < 15)
+                    {
+                        tbxTauxH.BorderBrush = new SolidColorBrush(Colors.Red);
+                        tbxTauxH.Text = String.Empty;
+                        tbxTauxH.PlaceholderText = "? >= 15 !";
+                        args.Cancel = true;
+                    }
+                }
+                catch (Exception e)
+                {
+                    tbxTauxH.BorderBrush = new SolidColorBrush(Colors.Red);
+                    tbxTauxH.Text = String.Empty;
+                    tbxTauxH.PlaceholderText = "Mauvais format !";
+                    args.Cancel = true;
+                }
+            }
+            if (tbxNom.Text != String.Empty && tbxPrenom.Text != String.Empty && tbxAdresse.Text != String.Empty && tbxEmail.Text != String.Empty
+                && tbxPhoto.Text != String.Empty && tbxTauxH.Text != String.Empty)
             {
                 args.Cancel = false;
-                SingletonEmploye.getInstance().modifierEmploye(matricule, tbxNom.Text, tbxPrenom.Text, dateNaissance, tbxEmail.Text, tbxAdresse.Text, dateEmbauche, Double.Parse(tbxTauxHoraire.Text), tbxPhoto.Text);
+                SingletonEmploye.getInstance().modifierEmploye(matricule, tbxNom.Text, tbxPrenom.Text, tbxEmail.Text,
+                                                               tbxAdresse.Text, Double.Parse(tbxTauxH.Text), tbxPhoto.Text);
             }
         }
     }

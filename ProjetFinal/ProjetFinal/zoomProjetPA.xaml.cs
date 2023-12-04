@@ -27,12 +27,28 @@ namespace ProjetFinal
         {
             this.InitializeComponent();
         }
-
+        //(, double budget, int nbrEmplo, double totSalaireApay, int client, bool statut)
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             if (e.Parameter is not null)
             {
-                tblNumProjet.Text = (string)e.Parameter;
+                Projet leProjet = e.Parameter as Projet;
+                
+                tblNumProjet.Text = leProjet.numProjet.ToString();
+                tblDescription.Text = leProjet.description.ToString();
+                tblTitre.Text = leProjet.titre.ToString();
+                tblDateDeb.Text = leProjet.dateDeb;
+                tblBudget.Text = leProjet.budget.ToString();
+                tblNbrEmplo.Text = leProjet.nbrEmplo.ToString();
+                tblTotSalaireApay.Text = leProjet.totSalaireApay.ToString();
+                tblClient.Text = leProjet.client.ToString();
+                tblStatut.Text = leProjet.statut.ToString();
+
+
+                SingletonProjet.getInstance().getEmployesDansProjet(leProjet.numProjet.ToString());
+                tbltest1.Text = SingletonEmploye.getInstance().ListeEmployeProjet[0].Matricule;
+                tbltest2.Text = SingletonEmploye.getInstance().ListeEmployeProjet[0].Nom;
+                tbltest3.Text = SingletonEmploye.getInstance().ListeEmployeProjet[0].Prenom;
             }
 
         }

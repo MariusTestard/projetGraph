@@ -24,10 +24,6 @@ namespace ProjetFinal
     public sealed partial class ModifierClientCD : ContentDialog
     {
         int idClient;
-        string nom;
-        string adresse;
-        string numTel;
-        string email;
 
         public ModifierClientCD()
         {

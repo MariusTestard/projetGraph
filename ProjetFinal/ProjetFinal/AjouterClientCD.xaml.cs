@@ -23,10 +23,6 @@ namespace ProjetFinal
 {
     public sealed partial class AjouterClientCD : ContentDialog
     {
-        string nom;
-        string adresse;
-        string numTel;
-        string email;
 
         public AjouterClientCD()
         {

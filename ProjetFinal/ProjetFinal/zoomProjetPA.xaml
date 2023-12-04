@@ -11,11 +11,45 @@
 
     <Grid>
         <StackPanel>
-            <TextBlock Text=""
-          x:Name="tblNumProjet"/>
-  <TextBlock Text=""
-x:Name="tblTitre"/>
-
+            <TextBlock 
+                Text=""
+                x:Name="tblNumProjet"/>
+             <TextBlock 
+                 Text=""
+                x:Name="tblTitre"/>
+            <TextBlock 
+                Text=""
+                x:Name="tblDateDeb"/>
+            <TextBlock 
+                Text=""
+                x:Name="tblDescription"/>
+            <TextBlock 
+                Text=""
+                x:Name="tblBudget"/>
+            <TextBlock 
+                Text=""
+                x:Name="tblNbrEmplo"/>
+            <TextBlock 
+                Text=""
+                x:Name="tblTotSalaireApay"/>
+            <TextBlock 
+                Text=""
+                x:Name="tblClient"/>
+            <TextBlock 
+                Text=""
+                x:Name="tblStatut"/>
+            
+            <ListView x:Name="lvProjet" CanDragItems="True" CanReorderItems="True" AllowDrop="True" SelectionMode="Single" />
+                        <TextBlock 
+                            Text=""
+                            x:Name="tbltest1"/>
+                        <TextBlock 
+                            Text=""
+                            x:Name="tbltest2"/>
+                        <TextBlock 
+                            Text=""
+                            x:Name="tbltest3"/>
         </StackPanel>
     </Grid>
 </Page>
+                         

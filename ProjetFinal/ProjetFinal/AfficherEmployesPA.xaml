@@ -41,7 +41,8 @@
             Grid.Row="1"
             Grid.Column="1"
             Padding="40 20 40 10"
-            HorizontalAlignment="Center">
+            HorizontalAlignment="Center"
+            SelectionChanged="lvListeEmployes_SelectionChanged">
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="local:Employe">
                     <StackPanel Padding="20"

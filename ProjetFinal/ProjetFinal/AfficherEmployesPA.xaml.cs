@@ -13,6 +13,7 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -81,6 +82,20 @@ namespace ProjetFinal
             dialog.SecondaryButtonText = "Annuler";
             dialog.DefaultButton = ContentDialogButton.Secondary;
             var result = await dialog.ShowAsync();
+        }
+
+        private async void lvListeEmployes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (lvListeEmployes.SelectedIndex != -1) {
+                ModifierEmployeCD dialog = new ModifierEmployeCD();
+                dialog.setEmploye(lvListeEmployes.SelectedItem as Employe);
+                dialog.XamlRoot = afficherEmployePA.XamlRoot;
+                dialog.Title = "Modifier un employé";
+                dialog.PrimaryButtonText = "Modifier";
+                dialog.SecondaryButtonText = "Annuler";
+                dialog.DefaultButton = ContentDialogButton.Secondary;
+                var result = await dialog.ShowAsync();
+            }
         }
     }
 }

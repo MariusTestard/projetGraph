@@ -8,6 +8,8 @@ namespace ProjetFinal
 {
     internal class Projet
     {
+        public Projet() { }
+
         public Projet(string numProjet, string titre, string dateDeb, string description, double budget, int nbrEmplo, double totSalaireApay, int client, bool statut)
         {
             this.numProjet = numProjet;

@@ -12,6 +12,7 @@ namespace ProjetFinal
     internal class SingletonEmploye
     {
         ObservableCollection<Employe> listeEmployes;
+        ObservableCollection<Employe> empProjet;
         MySqlConnection conn;
         static SingletonEmploye instance = null;
         string matricule;
@@ -29,6 +30,8 @@ namespace ProjetFinal
                 instance = new SingletonEmploye();
             return instance;
         }
+
+        public ObservableCollection<Employe> ListeEmployeProjet { get { return empProjet; } }
 
         public ObservableCollection<Employe> ListeEmploye { get { return listeEmployes; } }
 
@@ -101,7 +104,7 @@ namespace ProjetFinal
         }
 
         // MODIFIE LES INFORMATIONS D'UN EMPLOYÉ DANS LA BASE DE DONNÉES
-        public MySqlConnection modifierEmploye(string matricule, string nom, string prenom, string dateNaissance, string email, string adresse, string dateEmbauche, double tauxHoraire, string photo)
+        public MySqlConnection modifierEmploye(string matricule, string nom, string prenom, string email, string adresse, double tauxHoraire, string photo)
         {
             try
             {
@@ -111,10 +114,8 @@ namespace ProjetFinal
                 cmd.Parameters.AddWithValue("_matricule", matricule);
                 cmd.Parameters.AddWithValue("_nom", nom);
                 cmd.Parameters.AddWithValue("_prenom", prenom);
-                cmd.Parameters.AddWithValue("_dateNaissance", dateNaissance);
                 cmd.Parameters.AddWithValue("_email", email);
                 cmd.Parameters.AddWithValue("_adresse", adresse);
-                cmd.Parameters.AddWithValue("_dateEmbauche", dateEmbauche);
                 cmd.Parameters.AddWithValue("_tauxHoraire", tauxHoraire);
                 cmd.Parameters.AddWithValue("_photo", photo);
                 conn.Open();

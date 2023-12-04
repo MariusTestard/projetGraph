@@ -47,8 +47,7 @@ namespace ProjetFinal
         private void lvListeProjets_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Projet unProjet = lvListeProjets.SelectedItem as Projet;
-            strSelectedItem = unProjet.numProjet;
-            Frame.Navigate(typeof(ZoomProjetPA), strSelectedItem);
+            Frame.Navigate(typeof(ZoomProjetPA), unProjet);
         }
     }
 }
