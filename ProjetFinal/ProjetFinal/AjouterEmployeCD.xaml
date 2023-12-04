@@ -10,47 +10,63 @@
     PrimaryButtonClick="ContentDialog_PrimaryButtonClick">
 
     <Grid>
-        <StackPanel Orientation="Vertical">
-            <StackPanel Orientation="Horizontal">
+        <StackPanel 
+            Orientation="Vertical">
+            <StackPanel 
+                Orientation="Horizontal"
+                HorizontalAlignment="Center">
                 <TextBox 
                     x:Name="tbxPrenom"
-                    Margin="0 8 0 8"
-                    PlaceholderText="Prénom"/>
+                    Margin="0 8 2 8"
+                    PlaceholderText="Prénom"
+                    Width="180"/>
                 <TextBox 
                     x:Name="tbxNom"
-                    Margin="0 8 0 8"
-                    PlaceholderText="Nom"/>
+                    Margin="2 8 0 8"
+                    PlaceholderText="Nom"
+                    Width="180"/>
             </StackPanel>
-
-            <StackPanel Orientation="Horizontal">
-                <DatePicker 
-                    x:Name="dateNais"
-                    Margin="0 8 0 8" />
-                <TextBox 
-                    x:Name="tbxEmail"
-                    Margin="0 8 0 0"
-                    PlaceholderText="Email"/>
-            </StackPanel>
-
-            <StackPanel Orientation="Horizontal">
-                <TextBox 
-                    x:Name="tbxAdresse"
-                    Margin="0 8 0 0"
-                    PlaceholderText="Lieu de vie"/>
-                <DatePicker 
-                    x:Name="tbxDateEmbauche"
-                    Margin="0 8 0 0" />
-            </StackPanel>
-
+            <TextBox 
+               x:Name="tbxEmail"
+               Margin="2 8 0 8"
+               PlaceholderText="Email"/>
+            <TextBox 
+                x:Name="tbxAdresse"
+                Margin="0 8 0 8"
+                PlaceholderText="Lieu de vie"/>
             <StackPanel Orientation="Horizontal">
                 <TextBox 
                     x:Name="tbxTauxH"
-                    Margin="0 8 0 0"
-                    PlaceholderText="Taux horaire $"/>
+                    Margin="0 8 1 8"
+                    PlaceholderText="Taux horaire $"
+                    Width="180"/>
                 <TextBox 
                     x:Name="tbxPhoto"
-                    Margin="0 8 0 0"
-                    PlaceholderText="Lien de la photo"/>
+                    Margin="1 8 0 8"
+                    PlaceholderText="Lien de la photo"
+                    Width="180"/>
+                        </StackPanel>
+            <StackPanel Orientation="Vertical"
+                        HorizontalAlignment="Center">
+                <TextBlock 
+                    x:Name="tblDateNaisLabel"
+                    Text="Date de naissance"/>
+                <DatePicker 
+                    x:Name="DPdateNais"
+                    Margin="0 5 2 8" 
+                    Width="360"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock 
+                        x:Name="tblDateEmbaucheLabel"
+                        Text="Date d'embauche"/>
+                    <DatePicker 
+                        x:Name="DPdateEmbauche"
+                        Margin="0 5 0 0" 
+                        Width="360"/>
+                </StackPanel>
             </StackPanel>
         </StackPanel>
     </Grid>

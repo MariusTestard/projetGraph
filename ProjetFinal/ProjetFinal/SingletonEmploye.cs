@@ -100,8 +100,6 @@ namespace ProjetFinal
             return conn;
         }
 
-        
-
         // MODIFIE LES INFORMATIONS D'UN EMPLOYÉ DANS LA BASE DE DONNÉES
         public MySqlConnection modifierEmploye(string matricule, string nom, string prenom, string dateNaissance, string email, string adresse, string dateEmbauche, double tauxHoraire, string photo)
         {

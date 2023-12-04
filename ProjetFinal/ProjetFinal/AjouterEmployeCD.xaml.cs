@@ -8,6 +8,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -26,7 +27,8 @@ namespace ProjetFinal
             this.InitializeComponent();
             tbxNom.BorderBrush = new SolidColorBrush(Colors.LightGray);
             tbxPrenom.BorderBrush = new SolidColorBrush(Colors.LightGray);
-            tbxDateEmbauche.BorderBrush = new SolidColorBrush(Colors.LightGray);
+            DPdateEmbauche.BorderBrush = new SolidColorBrush(Colors.LightGray);
+            DPdateNais.BorderBrush = new SolidColorBrush(Colors.LightGray);
             tbxPhoto.BorderBrush = new SolidColorBrush(Colors.LightGray);
             tbxAdresse.BorderBrush = new SolidColorBrush(Colors.LightGray);
             tbxEmail.BorderBrush = new SolidColorBrush(Colors.LightGray);
@@ -35,11 +37,10 @@ namespace ProjetFinal
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            /*
             if (String.IsNullOrEmpty(tbxNom.Text))
             {
                 tbxNom.BorderBrush = new SolidColorBrush(Colors.Red);
-                tbxNom.PlaceholderText = "Requis";
+                tbxNom.PlaceholderText = "Nom requis !";
                 args.Cancel = true;
             }
             else
@@ -48,34 +49,22 @@ namespace ProjetFinal
                 tbxNom.PlaceholderText = String.Empty;
                 args.Cancel = true;
             }
-            if (String.IsNullOrEmpty(tbxAdresse.Text))
+            if (String.IsNullOrEmpty(tbxPrenom.Text))
             {
-                tbxAdresse.BorderBrush = new SolidColorBrush(Colors.Red);
-                tbxAdresse.PlaceholderText = "Requis";
+                tbxPrenom.BorderBrush = new SolidColorBrush(Colors.Red);
+                tbxPrenom.PlaceholderText = "Prénom requis !";
                 args.Cancel = true;
             }
             else
             {
-                tbxAdresse.BorderBrush = new SolidColorBrush(Colors.LightGray);
-                tbxAdresse.PlaceholderText = String.Empty;
-                args.Cancel = true;
-            }
-            if (String.IsNullOrEmpty(tbxNumTel.Text))
-            {
-                tbxNumTel.BorderBrush = new SolidColorBrush(Colors.Red);
-                tbxNumTel.PlaceholderText = "Requis";
-                args.Cancel = true;
-            }
-            else
-            {
-                tbxNumTel.BorderBrush = new SolidColorBrush(Colors.LightGray);
-                tbxNumTel.PlaceholderText = String.Empty;
+                tbxPrenom.BorderBrush = new SolidColorBrush(Colors.LightGray);
+                tbxPrenom.PlaceholderText = String.Empty;
                 args.Cancel = true;
             }
             if (String.IsNullOrEmpty(tbxEmail.Text))
             {
                 tbxEmail.BorderBrush = new SolidColorBrush(Colors.Red);
-                tbxEmail.PlaceholderText = "Requis";
+                tbxEmail.PlaceholderText = "Email requis !";
                 args.Cancel = true;
             }
             else
@@ -84,12 +73,87 @@ namespace ProjetFinal
                 tbxEmail.PlaceholderText = String.Empty;
                 args.Cancel = true;
             }
-            if (tbxNom.Text != String.Empty && tbxAdresse.Text != String.Empty && tbxNumTel.Text != String.Empty && tbxEmail.Text != String.Empty)
+            if (String.IsNullOrEmpty(tbxAdresse.Text))
+            {
+                tbxAdresse.BorderBrush = new SolidColorBrush(Colors.Red);
+                tbxAdresse.PlaceholderText = "Adresse requise !";
+                args.Cancel = true;
+            }
+            else
+            {
+                tbxAdresse.BorderBrush = new SolidColorBrush(Colors.LightGray);
+                tbxAdresse.PlaceholderText = String.Empty;
+                args.Cancel = true;
+            }
+            if (String.IsNullOrEmpty(tbxPhoto.Text))
+            {
+                tbxPhoto.BorderBrush = new SolidColorBrush(Colors.Red);
+                tbxPhoto.PlaceholderText = "Photo requise !";
+                args.Cancel = true;
+            }
+            else
+            {
+                tbxPhoto.BorderBrush = new SolidColorBrush(Colors.LightGray);
+                tbxPhoto.PlaceholderText = String.Empty;
+                args.Cancel = true;
+            }
+            if (String.IsNullOrEmpty(tbxTauxH.Text))
+            {
+                tbxTauxH.BorderBrush = new SolidColorBrush(Colors.Red);
+                tbxTauxH.PlaceholderText = "Taux horaire $ requis";
+                args.Cancel = true;
+            }
+            else
+            {
+                try
+                {
+                    if (Double.Parse(tbxTauxH.Text) < 15)
+                    {
+                        tbxTauxH.BorderBrush = new SolidColorBrush(Colors.Red);
+                        tbxTauxH.Text = String.Empty;
+                        tbxTauxH.PlaceholderText = "? >= 15 !";
+                        args.Cancel = true;
+                    }
+                }
+                catch (Exception e)
+                {
+                    tbxTauxH.BorderBrush = new SolidColorBrush(Colors.Red);
+                    tbxTauxH.Text = String.Empty;
+                    tbxTauxH.PlaceholderText = "Mauvais format !";
+                    args.Cancel = true;
+                }
+            }
+            if (DPdateNais.SelectedDate == null)
+            {
+                DPdateNais.BorderBrush = new SolidColorBrush(Colors.Red);
+                tblDateNaisLabel.Text = "Requis";
+                tblDateNaisLabel.Foreground = new SolidColorBrush(Colors.Red);
+                args.Cancel = true;
+            }
+            else
+            {
+                DPdateNais.BorderBrush = new SolidColorBrush(Colors.LightGray);
+                args.Cancel = true;
+            }
+            if (DPdateEmbauche.SelectedDate == null)
+            {
+                DPdateEmbauche.BorderBrush = new SolidColorBrush(Colors.Red);
+                tblDateEmbaucheLabel.Text = "Requis";
+                tblDateEmbaucheLabel.Foreground = new SolidColorBrush(Colors.Red);
+                args.Cancel = true;
+            }
+            else
+            {
+                DPdateEmbauche.BorderBrush = new SolidColorBrush(Colors.LightGray);
+                args.Cancel = true;
+            }
+            if (tbxNom.Text != String.Empty && tbxPrenom.Text != String.Empty && tbxAdresse.Text != String.Empty && tbxEmail.Text != String.Empty
+                && tbxPhoto.Text != String.Empty && tbxTauxH.Text != String.Empty && DPdateEmbauche.SelectedDate != null && DPdateNais.SelectedDate != null)
             {
                 args.Cancel = false;
-                SingletonClient.getInstance().ajouterClients(tbxNom.Text, tbxAdresse.Text, tbxNumTel.Text, tbxEmail.Text);
+                SingletonEmploye.getInstance().ajouterEmployes(tbxNom.Text, tbxPrenom.Text, DPdateNais.SelectedDate.Value.ToString("yyyy-MM-dd"), tbxEmail.Text,
+                                                                tbxAdresse.Text, DPdateEmbauche.SelectedDate.Value.ToString("yyyy-MM-dd"), Double.Parse(tbxTauxH.Text), tbxPhoto.Text);
             }
-            */
         }
     }
 }

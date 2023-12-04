@@ -74,7 +74,7 @@ namespace ProjetFinal
 
         private async void btnAjouter_Click(object sender, RoutedEventArgs e)
         {
-            AjouterClientCD dialog = new AjouterClientCD();
+            AjouterEmployeCD dialog = new AjouterEmployeCD();
             dialog.XamlRoot = afficherEmployePA.XamlRoot;
             dialog.Title = "Ajouter un employé";
             dialog.PrimaryButtonText = "Ajouter";

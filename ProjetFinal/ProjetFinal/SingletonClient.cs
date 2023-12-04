@@ -35,6 +35,8 @@ namespace ProjetFinal
             return instance;
         }
 
+        public ObservableCollection<Client> ListeClient { get { return listeClients; } }
+
         // RÉCUPÈRE TOUS LES CLIENTS DE LA BASE DE DONNÉES
         public ObservableCollection<Client> getListeClients()
         {
