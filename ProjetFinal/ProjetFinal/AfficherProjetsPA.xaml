@@ -9,7 +9,7 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Grid x:Name="afficherProjetPA">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
@@ -37,6 +37,14 @@
                 FontSize="30"
                 Click="btnTerminer_Click"/>
         </StackPanel>
+        <Button x:Name="btnAjouter"
+                Content="Ajouter"
+    Background="White"
+    Foreground="Black"
+    Width="200"
+    Margin="1 0 3 0"
+    FontSize="30"
+    Click="btnAjouter_Click"/>
         <GridView x:Name="lvListeProjets"
       Grid.Row="1"
       Padding="40 5 40 40"

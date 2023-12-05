@@ -29,9 +29,13 @@ namespace ProjetFinal
             return instance;
         }
 
+
+        public ObservableCollection<Projet> ListeProjet { get { return listeProjets; } }
+
         // RÉCUPÈRE TOUS LES PROJETS DANS LA BASE DE DONNÉES
         public ObservableCollection<Projet> getListeProjets()
         {
+            listeProjets.Clear();
             try
             {
                 MySqlCommand cmd = new MySqlCommand("affiche_listeProjets");

@@ -29,6 +29,16 @@ namespace ProjetFinal
             this.InitializeComponent();
             SingletonProjet.getInstance().getListeProjets().Clear();
             lvListeProjets.ItemsSource = SingletonProjet.getInstance().getListeProjetsEnCours();
+
+            if (SingletonAdmin.getInstance().LoginAdmin())
+            {
+                btnAjouter.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                btnAjouter.Visibility = Visibility.Collapsed;
+            }
+            SingletonAdmin.getInstance().Bt = btnAjouter;
         }
 
         private void btnEnCours_Click(object sender, RoutedEventArgs e)
@@ -47,6 +57,17 @@ namespace ProjetFinal
         {
             Projet unProjet = lvListeProjets.SelectedItem as Projet;
             Frame.Navigate(typeof(ZoomProjetPA), unProjet);
+        }
+
+        private async void btnAjouter_Click(object sender, RoutedEventArgs e)
+        {
+            AjouterProjetCD dialog = new AjouterProjetCD();
+            dialog.XamlRoot = afficherProjetPA.XamlRoot;
+            dialog.Title = "Ajouter un projet";
+            dialog.PrimaryButtonText = "Ajouter";
+            dialog.SecondaryButtonText = "Annuler";
+            dialog.DefaultButton = ContentDialogButton.Secondary;
+            var result = await dialog.ShowAsync();
         }
     }
 }

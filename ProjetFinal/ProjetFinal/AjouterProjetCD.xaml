@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentDialog
+    x:Class="ProjetFinal.AjouterProjetCD"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ProjetFinal"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick">
+
+    <Grid>
+        <StackPanel 
+        Orientation="Vertical">
+            <StackPanel 
+            Orientation="Horizontal"
+            HorizontalAlignment="Center">
+                <TextBox 
+                x:Name="tbxTitre"
+                Margin="0 8 2 8"
+                PlaceholderText="Titre"
+                Width="180"/>
+                <TextBox 
+                x:Name="tbxBudget"
+                Margin="2 8 0 8"
+                PlaceholderText="Budget"
+                Width="180"/>
+            </StackPanel>
+            <TextBox 
+           x:Name="tbxNbrEmplo"
+           Margin="2 8 0 8"
+           PlaceholderText="NbrEmplo"/>
+            <TextBox 
+            x:Name="tbxClient"
+            Margin="0 8 0 8"
+            PlaceholderText="Client"/>
+            <StackPanel Orientation="Horizontal">
+                <TextBox 
+                x:Name="tbxDesc"
+                Margin="1 8 0 8"
+                PlaceholderText="Desc"
+                Width="180"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical"
+                    HorizontalAlignment="Center">
+                <TextBlock 
+                x:Name="tblDateDebLabel"
+                Text="Date de naissance"/>
+                <DatePicker 
+                x:Name="DPDateDeb"
+                Margin="0 5 2 8" 
+                Width="360"/>
+            </StackPanel>
+            
+        </StackPanel>
+    </Grid>
+</ContentDialog>

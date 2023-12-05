@@ -31,19 +31,15 @@ namespace ProjetFinal
             SingletonEmploye.getInstance().getListeEmployes().Clear();
             lvListeEmployes.ItemsSource = SingletonEmploye.getInstance().getListeEmployes();
 
-
-
             if (SingletonAdmin.getInstance().LoginAdmin())
             {
-
-                //btnSuppr.Visibility = Visibility.Visible;
-                
+                btnAjouter.Visibility = Visibility.Visible;
             }
             else
             {
-
-                //btnSuppr.Visibility = Visibility.Collapsed;
+                btnAjouter.Visibility = Visibility.Collapsed;
             }
+            SingletonAdmin.getInstance().Bt = btnAjouter;
         }
 
         private void btnTogglePermanent_Click(object sender, RoutedEventArgs e)

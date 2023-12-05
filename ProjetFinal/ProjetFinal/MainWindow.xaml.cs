@@ -127,9 +127,7 @@ namespace ProjetFinal
                     SingletonAdmin.getInstance().connexionAdmin(dialog.Username, dialog.Password);
                     selectedNavItem.Tag = "Connecté";
                     selectedNavItem.Content = "Déconnexion";
-                    
-                   // mainFrame.Navigate(mainFrame.CurrentSourcePageType);
-
+                    //mainFrame.Navigate(mainFrame.CurrentSourcePageType);
                 }
 
                 navView.SelectedItem = null;
