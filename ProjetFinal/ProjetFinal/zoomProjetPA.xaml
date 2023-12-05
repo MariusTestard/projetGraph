@@ -9,14 +9,14 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+        <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="120"/>
+            <RowDefinition Height="55"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="60"/>
+            <RowDefinition Height="45"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
         <TextBlock Text="Le projet"
                    Grid.Row="0"
                    HorizontalAlignment="Center"
@@ -24,6 +24,25 @@
                    FontSize="40"
                    FontWeight="Bold"
                    Margin="0 0 0 5"/>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Les employés sur le projet"
+                HorizontalAlignment="Left"
+                FontSize="25"
+                FontWeight="Bold"
+                Grid.Column="0"
+                Margin="300 0 0 0"/>
+            <TextBlock Text="La liste des employés"
+                HorizontalAlignment="Left"
+                FontSize="25"
+                FontWeight="Bold"
+                Grid.Column="1"
+                Margin="100 0 0 0"/>
+        </Grid>
+        
         <Grid 
             Grid.Row="1"
             AllowDrop="True"
@@ -93,35 +112,21 @@
                 Grid.Row="8"
                 FontSize="20"/>
         </Grid>
-
-        <TextBlock Text="Les employés sur le projet"
-            Grid.Row="2"
-            Grid.Column="0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Bottom"
-            FontSize="40"
-            FontWeight="Bold"
-            Margin="0 0 0 5"/>
-        <Grid 
+        <Grid
             Grid.Row="3"
-            VerticalAlignment="Top">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
-            </Grid.ColumnDefinitions>
+            HorizontalAlignment="Center">
+        <StackPanel 
+            Orientation="Horizontal">
             <ListView 
                 x:Name="lvEmployesProjet"
                 SelectionMode="Single"
-                ShowsScrollingPlaceholders="True"
-                CanDragItems="True" 
-                CanReorderItems="True" 
-                AllowDrop="True"
                 Height="auto"
                 Width="auto"
                 BorderThickness="1"
                 Grid.Column="0"
                 BorderBrush="{ThemeResource SystemControlForegroundBaseMediumLowBrush}"
-                HorizontalAlignment="Right">
+                HorizontalAlignment="Right"
+                Margin="0 0 10 0">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="local:EmployeProjet">
                         <Grid Margin="0 0 0 10">
@@ -133,6 +138,7 @@
                             <Grid Grid.Column="0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
@@ -184,6 +190,7 @@
                                     Style="{ThemeResource BodyTextBlockStyle}"
                                     VerticalAlignment="Center"
                                     Margin="10 0 0 0"/>
+                                
                                 <TextBlock  
                                     Grid.Column="5"
                                     Grid.Row="0"
@@ -200,133 +207,87 @@
                                     Style="{ThemeResource BodyTextBlockStyle}"
                                     VerticalAlignment="Center"
                                     Margin="10 0 0 0"/>
-                            </Grid>
+                                <Button 
+                                    x:Name="btnRetirer"
+                                    Grid.Column="7"
+                                    Content="Retirer"
+                                    Margin="12,0,0,6"
+                                    Background="DarkRed"/>
+                                    </Grid>
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <TextBlock Text="Liste des employés"
-                Grid.Row="2"
-                Grid.Column="1"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Bottom"
-                FontSize="40"
-                FontWeight="Bold"
-                Margin="0 0 0 5"/>
             <ListView 
-                HorizontalAlignment="Left"
+                HorizontalAlignment="Center"
                 x:Name="lvListeEmployes"
                 SelectionMode="Single"
-                ShowsScrollingPlaceholders="True"
-                CanDragItems="True" 
-                CanReorderItems="True" 
-                AllowDrop="True"
                 Height="auto"
                 Width="auto"
                 BorderThickness="1"
                 Grid.Column="1"
                 BorderBrush="{ThemeResource SystemControlForegroundBaseMediumLowBrush}">
                 <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="local:Employe">
-                        <Grid Margin="0 0 0 10">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid Grid.Column="0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Ellipse
-                                    x:Name="Ellipse"
-                                    Width ="64"
-                                    Height="64"
-                                    Margin="2"
-                                    VerticalAlignment="Center"
-                                    HorizontalAlignment="Center">
-                                    <Ellipse.Fill>
-                                        <ImageBrush ImageSource="{x:Bind Photo}" />
-                                    </Ellipse.Fill>
-                                </Ellipse>
-                                <TextBlock 
-                            Grid.Column="1"
-                            Grid.Row="0"
-                            Text="{x:Bind Matricule}"
-                            x:Phase="1"
-                            Style="{ThemeResource BaseTextBlockStyle}"
-                            FontWeight="Bold"
-                            VerticalAlignment="Center"
-                            Margin="10 0 0 0"/>
-                            <TextBlock  
-                            Grid.Column="2"
-                            Grid.Row="0"
-                            Text="{x:Bind Prenom}"
-                            x:Phase="2"
-                            Style="{ThemeResource BodyTextBlockStyle}"
-                            VerticalAlignment="Center"
-                            Margin="10 0 0 0"/>
-                            <TextBlock  
-                            Grid.Column="3"
-                            Grid.Row="0"
-                            Text="{x:Bind DateNaissance}"
-                            x:Phase="2"
-                            Style="{ThemeResource BodyTextBlockStyle}"
-                            VerticalAlignment="Center"
-                            Margin="10 0 0 0"/>
-                            <TextBlock  
-                            Grid.Column="4"
-                            Grid.Row="0"
-                            Text="{x:Bind Email}"
-                            x:Phase="2"
-                            Style="{ThemeResource BodyTextBlockStyle}"
-                            VerticalAlignment="Center"
-                            Margin="10 0 0 0"/>
-                            <TextBlock  
-                            Grid.Column="5"
-                            Grid.Row="0"
-                            Text="{x:Bind Adresse}"
-                            x:Phase="2"
-                            Style="{ThemeResource BodyTextBlockStyle}"
-                            VerticalAlignment="Center"
-                            Margin="10 0 0 0"/>
-                                <TextBlock  
-                            Grid.Column="6"
-                            Grid.Row="0"
-                            Text="{x:Bind DateEmbauche}"
-                            x:Phase="2"
-                            Style="{ThemeResource BodyTextBlockStyle}"
-                            VerticalAlignment="Center"
-                            Margin="10 0 0 0"/>
-                                <TextBlock  
-                            Grid.Column="7"
-                            Grid.Row="0"
-                            Text="{x:Bind TauxHoraire}"
-                            x:Phase="2"
-                            Style="{ThemeResource BodyTextBlockStyle}"
-                            VerticalAlignment="Center"
-                            Margin="10 0 0 0"/>
-                        <TextBlock  
-                            Grid.Column="8"
-                            Grid.Row="0"
-                            Text="{x:Bind Statut}"
-                            x:Phase="2"
-                            Style="{ThemeResource BodyTextBlockStyle}"
-                            VerticalAlignment="Center"
-                            Margin="10 0 0 0"/>
-                            </Grid>
-                        </Grid>
-                    </DataTemplate>
+                        <DataTemplate x:DataType="local:Employe">
+                                <Grid Margin="0 0 0 10"
+                                      HorizontalAlignment="Left">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Ellipse
+                                        x:Name="Ellipse"
+                                        Width ="64"
+                                        Height="64"
+                                        Margin="2"
+                                        Grid.Row="0">
+                                        <Ellipse.Fill>
+                                            <ImageBrush ImageSource="{x:Bind Photo}"/>
+                                        </Ellipse.Fill>
+                                    </Ellipse>
+                                    <TextBlock 
+                                        Text="{x:Bind Matricule}"
+                                        x:Phase="1"
+                                        Style="{ThemeResource BaseTextBlockStyle}"
+                                        Margin="12,6,0,6"
+                                        FontWeight="Bold"
+                                        Grid.Row="1"/>
+                                    <TextBlock  
+                                        Grid.Row="2"
+                                        Text="{x:Bind Prenom}"
+                                        x:Phase="2"
+                                        Style="{ThemeResource BodyTextBlockStyle}"
+                                        Margin="12,0,0,6"/>
+                                    <TextBlock  
+                                        Grid.Row="3"
+                                        Text="{x:Bind Nom}"
+                                        x:Phase="2"
+                                        Style="{ThemeResource BodyTextBlockStyle}"
+                                        Margin="12,0,0,6"/>
+                                            <TextBlock  
+                                        Grid.Row="4"
+                                        Text="{x:Bind Email}"
+                                        x:Phase="2"
+                                        Style="{ThemeResource BodyTextBlockStyle}"
+                                        Margin="12,0,0,6"/>
+                                    <Button 
+                                        Grid.Row="5"
+                                        Content="Ajouter"
+                                        x:Name="btnAjouter"
+                                        Margin="12,0,0,6"
+                                        Background="DarkOliveGreen"
+                                        Tag="{x:Bind Matricule}"
+                                        Click="btnAjouter_Click"/>
+                                </Grid>
+                            </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+        </StackPanel>
         </Grid>
     </Grid>
+    </ScrollViewer>
 </Page>

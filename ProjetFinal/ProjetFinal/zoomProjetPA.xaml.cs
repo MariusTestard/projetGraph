@@ -10,6 +10,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Text;
+using Windows.ApplicationModel.Contacts;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 
@@ -40,7 +43,7 @@ namespace ProjetFinal
                 tblTitre.Text = "Titre: " + leProjet.titre.ToString();
                 tblDateDeb.Text = "Date de début: " + leProjet.dateDeb;
                 tblBudget.Text = "Budget: " + leProjet.budget.ToString() + "$";
-                tblNbrEmplo.Text = "Nombre d'employés: " + leProjet.nbrEmplo.ToString();
+                tblNbrEmplo.Text = "Nombre d'employés maximum: " + leProjet.nbrEmplo.ToString();
                 tblTotSalaireApay.Text = "Salaire à payer total: " + leProjet.totSalaireApay.ToString();
                 tblClient.Text = "Le client: " + leProjet.client.ToString();
                 if (leProjet.statut)
@@ -48,8 +51,13 @@ namespace ProjetFinal
                 else
                     tblStatut.Text = "Le statut: En cours";
             }
-
         }
 
+        private void btnAjouter_Click(object sender, RoutedEventArgs e)
+        {
+            Button b = (Button)sender;
+            var contexte = b.DataContext as Employe;
+            int pos = lvListeEmployes.Items.IndexOf(contexte);
+        }
     }
 }
