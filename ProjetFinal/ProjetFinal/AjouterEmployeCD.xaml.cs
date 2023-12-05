@@ -110,8 +110,19 @@ namespace ProjetFinal
                     if (Double.Parse(tbxTauxH.Text) < 15)
                     {
                         tbxTauxH.BorderBrush = new SolidColorBrush(Colors.Red);
-                        tbxTauxH.Text = String.Empty;
-                        tbxTauxH.PlaceholderText = "? >= 15 !";
+                        tbxTauxH.PlaceholderText = "Taux horaire minimum de 15$";
+                        args.Cancel = true;
+                    }
+                    else if (Double.Parse(tbxTauxH.Text) > 100)
+                    {
+                        tbxTauxH.BorderBrush = new SolidColorBrush(Colors.Red);
+                        tbxTauxH.PlaceholderText = "Taux horaire trop élevé";
+                        args.Cancel = true;
+                    }
+                    else
+                    {
+                        tbxTauxH.BorderBrush = new SolidColorBrush(Colors.LightGray);
+                        tbxTauxH.PlaceholderText = "";
                         args.Cancel = true;
                     }
                 }
@@ -132,8 +143,21 @@ namespace ProjetFinal
             }
             else
             {
-                DPdateNais.BorderBrush = new SolidColorBrush(Colors.LightGray);
-                args.Cancel = true;
+
+                if((DateTimeOffset.Now.Year - DPdateNais.SelectedDate.Value.Year)>=18 && (DateTimeOffset.Now.Year - DPdateNais.SelectedDate.Value.Year)<=65) 
+                {
+                    DPdateNais.BorderBrush = new SolidColorBrush(Colors.LightGray);
+                    tblDateNaisLabel.Text = "";
+                    tblDateNaisLabel.Foreground = new SolidColorBrush(Colors.LightGray);
+                    args.Cancel = true;
+                }
+                else
+                {
+                    DPdateNais.BorderBrush = new SolidColorBrush(Colors.Red);
+                    tblDateNaisLabel.Text = "Âge minimum 18 | Âge maximum 65";
+                    tblDateNaisLabel.Foreground = new SolidColorBrush(Colors.Red);
+                    args.Cancel = true;
+                }
             }
             if (DPdateEmbauche.SelectedDate == null)
             {
@@ -144,8 +168,20 @@ namespace ProjetFinal
             }
             else
             {
-                DPdateEmbauche.BorderBrush = new SolidColorBrush(Colors.LightGray);
-                args.Cancel = true;
+                    if (DPdateEmbauche.SelectedDate<=DateTimeOffset.Now)
+                    { 
+                    DPdateEmbauche.BorderBrush = new SolidColorBrush(Colors.Red);
+                    tblDateEmbaucheLabel.Text = "La date d’embauche ne doit pas être dans le futur";
+                    tblDateEmbaucheLabel.Foreground = new SolidColorBrush(Colors.Red);
+                    args.Cancel = true;
+                    }
+                    else
+                    {
+                        DPdateEmbauche.BorderBrush = new SolidColorBrush(Colors.LightGray);
+                        tblDateEmbaucheLabel.Text = "";
+                        tblDateEmbaucheLabel.Foreground = new SolidColorBrush(Colors.LightGray);
+                        args.Cancel = true;
+                    }
             }
             if (tbxNom.Text != String.Empty && tbxPrenom.Text != String.Empty && tbxAdresse.Text != String.Empty && tbxEmail.Text != String.Empty
                 && tbxPhoto.Text != String.Empty && tbxTauxH.Text != String.Empty && DPdateEmbauche.SelectedDate != null && DPdateNais.SelectedDate != null)
