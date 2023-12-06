@@ -44,7 +44,7 @@ namespace ProjetFinal
                 tblDateDeb.Text = "Date de début: " + leProjet.dateDeb;
                 tblBudget.Text = "Budget: " + leProjet.budget.ToString() + "$";
                 tblNbrEmplo.Text = "Nombre d'employés maximum: " + leProjet.nbrEmplo.ToString();
-                tblTotSalaireApay.Text = "Salaire à payer total: " + leProjet.totSalaireApay.ToString();
+                tblTotSalaireApay.Text = "Salaire total à payer: " + leProjet.totSalaireApay.ToString();
                 tblClient.Text = "Le client: " + leProjet.client.ToString();
                 if (leProjet.statut)
                     tblStatut.Text = "Le statut: Terminé";
@@ -54,6 +54,13 @@ namespace ProjetFinal
         }
 
         private void btnAjouter_Click(object sender, RoutedEventArgs e)
+        {
+            Button b = (Button)sender;
+            var contexte = b.DataContext as Employe;
+            int pos = lvListeEmployes.Items.IndexOf(contexte);
+        }
+
+        private void btnRetirer_Click(object sender, RoutedEventArgs e)
         {
             Button b = (Button)sender;
             var contexte = b.DataContext as Employe;

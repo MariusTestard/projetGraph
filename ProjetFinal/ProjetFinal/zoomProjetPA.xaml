@@ -9,123 +9,121 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+    <!-- SCROLL VIEWER VERTICAL -->
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
-        <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="55"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="45"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <TextBlock Text="Le projet"
-                   Grid.Row="0"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Bottom"
-                   FontSize="40"
-                   FontWeight="Bold"
-                   Margin="0 0 0 5"/>
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <TextBlock Text="Les employés sur le projet"
-                HorizontalAlignment="Left"
-                FontSize="25"
-                FontWeight="Bold"
-                Grid.Column="0"
-                Margin="300 0 0 0"/>
-            <TextBlock Text="La liste des employés"
-                HorizontalAlignment="Left"
-                FontSize="25"
-                FontWeight="Bold"
-                Grid.Column="1"
-                Margin="100 0 0 0"/>
-        </Grid>
         
-        <Grid 
-            Grid.Row="1"
-            AllowDrop="True"
-            Height="auto"
-            Width="500"
-            BorderThickness="1"
-            BorderBrush="{ThemeResource SystemControlForegroundBaseMediumLowBrush}"
-            VerticalAlignment="Bottom"
-            Margin="0 0 0 5"
-            Background="DarkSlateBlue">
+        <!-- LE CONTAINER -->
+        <Grid Padding="10">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <TextBlock 
-                Text=""
-                x:Name="tblNumProjet"
+
+            <!-- LE CONTAINER POUR PROJET -->
+            <Grid 
                 Grid.Row="0"
-                FontSize="25"
-                FontWeight="Bold"/>
-            <TextBlock 
-                 Text=""
-                x:Name="tblTitre"
-                 Grid.Row="1"
-                 FontSize="20"/>
-            <TextBlock 
-                Text=""
-                x:Name="tblDateDeb"
-                Grid.Row="2"
-                FontSize="20"/>
-            <TextBlock 
-                Text=""
-                x:Name="tblDescription"
-                Grid.Row="3"
-                FontSize="20"
-                TextWrapping="Wrap"/>
-            <TextBlock 
-                Text=""
-                x:Name="tblBudget"
-                Grid.Row="4"
-                FontSize="20"/>
-            <TextBlock 
-                Text=""
-                x:Name="tblNbrEmplo"
-                Grid.Row="5"
-                FontSize="20"/>
-            <TextBlock 
-                Text=""
-                x:Name="tblTotSalaireApay"
-                Grid.Row="6"
-                FontSize="20"/>
-            <TextBlock 
-                Text=""
-                x:Name="tblClient"
-                Grid.Row="7"
-                FontSize="20"/>
-            <TextBlock 
-                Text=""
-                x:Name="tblStatut"
-                Grid.Row="8"
-                FontSize="20"/>
-        </Grid>
+                AllowDrop="True"
+                Height="auto"
+                Width="700"
+                Padding="20"
+                BorderThickness="1"
+                BorderBrush="{ThemeResource SystemControlForegroundBaseMediumLowBrush}"
+                VerticalAlignment="Center"
+                Background="DarkSlateBlue"
+                Margin="0 0 0 10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock 
+                    Text=""
+                    x:Name="tblNumProjet"
+                    Grid.Row="0"
+                    FontSize="25"
+                    FontWeight="Bold"
+                    Margin="10"/>
+                <TextBlock 
+                     Text=""
+                    x:Name="tblTitre"
+                     Grid.Row="1"
+                     FontSize="20"
+                    Margin="10"/>
+                <TextBlock 
+                    Text=""
+                    x:Name="tblDateDeb"
+                    Grid.Row="2"
+                    FontSize="20"
+                    Margin="10"/>
+                <TextBlock 
+                    Text=""
+                    x:Name="tblDescription"
+                    Grid.Row="3"
+                    FontSize="20"
+                    TextWrapping="Wrap"
+                    Margin="10"/>
+                <TextBlock 
+                    Text=""
+                    x:Name="tblBudget"
+                    Grid.Row="4"
+                    FontSize="20"
+                    Margin="10"/>
+                <TextBlock 
+                    Text=""
+                    x:Name="tblNbrEmplo"
+                    Grid.Row="5"
+                    FontSize="20"
+                    Margin="10"/>
+                <TextBlock 
+                    Text=""
+                    x:Name="tblTotSalaireApay"
+                    Grid.Row="6"
+                    FontSize="20"
+                    Margin="10"/>
+                <TextBlock 
+                    Text=""
+                    x:Name="tblClient"
+                    Grid.Row="7"
+                    FontSize="20"
+                    Margin="10"/>
+                <TextBlock 
+                    Text=""
+                    x:Name="tblStatut"
+                    Grid.Row="8"
+                    FontSize="20"
+                    Margin="10"/>
+            </Grid>
+            
+        <!-- LE CONTAINER POUR LES EMPLOYÉS SUR LE PROJET -->
         <Grid
-            Grid.Row="3"
+            Grid.Row="1"
             HorizontalAlignment="Center">
-        <StackPanel 
-            Orientation="Horizontal">
-            <ListView 
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel 
+                    Orientation="Vertical"
+                    Grid.Column="0">
+                    <TextBlock 
+                        Text="Sur le projet"
+                        FontSize="20"
+                        FontWeight="SemiBold"
+                        Margin="2"/>
+                    <ListView 
                 x:Name="lvEmployesProjet"
                 SelectionMode="Single"
-                Height="auto"
+                Height="400"
                 Width="auto"
                 BorderThickness="1"
-                Grid.Column="0"
                 BorderBrush="{ThemeResource SystemControlForegroundBaseMediumLowBrush}"
-                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
                 Margin="0 0 10 0">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="local:EmployeProjet">
@@ -212,23 +210,35 @@
                                     Grid.Column="7"
                                     Content="Retirer"
                                     Margin="12,0,0,6"
-                                    Background="DarkRed"/>
+                                    Background="DarkRed"
+                                    Click="btnRetirer_Click"
+                                    Tag="{x:Bind Matricule}"/>
                                     </Grid>
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <ListView 
-                HorizontalAlignment="Center"
-                x:Name="lvListeEmployes"
-                SelectionMode="Single"
-                Height="auto"
-                Width="auto"
-                BorderThickness="1"
-                Grid.Column="1"
-                BorderBrush="{ThemeResource SystemControlForegroundBaseMediumLowBrush}">
-                <ListView.ItemTemplate>
-                        <DataTemplate x:DataType="local:Employe">
+            </StackPanel>
+                <StackPanel 
+                    Orientation="Vertical"
+                    Grid.Column="1">
+                    <TextBlock 
+                         Text="Liste"
+                         FontSize="20"
+                         FontWeight="SemiBold"
+                         Margin="2" />
+                    
+                    <!-- LE CONTAINER POUR LA LISTE DES EMPLOYÉS -->
+                    <ListView 
+                    HorizontalAlignment="Center"
+                    x:Name="lvListeEmployes"
+                    SelectionMode="Single"
+                    Height="400"
+                    Width="auto"
+                    BorderThickness="1"
+                    BorderBrush="{ThemeResource SystemControlForegroundBaseMediumLowBrush}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="local:Employe">
                                 <Grid Margin="0 0 0 10"
                                       HorizontalAlignment="Left">
                                     <Grid.RowDefinitions>
@@ -268,7 +278,7 @@
                                         x:Phase="2"
                                         Style="{ThemeResource BodyTextBlockStyle}"
                                         Margin="12,0,0,6"/>
-                                            <TextBlock  
+                                    <TextBlock  
                                         Grid.Row="4"
                                         Text="{x:Bind Email}"
                                         x:Phase="2"
@@ -284,9 +294,9 @@
                                         Click="btnAjouter_Click"/>
                                 </Grid>
                             </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackPanel>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackPanel>
         </Grid>
     </Grid>
     </ScrollViewer>
