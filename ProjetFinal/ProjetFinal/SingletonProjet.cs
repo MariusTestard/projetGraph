@@ -228,29 +228,6 @@ namespace ProjetFinal
             return listeProjets;
         }
 
-        // AJOUTE UN EMPLOYÉ À UN PROJET
-        public ObservableCollection<Projet> ajoutEmpProjet(String idProjet, String idEmplo)
-        {
-            try
-            {
-                MySqlCommand cmd = new MySqlCommand("ajout_emplo_sur_projet");
-                cmd.Connection = conn;
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("_idProjet", idProjet);
-                cmd.Parameters.AddWithValue("_idEmplo", idEmplo);
-                conn.Open();
-                cmd.Prepare();
-                cmd.ExecuteNonQuery();
-                conn.Close();
-            }
-            catch (MySqlException ex)
-            {
-                if (conn.State == System.Data.ConnectionState.Open)
-                    conn.Close();
-            }
-            return listeProjets;
-        }
-
     }
 
 

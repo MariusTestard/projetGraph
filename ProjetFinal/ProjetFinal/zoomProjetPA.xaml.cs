@@ -7,6 +7,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -26,6 +27,8 @@ namespace ProjetFinal
     /// </summary>
     public sealed partial class ZoomProjetPA : Page
     {
+        Projet leProjet;
+
         public ZoomProjetPA()
         {
             this.InitializeComponent();
@@ -36,16 +39,16 @@ namespace ProjetFinal
         {
             if (e.Parameter is not null)
             {
-                Projet leProjet = e.Parameter as Projet;
+                leProjet = e.Parameter as Projet;
                 lvEmployesProjet.ItemsSource = SingletonEmploye.getInstance().getEmployeFromAProject(leProjet.numProjet);
                 tblNumProjet.Text = leProjet.numProjet.ToString();
-                tblDescription.Text = "Description: " + leProjet.description.ToString();
-                tblTitre.Text = "Titre: " + leProjet.titre.ToString();
-                tblDateDeb.Text = "Date de début: " + leProjet.dateDeb;
-                tblBudget.Text = "Budget: " + leProjet.budget.ToString() + "$";
-                tblNbrEmplo.Text = "Nombre d'employés maximum: " + leProjet.nbrEmplo.ToString();
-                tblTotSalaireApay.Text = "Salaire total à payer: " + leProjet.totSalaireApay.ToString();
-                tblClient.Text = "Le client: " + leProjet.client.ToString();
+                tblDescription.Text = leProjet.description.ToString();
+                tblTitre.Text = leProjet.titre.ToString();
+                tblDateDeb.Text = leProjet.dateDeb;
+                tblBudget.Text = leProjet.budget.ToString();
+                tblNbrEmplo.Text = leProjet.nbrEmplo.ToString();
+                tblTotSalaireApay.Text = leProjet.totSalaireApay.ToString();
+                tblClient.Text = leProjet.client.ToString();
                 if (leProjet.statut)
                     tblStatut.Text = "Le statut: Terminé";
                 else
@@ -53,18 +56,30 @@ namespace ProjetFinal
             }
         }
 
-        private void btnAjouter_Click(object sender, RoutedEventArgs e)
+        private async void btnAjouter_Click(object sender, RoutedEventArgs e)
         {
             Button b = (Button)sender;
-            var contexte = b.DataContext as Employe;
-            int pos = lvListeEmployes.Items.IndexOf(contexte);
+            var c = b.Tag.ToString();
+                AjouterEmploAProjetCD dialog = new AjouterEmploAProjetCD();
+                dialog.XamlRoot = ajouterEmploProjet.XamlRoot;
+                dialog.Title = "Précision";
+                dialog.PrimaryButtonText = "Confirmer";
+                dialog.SecondaryButtonText = "Annuler";
+                dialog.DefaultButton = ContentDialogButton.Secondary;
+                var result = await dialog.ShowAsync();
+            SingletonEmploye.getInstance().ajoutEmpProjet(leProjet.numProjet, c, SingletonEmploye.getInstance().NbHeure);
+            lvEmployesProjet.ItemsSource = SingletonEmploye.getInstance().ListeEmployeProjet;
+            tblNbrEmplo.Text = int.Parse(tblNbrEmplo.Text) + 1 + "";
         }
 
         private void btnRetirer_Click(object sender, RoutedEventArgs e)
         {
             Button b = (Button)sender;
-            var contexte = b.DataContext as Employe;
-            int pos = lvListeEmployes.Items.IndexOf(contexte);
+            var c = b.Tag.ToString();
+            SingletonEmploye.getInstance().retirerEmpProjet(leProjet.numProjet, c);
+            lvEmployesProjet.ItemsSource = SingletonEmploye.getInstance().ListeEmployeProjet;
+            tblNbrEmplo.Text = int.Parse(tblNbrEmplo.Text) - 1 + "";
+            // RETIRER ÉGALEMENT LA PARTIE DU TOTAL SALAIRE À PAYER PUISQUE L'EMPLOYÉ N'EST PLUS SUR LE PROJET
         }
     }
 }

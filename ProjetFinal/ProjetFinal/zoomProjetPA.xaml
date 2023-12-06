@@ -13,7 +13,9 @@
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
         
         <!-- LE CONTAINER -->
-        <Grid Padding="10">
+        <Grid 
+            Padding="10"
+            x:Name="ajouterEmploProjet">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
@@ -42,62 +44,124 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <TextBlock 
-                    Text=""
-                    x:Name="tblNumProjet"
-                    Grid.Row="0"
-                    FontSize="25"
-                    FontWeight="Bold"
-                    Margin="10"/>
-                <TextBlock 
-                     Text=""
-                    x:Name="tblTitre"
-                     Grid.Row="1"
-                     FontSize="20"
-                    Margin="10"/>
-                <TextBlock 
-                    Text=""
-                    x:Name="tblDateDeb"
-                    Grid.Row="2"
-                    FontSize="20"
-                    Margin="10"/>
-                <TextBlock 
-                    Text=""
-                    x:Name="tblDescription"
-                    Grid.Row="3"
-                    FontSize="20"
-                    TextWrapping="Wrap"
-                    Margin="10"/>
-                <TextBlock 
-                    Text=""
-                    x:Name="tblBudget"
-                    Grid.Row="4"
-                    FontSize="20"
-                    Margin="10"/>
-                <TextBlock 
-                    Text=""
-                    x:Name="tblNbrEmplo"
-                    Grid.Row="5"
-                    FontSize="20"
-                    Margin="10"/>
-                <TextBlock 
-                    Text=""
-                    x:Name="tblTotSalaireApay"
-                    Grid.Row="6"
-                    FontSize="20"
-                    Margin="10"/>
-                <TextBlock 
-                    Text=""
-                    x:Name="tblClient"
-                    Grid.Row="7"
-                    FontSize="20"
-                    Margin="10"/>
-                <TextBlock 
-                    Text=""
-                    x:Name="tblStatut"
-                    Grid.Row="8"
-                    FontSize="20"
-                    Margin="10"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock 
+                        Text="#"
+                        FontSize="25"
+                        FontWeight="Bold"
+                        Margin="0,0,1,0"/>
+                    <TextBlock 
+                        x:Name="tblNumProjet"
+                        FontSize="25"
+                        FontWeight="Bold"/>
+                </StackPanel>
+                <StackPanel 
+                    Grid.Row="1"
+                    Orientation="Horizontal">
+                    <TextBlock 
+                        Text="Titre:"
+                        FontSize="20"
+                        Margin="0,0,5,0"
+                        FontWeight="Bold"/>
+                    <TextBlock 
+                        x:Name="tblTitre"
+                        FontSize="20"/>
+                </StackPanel>
+                <StackPanel 
+                    Orientation="Horizontal"
+                    Grid.Row="2">
+                    <TextBlock 
+                        Text="Date d'embauche:"
+                        FontWeight="Bold"
+                        FontSize="20"
+                        Margin="0,0,5,0"/>
+                    <TextBlock 
+                        x:Name="tblDateDeb"
+                        FontSize="20"/>
+                </StackPanel>
+                <StackPanel
+                    Orientation="Horizontal"
+                    Grid.Row="3">
+                    <TextBlock Text="Description:"
+                            Margin="0,0,5,0"
+                            FontWeight="Bold"
+                            FontSize="20"/>
+                    <TextBlock 
+                        x:Name="tblDescription"
+                        FontSize="20"
+                        TextWrapping="Wrap"/>
+                </StackPanel>
+                <StackPanel
+                    Orientation="Horizontal"
+                    Grid.Row="4">
+                    <TextBlock Margin="0,0,5,0"
+                               FontWeight="Bold"
+                               Text="Budget:"
+                               FontSize="20"/>
+                    <TextBlock 
+                        x:Name="tblBudget"
+                        FontSize="20" />
+                    <TextBlock 
+                        Text="$"
+                        FontSize="20"/>
+                </StackPanel>
+                <StackPanel
+                    Orientation="Horizontal"
+                    Grid.Row="5">
+                    <TextBlock 
+                        Text="Nombre d'employés:"
+                        Margin="0,0,5,0"
+                        FontWeight="Bold"
+                        FontSize="20"/>
+                    <TextBlock 
+                        x:Name="tblNbrEmplo"
+                        FontSize="20"/>
+                </StackPanel>
+                <StackPanel
+                    Orientation="Horizontal"
+                    Grid.Row="6">
+                    <TextBlock 
+                         Text="Salaire total à payer:"
+                         Margin="0,0,5,0"
+                         FontWeight="Bold"
+                         FontSize="20"/>
+                    <TextBlock 
+                        Text=""
+                        x:Name="tblTotSalaireApay"
+                        Grid.Row="6"
+                        FontSize="20"/>
+                    <TextBlock 
+                         Text="$"
+                         FontSize="20"/>
+                </StackPanel>
+                <StackPanel
+                    Orientation="Horizontal"
+                    Grid.Row="7">
+                    <TextBlock 
+                        Text="Le client:"
+                        Margin="0,0,5,0"
+                        FontWeight="Bold"
+                        FontSize="20"/>
+                    <TextBlock 
+                        Text=""
+                        x:Name="tblClient"
+                        Grid.Row="7"
+                        FontSize="20"/>
+                </StackPanel>
+                <StackPanel 
+                    Orientation="Horizontal"
+                    Grid.Row="8">
+                    <TextBlock 
+                       Text="Statut:"
+                       Margin="0,0,5,0"
+                       FontWeight="Bold"
+                       FontSize="20"/>
+                    <TextBlock 
+                        Text=""
+                        x:Name="tblStatut"
+                        Grid.Row="8"
+                        FontSize="20"/>
+                </StackPanel>
             </Grid>
             
         <!-- LE CONTAINER POUR LES EMPLOYÉS SUR LE PROJET -->
@@ -115,7 +179,7 @@
                         Text="Sur le projet"
                         FontSize="20"
                         FontWeight="SemiBold"
-                        Margin="2"/>
+                        Margin="0 0 10 0"/>
                     <ListView 
                 x:Name="lvEmployesProjet"
                 SelectionMode="Single"
@@ -127,7 +191,8 @@
                 Margin="0 0 10 0">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="local:EmployeProjet">
-                        <Grid Margin="0 0 0 10">
+                        <Grid 
+                            Padding="0,15,0,15">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
@@ -152,13 +217,13 @@
                                     VerticalAlignment="Center"
                                     HorizontalAlignment="Center">
                                     <Ellipse.Fill>
-                                        <ImageBrush ImageSource="{x:Bind Photo}" />
+                                        <ImageBrush ImageSource="{x:Bind Photo, Mode=OneWay}" />
                                     </Ellipse.Fill>
                                 </Ellipse>
                                 <TextBlock 
                                     Grid.Column="1"
                                     Grid.Row="0"
-                                    Text="{x:Bind Matricule}"
+                                    Text="{x:Bind Matricule, Mode=OneWay}"
                                     x:Phase="1"
                                     Style="{ThemeResource BaseTextBlockStyle}"
                                     FontWeight="Bold"
@@ -167,7 +232,7 @@
                                 <TextBlock  
                                     Grid.Column="2"
                                     Grid.Row="0"
-                                    Text="{x:Bind Prenom}"
+                                    Text="{x:Bind Prenom, Mode=OneWay}"
                                     x:Phase="2"
                                     Style="{ThemeResource BodyTextBlockStyle}"
                                     VerticalAlignment="Center"
@@ -175,7 +240,7 @@
                                 <TextBlock  
                                     Grid.Column="3"
                                     Grid.Row="0"
-                                    Text="{x:Bind Nom}"
+                                    Text="{x:Bind Nom, Mode=OneWay}"
                                     x:Phase="2"
                                     Style="{ThemeResource BodyTextBlockStyle}"
                                     VerticalAlignment="Center"
@@ -183,7 +248,7 @@
                                 <TextBlock  
                                     Grid.Column="4"
                                     Grid.Row="0"
-                                    Text="{x:Bind TauxHoraire}"
+                                    Text="{x:Bind TauxHoraire, Mode=OneWay}"
                                     x:Phase="2"
                                     Style="{ThemeResource BodyTextBlockStyle}"
                                     VerticalAlignment="Center"
@@ -192,29 +257,33 @@
                                 <TextBlock  
                                     Grid.Column="5"
                                     Grid.Row="0"
-                                    Text="{x:Bind NbrHeureTravail}"
+                                    Text="{x:Bind NbrHeureTravail, Mode=OneWay}"
                                     x:Phase="2"
                                     Style="{ThemeResource BodyTextBlockStyle}"
                                     VerticalAlignment="Center"
                                     Margin="10 0 0 0"/>
-                                <TextBlock  
+                                        <TextBlock  
                                     Grid.Column="6"
                                     Grid.Row="0"
-                                    Text="{x:Bind TotSalaireAPay}"
+                                    Text="{x:Bind TotSalaireAPay, Mode=OneWay}"
                                     x:Phase="2"
                                     Style="{ThemeResource BodyTextBlockStyle}"
                                     VerticalAlignment="Center"
                                     Margin="10 0 0 0"/>
-                                <Button 
-                                    x:Name="btnRetirer"
-                                    Grid.Column="7"
-                                    Content="Retirer"
-                                    Margin="12,0,0,6"
-                                    Background="DarkRed"
-                                    Click="btnRetirer_Click"
-                                    Tag="{x:Bind Matricule}"/>
                                     </Grid>
-                        </Grid>
+                                    <StackPanel
+                                        Grid.Column="2"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Center"
+                                        Margin="12,0,0,0">
+                                        <Button 
+                                            x:Name="btnRetirer"
+                                            Content="Retirer"
+                                            Background="DarkRed"
+                                            Click="btnRetirer_Click"
+                                            Tag="{x:Bind Matricule}"/>
+                                    </StackPanel>
+                                </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
@@ -226,7 +295,7 @@
                          Text="Liste"
                          FontSize="20"
                          FontWeight="SemiBold"
-                         Margin="2" />
+                        Margin="0 0 10 0"/>
                     
                     <!-- LE CONTAINER POUR LA LISTE DES EMPLOYÉS -->
                     <ListView 
@@ -239,7 +308,7 @@
                     BorderBrush="{ThemeResource SystemControlForegroundBaseMediumLowBrush}">
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="local:Employe">
-                                <Grid Margin="0 0 0 10"
+                                <Grid Margin="0 0 0 20"
                                       HorizontalAlignment="Left">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="*"/>
@@ -263,35 +332,58 @@
                                         Text="{x:Bind Matricule}"
                                         x:Phase="1"
                                         Style="{ThemeResource BaseTextBlockStyle}"
-                                        Margin="12,6,0,6"
+                                        Margin="0,6,0,6"
                                         FontWeight="Bold"
+                                        HorizontalAlignment="Center"
                                         Grid.Row="1"/>
-                                    <TextBlock  
+                                    <StackPanel
+                                        Orientation="Horizontal"
                                         Grid.Row="2"
+                                        HorizontalAlignment="Center">
+                                        <TextBlock  
+                                             Text="Prénom:"
+                                             Style="{ThemeResource BodyTextBlockStyle}"
+                                             Margin="0,0,5,6"
+                                             FontWeight="SemiBold"
+                                            FontStyle="Italic"/>
+                                        <TextBlock  
                                         Text="{x:Bind Prenom}"
                                         x:Phase="2"
                                         Style="{ThemeResource BodyTextBlockStyle}"
-                                        Margin="12,0,0,6"/>
-                                    <TextBlock  
+                                        Margin="0,0,0,6"/>
+                                    </StackPanel>
+                                    <StackPanel 
+                                        Orientation="Horizontal"
                                         Grid.Row="3"
-                                        Text="{x:Bind Nom}"
-                                        x:Phase="2"
-                                        Style="{ThemeResource BodyTextBlockStyle}"
-                                        Margin="12,0,0,6"/>
+                                        HorizontalAlignment="Center">
+                                        <TextBlock  
+                                             Text="Nom:"
+                                             Style="{ThemeResource BodyTextBlockStyle}"
+                                             Margin="0,0,5,6"
+                                             FontWeight="SemiBold"
+                                             FontStyle="Italic"/>
+                                        <TextBlock  
+                                            Text="{x:Bind Nom}"
+                                            x:Phase="2"
+                                            Style="{ThemeResource BodyTextBlockStyle}"
+                                            Margin="0,0,0,6"/>
+                                    </StackPanel>
                                     <TextBlock  
                                         Grid.Row="4"
                                         Text="{x:Bind Email}"
                                         x:Phase="2"
                                         Style="{ThemeResource BodyTextBlockStyle}"
-                                        Margin="12,0,0,6"/>
+                                        Margin="0,0,0,6"
+                                         HorizontalAlignment="Center"/>
                                     <Button 
                                         Grid.Row="5"
                                         Content="Ajouter"
                                         x:Name="btnAjouter"
-                                        Margin="12,0,0,6"
                                         Background="DarkOliveGreen"
                                         Tag="{x:Bind Matricule}"
-                                        Click="btnAjouter_Click"/>
+                                        Click="btnAjouter_Click"
+                                         HorizontalAlignment="Center"
+                                        Width="190"/>
                                 </Grid>
                             </DataTemplate>
                         </ListView.ItemTemplate>
