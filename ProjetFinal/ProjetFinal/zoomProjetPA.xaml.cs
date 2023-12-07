@@ -7,6 +7,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -28,6 +29,9 @@ namespace ProjetFinal
     public sealed partial class ZoomProjetPA : Page
     {
         Projet leProjet;
+        int pos;
+        Employe contexte;
+        ObservableCollection<Employe> memoryListAjoutRetir = new ObservableCollection<Employe>();
 
         public ZoomProjetPA()
         {
@@ -60,7 +64,9 @@ namespace ProjetFinal
         {
             Button b = (Button)sender;
             var c = b.Tag.ToString();
-                AjouterEmploAProjetCD dialog = new AjouterEmploAProjetCD();
+            contexte = b.DataContext as Employe;
+            pos = lvListeEmployes.Items.IndexOf(contexte);
+            AjouterEmploAProjetCD dialog = new AjouterEmploAProjetCD();
                 dialog.XamlRoot = ajouterEmploProjet.XamlRoot;
                 dialog.Title = "Précision";
                 dialog.PrimaryButtonText = "Confirmer";
@@ -70,6 +76,8 @@ namespace ProjetFinal
             SingletonEmploye.getInstance().ajoutEmpProjet(leProjet.numProjet, c, SingletonEmploye.getInstance().NbHeure);
             lvEmployesProjet.ItemsSource = SingletonEmploye.getInstance().ListeEmployeProjet;
             tblNbrEmplo.Text = int.Parse(tblNbrEmplo.Text) + 1 + "";
+            SingletonEmploye.getInstance().ListeEmploye.RemoveAt(pos);
+            memoryListAjoutRetir.Add(contexte);
         }
 
         private void btnRetirer_Click(object sender, RoutedEventArgs e)
@@ -79,6 +87,7 @@ namespace ProjetFinal
             SingletonEmploye.getInstance().retirerEmpProjet(leProjet.numProjet, c);
             lvEmployesProjet.ItemsSource = SingletonEmploye.getInstance().ListeEmployeProjet;
             tblNbrEmplo.Text = int.Parse(tblNbrEmplo.Text) - 1 + "";
+           // SingletonEmploye.getInstance().ListeEmploye.Add(memoryListAjoutRetir.IndexOf(contexte);
             // RETIRER ÉGALEMENT LA PARTIE DU TOTAL SALAIRE À PAYER PUISQUE L'EMPLOYÉ N'EST PLUS SUR LE PROJET
         }
     }
