@@ -12,7 +12,10 @@ namespace ProjetFinal
     internal class SingletonEmploye
     {
         ObservableCollection<Employe> listeEmployes;
+
         ObservableCollection<EmployeProjet> empProjet;
+        //ObservableCollection<EmployeProjet> empProjet;
+
         MySqlConnection conn;
         static SingletonEmploye instance = null;
         string matricule;
@@ -21,7 +24,10 @@ namespace ProjetFinal
         public SingletonEmploye() 
         {
             listeEmployes = new ObservableCollection<Employe>();
+
             empProjet = new ObservableCollection<EmployeProjet>();
+            //empProjet = new ObservableCollection<EmployeProjet>();
+
             conn = new MySqlConnection("Server=cours.cegep3r.info;Database=1865294-gabryel-poisson;Uid=1865294;Pwd=1865294;");
         }
 
@@ -34,6 +40,7 @@ namespace ProjetFinal
         }
 
         public ObservableCollection<EmployeProjet> ListeEmployeProjet { get { return empProjet; } }
+        //public ObservableCollection<EmployeProjet> ListeEmployeProjet { get { return empProjet; } }
 
         public ObservableCollection<Employe> ListeEmploye { get { return listeEmployes; } }
 
@@ -93,13 +100,24 @@ namespace ProjetFinal
                 MySqlDataReader result = cmd.ExecuteReader();
                 while (result.Read())
                 {
-                    EmployeProjet employe = new EmployeProjet(result["matricule"].ToString(),
+                    string resultBool;
+                    if (int.Parse(result["statut"].ToString()) == 1)
+                        resultBool = "true";
+                    else
+                        resultBool = "false";
+                    EmployeProjet employe = new EmployeProjet(
+                        result["matricule"].ToString(),
                         result["nom"].ToString(),
                         result["prenom"].ToString(),
+                        result["dateNais"].ToString(),
+                        result["email"].ToString(),
+                        result["adresse"].ToString(),
+                        result["dateEmbauche"].ToString(),
                         (double)result["tauxHoraire"],
+                        result["photo"].ToString(),
+                        Boolean.Parse(resultBool),
                         (int)result["nbrHeureTravail"],
-                        (double)result["totSalaireAPay"],
-                        result["photo"].ToString());
+                        (double)result["totSalaireAPay"]);
                     empProjet.Add(employe);
                 }
                 result.Close();
@@ -112,6 +130,39 @@ namespace ProjetFinal
             }
             return empProjet;
         }
+
+        //public ObservableCollection<EmployeProjet> getEmployeFromAProject(String idProjet)
+        //{
+        //    empProjet.Clear();
+        //    try
+        //    {
+        //        MySqlCommand cmd = new MySqlCommand("employe_dans_projet");
+        //        cmd.Connection = conn;
+        //        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+        //        cmd.Parameters.AddWithValue("_idProjet", idProjet);
+        //        conn.Open();
+        //        MySqlDataReader result = cmd.ExecuteReader();
+        //        while (result.Read())
+        //        {
+        //            EmployeProjet employe = new EmployeProjet(result["matricule"].ToString(),
+        //                result["nom"].ToString(),
+        //                result["prenom"].ToString(),
+        //                (double)result["tauxHoraire"],
+        //                (int)result["nbrHeureTravail"],
+        //                (double)result["totSalaireAPay"],
+        //                result["photo"].ToString());
+        //            empProjet.Add(employe);
+        //        }
+        //        result.Close();
+        //        conn.Close();
+        //    }
+        //    catch (MySqlException ex)
+        //    {
+        //        if (conn.State == System.Data.ConnectionState.Open)
+        //            conn.Close();
+        //    }
+        //    return empProjet;
+        //}
 
         // AJOUTE UN EMPLOYÉ DANS LA BASE DE DONNÉES
         public MySqlConnection ajouterEmployes(string nom, string prenom, string dateNaissance, string email, string adresse, string dateEmbauche, double tauxHoraire, string photo)
@@ -246,13 +297,14 @@ namespace ProjetFinal
                 cmd.Prepare();
                 cmd.ExecuteNonQuery();
                 conn.Close();
+                getEmployeFromAProject(idProjet);
             }
             catch (MySqlException ex)
             {
                 if (conn.State == System.Data.ConnectionState.Open)
                     conn.Close();
+                throw ex;
             }
-            getEmployeFromAProject(idProjet);
         }
 
         public void retirerEmpProjet(String idProjet, String idEmplo)
