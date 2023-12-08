@@ -17,16 +17,8 @@
                             IsBackButtonVisible="Collapsed" 
                             PaneTitle="Gestion">
             <NavigationView.MenuItems>
-                <NavigationViewItem Content="Gérer les projets" Icon="Library" Tag="Options">
-                    <NavigationViewItem.MenuItems>
-                        <NavigationViewItem Content="Liste des projets" Tag="ListeProjet" Icon="List" />
-                        <NavigationViewItem Content="Ajouter un projet" Tag="AddProjet" Icon="Add" />
-                        <NavigationViewItem Content="Modifier un projet" Tag="ModifyProjet" Icon="Edit" />
-                        <NavigationViewItem Content="Supprimer un projet" Tag="RemoveProjet" Icon="Remove" />
-                    </NavigationViewItem.MenuItems>
-                </NavigationViewItem>
-                <NavigationViewItem Content="Gérer les employés" Icon="People" Tag="listeEmployes">
-                </NavigationViewItem>
+                <NavigationViewItem Content="Gérer les projets" Icon="Library" Tag="listeProjets" />
+                <NavigationViewItem Content="Gérer les employés" Icon="People" Tag="listeEmployes" />
                 <NavigationViewItem Content="Gérer les clients" Icon="Contact" Tag="listeClients" />
             </NavigationView.MenuItems>
             <NavigationView.FooterMenuItems>

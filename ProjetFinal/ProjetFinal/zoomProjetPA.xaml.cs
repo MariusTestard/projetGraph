@@ -108,9 +108,13 @@ namespace ProjetFinal
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                EmploDejaAffilie dial = new EmploDejaAffilie();
+                dialog.XamlRoot = ajouterEmploProjet.XamlRoot;
+                dialog.Title = "Erreur";
+                dialog.PrimaryButtonText = "OK";
+                dialog.DefaultButton = ContentDialogButton.Primary;
+                var retu = await dialog.ShowAsync();
             }
-            
         }
 
         private void btnRetirer_Click(object sender, RoutedEventArgs e)

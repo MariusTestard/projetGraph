@@ -24,14 +24,15 @@
 
         <StackPanel Grid.Row="0"
                     Grid.Column="1"
-                    HorizontalAlignment="Right"
+                    HorizontalAlignment="Center"
                     VerticalAlignment="Bottom">
             <Button 
                 x:Name="btnAjouter"
                 Content="Ajouter"
                 Background="DarkOliveGreen"
                 Click="btnAjouter_Click"
-                Margin="0 0 0 2"/>
+                Margin="0 0 0 2"
+                Width="420"/>
         </StackPanel>
 
         <!-- LA LISTVIEW -->

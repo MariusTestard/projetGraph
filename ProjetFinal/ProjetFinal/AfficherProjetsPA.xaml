@@ -9,10 +9,12 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid x:Name="afficherProjetPA">
+    <ScrollViewer VerticalScrollMode="Enabled">
+        <Grid x:Name="afficherProjetPA">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
 
@@ -38,16 +40,20 @@
                 FontSize="30"
                 Click="btnTerminer_Click"/>
         </StackPanel>
+        
         <Button x:Name="btnAjouter"
-                Content="Ajouter"
-    Background="White"
-    Foreground="Black"
-    Width="200"
-    Margin="1 0 3 0"
-    FontSize="30"
-    Click="btnAjouter_Click"/>
+                Content="AJOUTER"
+                Background="DarkOliveGreen"
+                Foreground="Black"
+                Width="1000"
+                Grid.Row="1"
+                Margin="0,5,0,0"
+                FontSize="30"
+                Click="btnAjouter_Click"
+                HorizontalAlignment="Center"/>
+        
         <GridView x:Name="lvListeProjets"
-      Grid.Row="1"
+      Grid.Row="2"
       Padding="40 5 40 40"
       HorizontalAlignment="Center"
       SelectionChanged="lvListeProjets_SelectionChanged">
@@ -111,4 +117,5 @@
             </GridView.ItemTemplate>
         </GridView>
     </Grid>
+    </ScrollViewer>
 </Page>

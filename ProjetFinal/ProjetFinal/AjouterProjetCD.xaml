@@ -27,25 +27,22 @@
                 Width="180"/>
             </StackPanel>
             <TextBox 
-           x:Name="tbxNbrEmplo"
-           Margin="2 8 0 8"
-           PlaceholderText="NbrEmplo"/>
-            <TextBox 
-            x:Name="tbxClient"
-            Margin="0 8 0 8"
-            PlaceholderText="Client"/>
+                x:Name="tbxClient"
+                Margin="0 8 0 8"
+                PlaceholderText="Client"
+                Width="360"/>
             <StackPanel Orientation="Horizontal">
                 <TextBox 
                 x:Name="tbxDesc"
                 Margin="1 8 0 8"
                 PlaceholderText="Desc"
-                Width="180"/>
+                Width="360"/>
             </StackPanel>
             <StackPanel Orientation="Vertical"
                     HorizontalAlignment="Center">
                 <TextBlock 
                 x:Name="tblDateDebLabel"
-                Text="Date de naissance"/>
+                Text="Date de début"/>
                 <DatePicker 
                 x:Name="DPDateDeb"
                 Margin="0 5 2 8" 

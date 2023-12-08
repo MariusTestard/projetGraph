@@ -70,7 +70,7 @@ namespace ProjetFinal
         }
 
         // AJOUTER UN PROJET DANS LA BASE DE DONNÉES
-        public MySqlConnection ajouterProjets(string titre, string dateDeb, string description, double budget, int nbrEmplo, double totSalaireApay, string client)
+        public MySqlConnection ajouterProjets(string titre, string dateDeb, string description, double budget, string client)
         {
             try
             {
@@ -81,14 +81,11 @@ namespace ProjetFinal
                 cmd.Parameters.AddWithValue("_dateDeb", dateDeb);
                 cmd.Parameters.AddWithValue("_description", description);
                 cmd.Parameters.AddWithValue("_budget", budget);
-                cmd.Parameters.AddWithValue("_nbrEmplo", nbrEmplo);
-                cmd.Parameters.AddWithValue("_totSalaireApay", totSalaireApay);
                 cmd.Parameters.AddWithValue("_client", client);
                 conn.Open();
                 cmd.Prepare();
                 cmd.ExecuteNonQuery();
                 conn.Close();
-                getListeProjets();
                 getListeProjets().Clear();
                 getListeProjets();
             }
@@ -121,8 +118,6 @@ namespace ProjetFinal
                 cmd.Prepare();
                 cmd.ExecuteNonQuery();
                 conn.Close();
-                //Employe e = new Employe(matricule, nom, prenom, dateNaissance, email, adresse, dateEmbauche, tauxHoraire, photo, statut);
-                //listeEmployes[position] = (e);
                 getListeProjets();
                 getListeProjets().Clear();
                 getListeProjets();

@@ -42,52 +42,9 @@ namespace ProjetFinal
             {
                 mainFrame.Navigate(typeof(AfficherEmployesPA));
             }
-            else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "Options")
-            {
-                navView.SelectedItem = null;
-            }
-            else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "ListeProjet")
+            else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "listeProjets")
             {
                 mainFrame.Navigate(typeof(AfficherProjetsPA));
-                navView.SelectedItem = null;
-            }
-            else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "AddProjet")
-            {
-                /*
-                 * 
-                 * À enlever lorsque ajouter un projet sera programmé
-                 * 
-                if (SingletonAdmin.getInstance().LoginAdmin())
-                {
-                    
-                }
-                else
-                {
-                    ErreurAdmin dialog = new ErreurAdmin();
-                    dialog.XamlRoot = testgrid.XamlRoot;
-                    dialog.Title = "Erreur";
-                    dialog.CloseButtonText = "Annuler";
-                    ContentDialogResult resultat = await dialog.ShowAsync();
-                }
-                */
-            }
-            else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "ModifyProjet")
-            {
-                
-            }
-            else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "RemoveProjet")
-            {
-                
-            }
-            else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "ListeClient")
-            {
-                mainFrame.Navigate(typeof(AfficherClientsPA));
-                navView.SelectedItem = null;
-            }
-            else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "ListeEmplo")
-            {
-                mainFrame.Navigate(typeof(AfficherEmployesPA));
-                navView.SelectedItem = null;
             }
             else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "SaveFile")
             {
@@ -118,18 +75,13 @@ namespace ProjetFinal
                 dialog.Title = "Authentification";
                 dialog.PrimaryButtonText = "Se connecter";
                 dialog.CloseButtonText = "Annuler";
-
-
+                dialog.DefaultButton = ContentDialogButton.Primary;
                 ContentDialogResult resultat = await dialog.ShowAsync();
-
                 if (resultat == ContentDialogResult.Primary)
                 {
-                    SingletonAdmin.getInstance().connexionAdmin(dialog.Username, dialog.Password);
                     selectedNavItem.Tag = "Connecté";
                     selectedNavItem.Content = "Déconnexion";
-                    //mainFrame.Navigate(mainFrame.CurrentSourcePageType);
                 }
-
                 navView.SelectedItem = null;
             }
             else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "Connecté")

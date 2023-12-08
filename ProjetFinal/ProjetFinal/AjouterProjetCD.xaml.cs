@@ -28,7 +28,6 @@ namespace ProjetFinal
             DPDateDeb.BorderBrush = new SolidColorBrush(Colors.LightGray);
             tbxDesc.BorderBrush = new SolidColorBrush(Colors.LightGray);
             tbxBudget.BorderBrush = new SolidColorBrush(Colors.LightGray);
-            tbxNbrEmplo.BorderBrush = new SolidColorBrush(Colors.LightGray);
             tbxClient.BorderBrush = new SolidColorBrush(Colors.LightGray);
 
         }
@@ -38,7 +37,7 @@ namespace ProjetFinal
             if (String.IsNullOrEmpty(tbxTitre.Text))
             {
                 tbxTitre.BorderBrush = new SolidColorBrush(Colors.Red);
-                tbxTitre.PlaceholderText = "Nom requis !";
+                tbxTitre.PlaceholderText = "Titre requis !";
                 args.Cancel = true;
             }
             else
@@ -50,7 +49,7 @@ namespace ProjetFinal
             if (String.IsNullOrEmpty(tbxDesc.Text))
             {
                 tbxDesc.BorderBrush = new SolidColorBrush(Colors.Red);
-                tbxDesc.PlaceholderText = "Prénom requis !";
+                tbxDesc.PlaceholderText = "Description requise !";
                 args.Cancel = true;
             }
             else
@@ -62,31 +61,27 @@ namespace ProjetFinal
             if (String.IsNullOrEmpty(tbxBudget.Text))
             {
                 tbxBudget.BorderBrush = new SolidColorBrush(Colors.Red);
-                tbxBudget.PlaceholderText = "Email requis !";
+                tbxBudget.PlaceholderText = "Budget requis !";
                 args.Cancel = true;
             }
             else
             {
-                tbxBudget.BorderBrush = new SolidColorBrush(Colors.LightGray);
-                tbxBudget.PlaceholderText = String.Empty;
-                args.Cancel = true;
-            }
-            if (String.IsNullOrEmpty(tbxNbrEmplo.Text))
-            {
-                tbxNbrEmplo.BorderBrush = new SolidColorBrush(Colors.Red);
-                tbxNbrEmplo.PlaceholderText = "Adresse requise !";
-                args.Cancel = true;
-            }
-            else
-            {
-                tbxNbrEmplo.BorderBrush = new SolidColorBrush(Colors.LightGray);
-                tbxNbrEmplo.PlaceholderText = String.Empty;
-                args.Cancel = true;
+                try
+                {
+                    int test = int.Parse(tbxBudget.Text);
+                }
+                catch (Exception e)
+                {
+                    tbxBudget.BorderBrush = new SolidColorBrush(Colors.Red);
+                    tbxBudget.Text = String.Empty;
+                    tbxBudget.PlaceholderText = "Mauvais format !";
+                    args.Cancel = true;
+                }
             }
             if (String.IsNullOrEmpty(tbxClient.Text))
             {
                 tbxClient.BorderBrush = new SolidColorBrush(Colors.Red);
-                tbxClient.PlaceholderText = "Photo requise !";
+                tbxClient.PlaceholderText = "Client requis !";
                 args.Cancel = true;
             }
             else
@@ -107,13 +102,11 @@ namespace ProjetFinal
                 DPDateDeb.BorderBrush = new SolidColorBrush(Colors.LightGray);
                 args.Cancel = true;
             }
-            if (tbxTitre.Text != String.Empty && tbxDesc.Text != String.Empty && tbxBudget.Text != String.Empty && tbxNbrEmplo.Text != String.Empty
+            if (tbxTitre.Text != String.Empty && tbxDesc.Text != String.Empty && tbxBudget.Text != String.Empty
                 && tbxClient.Text != String.Empty && DPDateDeb.SelectedDate != null)
             {
                 args.Cancel = false;
-                SingletonProjet.getInstance().ajouterProjets(tbxTitre.Text, DPDateDeb.SelectedDate.Value.ToString("yyyy-MM-dd"),tbxDesc.Text,double.Parse(tbxBudget.Text),int.Parse(tbxNbrEmplo.Text),0,tbxClient.Text);
-
-                //j'ai mis la valeur de totSalaireAPay a zéro, pcq je sais pas si c'est la BD qui la calcule automatiquement
+                SingletonProjet.getInstance().ajouterProjets(tbxTitre.Text, DPDateDeb.SelectedDate.Value.ToString("yyyy-MM-dd"), tbxDesc.Text, double.Parse(tbxBudget.Text), tbxClient.Text);
             }
         }
     }

@@ -28,13 +28,15 @@
             VerticalAlignment="Bottom">
         <Button 
             x:Name="btnAjouter"
-            Content="Ajouter"
+            Content="AJOUTER"
             Background="DarkOliveGreen"
             Click="btnAjouter_Click"
-            Margin="0 20 0 -15"
-            Height="50"
-            Width="100"
-            FontSize="18"/>
+            Margin="0 20 0 0"
+            Height="auto"
+            Width="800"
+            FontSize="30"
+            HorizontalAlignment="Center"
+            Foreground="Black"/>
         </StackPanel>
         <GridView   
             x:Name="lvListeEmployes"
@@ -45,11 +47,12 @@
             SelectionChanged="lvListeEmployes_SelectionChanged">
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="local:Employe">
-                    <StackPanel Padding="20"
-                            BorderBrush="White"
-                            BorderThickness="1"
-                                Height="489"
-                                Width="271">
+                    <StackPanel 
+                        Padding="20"
+                        BorderBrush="White"
+                        BorderThickness="1"
+                        Height="489"
+                        Width="271">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="auto"/>

@@ -19,6 +19,7 @@
     <None Remove="AjouterEmploAProjetCD.xaml" />
     <None Remove="AjouterEmployeCD.xaml" />
     <None Remove="AjouterProjetCD.xaml" />
+    <None Remove="EmploDejaAffilie.xaml" />
     <None Remove="ErreurAdmin.xaml" />
     <None Remove="LoginAdminCD.xaml" />
     <None Remove="ModifierClientCD.xaml" />
@@ -50,6 +51,11 @@
   -->
   <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
     <ProjectCapability Include="Msix" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="EmploDejaAffilie.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="AjouterEmploAProjetCD.xaml">

@@ -69,18 +69,20 @@ namespace ProjetFinal
                 cmd.Parameters.AddWithValue("_password", password);
                 conn.Open();
                 MySqlDataReader result = cmd.ExecuteReader();
-                if (result.HasRows)
+                if (!result.HasRows)
+                    throw new Exception();
+                else
                 {
                     Debug.WriteLine("Connecté");
                     AdminLogin = true;
                     Bt.Visibility = Microsoft.UI.Xaml.Visibility.Visible;
                 }
-                else { Debug.WriteLine("Champ invalide"); }
                 result.Close();
                 conn.Close();
             }
             catch (MySqlException ex)
             {
+                
                 if (conn.State == System.Data.ConnectionState.Open)
                     conn.Close();
             }

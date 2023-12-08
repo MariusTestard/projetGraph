@@ -14,7 +14,7 @@
         
         <!-- LE CONTAINER -->
         <Grid 
-            Padding="10"
+            Padding="20"
             x:Name="ajouterEmploProjet">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
@@ -24,27 +24,22 @@
             <!-- LE CONTAINER POUR PROJET -->
             <Grid 
                 Grid.Row="0"
-                AllowDrop="True"
                 Height="auto"
-                Width="700"
-                Padding="20"
+                Width="auto"
+                Padding="10"
                 BorderThickness="1"
                 BorderBrush="{ThemeResource SystemControlForegroundBaseMediumLowBrush}"
-                VerticalAlignment="Center"
-                Background="DarkSlateBlue"
-                Margin="0 0 0 10">
+                VerticalAlignment="Top"
+                Background="SlateGray">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <StackPanel Orientation="Horizontal">
+                <StackPanel
+                    Grid.Row="0"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Center">
                     <TextBlock 
                         Text="#"
                         FontSize="25"
@@ -55,119 +50,146 @@
                         FontSize="25"
                         FontWeight="Bold"/>
                 </StackPanel>
-                <StackPanel 
-                    Grid.Row="1"
-                    Orientation="Horizontal">
-                    <TextBlock 
-                        Text="Titre:"
-                        FontSize="20"
-                        Margin="0,0,5,0"
-                        FontWeight="Bold"/>
-                    <TextBlock 
-                        x:Name="tblTitre"
-                        FontSize="20"/>
-                </StackPanel>
-                <StackPanel 
-                    Orientation="Horizontal"
-                    Grid.Row="2">
-                    <TextBlock 
-                        Text="Date d'embauche:"
-                        FontWeight="Bold"
-                        FontSize="20"
-                        Margin="0,0,5,0"/>
-                    <TextBlock 
-                        x:Name="tblDateDeb"
-                        FontSize="20"/>
-                </StackPanel>
                 <StackPanel
                     Orientation="Horizontal"
-                    Grid.Row="3">
+                    Grid.Row="2"
+                    HorizontalAlignment="Center">
                     <TextBlock Text="Description:"
-                            Margin="0,0,5,0"
-                            FontWeight="Bold"
-                            FontSize="20"/>
-                    <TextBlock 
-                        x:Name="tblDescription"
-                        FontSize="20"
-                        TextWrapping="Wrap"/>
-                </StackPanel>
-                <StackPanel
-                    Orientation="Horizontal"
-                    Grid.Row="4">
-                    <TextBlock Margin="0,0,5,0"
-                               FontWeight="Bold"
-                               Text="Budget:"
-                               FontSize="20"/>
-                    <TextBlock 
-                        x:Name="tblBudget"
-                        FontSize="20" />
-                    <TextBlock 
-                        Text="$"
-                        FontSize="20"/>
-                </StackPanel>
-                <StackPanel
-                    Orientation="Horizontal"
-                    Grid.Row="5">
-                    <TextBlock 
-                        Text="Nombre d'employés:"
-                        Margin="0,0,5,0"
-                        FontWeight="Bold"
-                        FontSize="20"/>
-                    <TextBlock 
-                        x:Name="tblNbrEmplo"
-                        FontSize="20"/>
-                </StackPanel>
-                <StackPanel
-                    Orientation="Horizontal"
-                    Grid.Row="6">
-                    <TextBlock 
-                         Text="Salaire total à payer:"
                          Margin="0,0,5,0"
                          FontWeight="Bold"
                          FontSize="20"/>
                     <TextBlock 
-                        Text=""
-                        x:Name="tblTotSalaireApay"
-                        Grid.Row="6"
-                        FontSize="20"/>
-                    <TextBlock 
-                         Text="$"
-                         FontSize="20"/>
-                </StackPanel>
-                <StackPanel
-                    Orientation="Horizontal"
-                    Grid.Row="7">
-                    <TextBlock 
-                        Text="Le client:"
-                        Margin="0,0,5,0"
-                        FontWeight="Bold"
-                        FontSize="20"/>
-                    <TextBlock 
-                        Text=""
-                        x:Name="tblClient"
-                        Grid.Row="7"
-                        FontSize="20"/>
+                         x:Name="tblDescription"
+                         FontSize="20"
+                         TextWrapping="Wrap"/>
                 </StackPanel>
                 <StackPanel 
                     Orientation="Horizontal"
-                    Grid.Row="8">
+                    Grid.Row="1"
+                    HorizontalAlignment="Center">
                     <TextBlock 
-                       Text="Statut:"
-                       Margin="0,0,5,0"
-                       FontWeight="Bold"
-                       FontSize="20"/>
+                         Text="Date d'embauche:"
+                         FontWeight="Bold"
+                         FontSize="20"
+                         Margin="0,0,5,0"/>
                     <TextBlock 
-                        Text=""
-                        x:Name="tblStatut"
-                        Grid.Row="8"
-                        FontSize="20"/>
-                </StackPanel>
+                         x:Name="tblDateDeb"
+                         FontSize="20"/>
+                                </StackPanel>
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel 
+                         Grid.Row="1"
+                         Grid.Column="0"
+                         Orientation="Horizontal"
+                         HorizontalAlignment="Center">
+                        <TextBlock 
+                             Text="Titre:"
+                             FontSize="20"
+                             Margin="0,0,5,0"
+                             FontWeight="Bold"/>
+                        <TextBlock 
+                            x:Name="tblTitre"
+                            FontSize="20"/>
+                    </StackPanel>
+                    <StackPanel
+                         Orientation="Horizontal"
+                         Grid.Row="1"
+                            Grid.Column="1"
+                         HorizontalAlignment="Center">
+                        <TextBlock Margin="0,0,5,0"
+                            FontWeight="Bold"
+                            Text="Budget:"
+                            FontSize="20"/>
+                        <TextBlock 
+                             x:Name="tblBudget"
+                             FontSize="20" />
+                        <TextBlock 
+                             Text="$"
+                             FontSize="20"/>
+                    </StackPanel>
+                    <StackPanel
+                        Orientation="Horizontal"
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        HorizontalAlignment="Center">
+                        <TextBlock 
+                             Text="Nombre d'employés:"
+                             Margin="0,0,5,0"
+                             FontWeight="Bold"
+                             FontSize="20"/>
+                        <TextBlock 
+                             x:Name="tblNbrEmplo"
+                             FontSize="20"/>
+                    </StackPanel>
+                    <StackPanel
+                        Orientation="Horizontal"
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        HorizontalAlignment="Center">
+                        <TextBlock 
+                              Text="Salaire total à payer:"
+                              Margin="0,0,5,0"
+                              FontWeight="Bold"
+                              FontSize="20"/>
+                        <TextBlock 
+                             Text=""
+                             x:Name="tblTotSalaireApay"
+                             Grid.Row="6"
+                             FontSize="20"/>
+                        <TextBlock 
+                              Text="$"
+                              FontSize="20"/>
+                    </StackPanel>
+                    <StackPanel
+                        Orientation="Horizontal"
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        HorizontalAlignment="Center">
+                        <TextBlock 
+                             Text="Le client:"
+                             Margin="0,0,5,0"
+                             FontWeight="Bold"
+                             FontSize="20"/>
+                        <TextBlock 
+                             Text=""
+                             x:Name="tblClient"
+                             Grid.Row="7"
+                             FontSize="20"/>
+                    </StackPanel>
+                    <StackPanel 
+                        Orientation="Horizontal"
+                        Grid.Row="3"
+                        Grid.Column="1"
+                        HorizontalAlignment="Center">
+                        <TextBlock 
+                            Text="Statut:"
+                            Margin="0,0,5,0"
+                            FontWeight="Bold"
+                            FontSize="20"/>
+                        <TextBlock 
+                            Text=""
+                            x:Name="tblStatut"
+                            Grid.Row="8"
+                            FontSize="20"/>
+                    </StackPanel>
+                </Grid>
             </Grid>
             
         <!-- LE CONTAINER POUR LES EMPLOYÉS SUR LE PROJET -->
         <Grid
             Grid.Row="1"
-            HorizontalAlignment="Center">
+            HorizontalAlignment="Center"
+            Margin="0,15,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
@@ -183,16 +205,21 @@
                     <ListView 
                 x:Name="lvEmployesProjet"
                 SelectionMode="Single"
-                Height="400"
+                Height="auto"
+                MinHeight="400"
                 Width="auto"
+                MinWidth="500"
                 BorderThickness="1"
                 BorderBrush="{ThemeResource SystemControlForegroundBaseMediumLowBrush}"
                 VerticalAlignment="Top"
-                Margin="0 0 10 0">
+                Margin="0 0 10 0"
+                Padding="0,10,0,10">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="local:EmployeProjet">
                         <Grid 
-                            Padding="0,15,0,15">
+                            Padding="5,10,10,10"
+                            Background="DarkSlateGray"
+                            Margin="0,0,0,5">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
@@ -302,14 +329,18 @@
                     HorizontalAlignment="Center"
                     x:Name="lvListeEmployes"
                     SelectionMode="Single"
-                    Height="400"
+                    Height="auto"
+                    MaxHeight="750"
                     Width="auto"
                     BorderThickness="1"
+                    Padding="0,10,0,10"
                     BorderBrush="{ThemeResource SystemControlForegroundBaseMediumLowBrush}">
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="local:Employe">
-                                <Grid Margin="0 0 0 20"
-                                      HorizontalAlignment="Left">
+                                <Grid Margin="0 0 0 25"
+                                      HorizontalAlignment="Left"
+                                      Background="DarkSlateGray"
+                                      Padding="10">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="*"/>
                                         <RowDefinition Height="*"/>
@@ -382,8 +413,8 @@
                                         Background="DarkOliveGreen"
                                         Tag="{x:Bind Matricule}"
                                         Click="btnAjouter_Click"
-                                         HorizontalAlignment="Center"
-                                        Width="190"/>
+                                        HorizontalAlignment="Center"
+                                        Width="220"/>
                                 </Grid>
                             </DataTemplate>
                         </ListView.ItemTemplate>
