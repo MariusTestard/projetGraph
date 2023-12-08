@@ -78,9 +78,10 @@ namespace ProjetFinal
                             Debug.WriteLine("Index has been saved");
                         }
                     }
-                    for (int i = 0; i < matriculeMatchRM.Count; i++) {
-                        SingletonEmploye.getInstance().ListeEmploye.RemoveAt(matriculeMatchRM[i]);
-                    }
+                }
+                for (int i = 0; i < matriculeMatchRM.Count; i++)
+                {
+                    SingletonEmploye.getInstance().ListeEmploye.RemoveAt(matriculeMatchRM[i]);
                 }
             }
         }
@@ -121,6 +122,7 @@ namespace ProjetFinal
             lvEmployesProjet.ItemsSource = SingletonEmploye.getInstance().ListeEmployeProjet;
             SingletonEmploye.getInstance().ListeEmploye.Add(contexte);
             tblNbrEmplo.Text = int.Parse(tblNbrEmplo.Text) - 1 + "";
+            
             // RETIRER ÉGALEMENT LA PARTIE DU TOTAL SALAIRE À PAYER PUISQUE L'EMPLOYÉ N'EST PLUS SUR LE PROJET
         }
     }

@@ -46,9 +46,10 @@ namespace ProjetFinal
                 MySqlDataReader result = cmd.ExecuteReader();
                 while (result.Read())
                 {
+                    string[] splitDate = result["dateDeb"].ToString().Split(" ");
                     Projet projet = new Projet(numProjet: result["numProjet"].ToString(),
                         titre: result["titre"].ToString(),
-                        dateDeb: result["dateDeb"].ToString(),
+                        dateDeb: splitDate[0].Replace('/', '-'),
                         description: result["description"].ToString(),
                         budget: (double)result["budget"],
                         nbrEmplo: int.Parse(result["nbrEmplo"].ToString()),
@@ -172,9 +173,10 @@ namespace ProjetFinal
                 MySqlDataReader result = cmd.ExecuteReader();
                 while (result.Read())
                 {
+                    string[] splitDate = result["dateDeb"].ToString().Split(" ");
                     Projet projet = new Projet(numProjet: result["numProjet"].ToString(),
                         titre: result["titre"].ToString(),
-                        dateDeb: result["dateDeb"].ToString(),
+                        dateDeb: splitDate[0].Replace('/', '-'),
                         description: result["description"].ToString(),
                         budget: (double)result["budget"],
                         nbrEmplo: int.Parse(result["nbrEmplo"].ToString()),
@@ -206,9 +208,10 @@ namespace ProjetFinal
                 MySqlDataReader result = cmd.ExecuteReader();
                 while (result.Read())
                 {
+                    string[] splitDate = result["dateDeb"].ToString().Split(" ");
                     Projet projet = new Projet(numProjet: result["numProjet"].ToString(),
                         titre: result["titre"].ToString(),
-                        dateDeb: result["dateDeb"].ToString(),
+                        dateDeb: splitDate[0].Replace('/', '-'),
                         description: result["description"].ToString(),
                         budget: (double)result["budget"],
                         nbrEmplo: int.Parse(result["nbrEmplo"].ToString()),
