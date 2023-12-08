@@ -29,7 +29,8 @@ namespace ProjetFinal
     public sealed partial class ZoomProjetPA : Page
     {
         Projet leProjet;
-        ObservableCollection<int> matriculeMatchRM;
+        List<int> matriculeMatchRM = new List<int>();
+        int pos;
 
         public ZoomProjetPA()
         {
@@ -42,6 +43,18 @@ namespace ProjetFinal
             if (e.Parameter is not null)
             {
                 leProjet = e.Parameter as Projet;
+                tblNumProjet.Text = leProjet.numProjet.ToString();
+                tblDescription.Text = leProjet.description.ToString();
+                tblTitre.Text = leProjet.titre.ToString();
+                tblDateDeb.Text = leProjet.dateDeb;
+                tblBudget.Text = leProjet.budget.ToString();
+                tblNbrEmplo.Text = leProjet.nbrEmplo.ToString();
+                tblTotSalaireApay.Text = leProjet.totSalaireApay.ToString();
+                tblClient.Text = leProjet.client.ToString();
+                if (leProjet.statut)
+                    tblStatut.Text = "Le statut: Terminé";
+                else
+                    tblStatut.Text = "Le statut: En cours";
                 lvEmployesProjet.ItemsSource = SingletonEmploye.getInstance().getEmployeFromAProject(leProjet.numProjet);
                 foreach (EmployeProjet emp in SingletonEmploye.getInstance().ListeEmployeProjet)
                 {
@@ -68,18 +81,6 @@ namespace ProjetFinal
                     for (int i = 0; i < matriculeMatchRM.Count; i++) {
                         SingletonEmploye.getInstance().ListeEmploye.RemoveAt(matriculeMatchRM[i]);
                     }
-                    tblNumProjet.Text = leProjet.numProjet.ToString();
-                    tblDescription.Text = leProjet.description.ToString();
-                    tblTitre.Text = leProjet.titre.ToString();
-                    tblDateDeb.Text = leProjet.dateDeb;
-                    tblBudget.Text = leProjet.budget.ToString();
-                    tblNbrEmplo.Text = leProjet.nbrEmplo.ToString();
-                    tblTotSalaireApay.Text = leProjet.totSalaireApay.ToString();
-                    tblClient.Text = leProjet.client.ToString();
-                    if (leProjet.statut)
-                        tblStatut.Text = "Le statut: Terminé";
-                    else
-                        tblStatut.Text = "Le statut: En cours";
                 }
             }
         }
@@ -88,7 +89,7 @@ namespace ProjetFinal
         {
             Button b = (Button)sender;
             var c = b.Tag.ToString();
-            contexte = b.DataContext as Employe;
+            var contexte = b.DataContext as Employe;
             pos = lvListeEmployes.Items.IndexOf(contexte);
             AjouterEmploAProjetCD dialog = new AjouterEmploAProjetCD();
                 dialog.XamlRoot = ajouterEmploProjet.XamlRoot;
@@ -120,7 +121,6 @@ namespace ProjetFinal
             lvEmployesProjet.ItemsSource = SingletonEmploye.getInstance().ListeEmployeProjet;
             SingletonEmploye.getInstance().ListeEmploye.Add(contexte);
             tblNbrEmplo.Text = int.Parse(tblNbrEmplo.Text) - 1 + "";
-           // SingletonEmploye.getInstance().ListeEmploye.Add(memoryListAjoutRetir.IndexOf(contexte);
             // RETIRER ÉGALEMENT LA PARTIE DU TOTAL SALAIRE À PAYER PUISQUE L'EMPLOYÉ N'EST PLUS SUR LE PROJET
         }
     }
