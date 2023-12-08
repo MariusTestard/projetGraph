@@ -88,7 +88,8 @@ namespace ProjetFinal
         {
             Button b = (Button)sender;
             var c = b.Tag.ToString();
-            var contexte = b.DataContext as Employe;
+            contexte = b.DataContext as Employe;
+            pos = lvListeEmployes.Items.IndexOf(contexte);
             AjouterEmploAProjetCD dialog = new AjouterEmploAProjetCD();
                 dialog.XamlRoot = ajouterEmploProjet.XamlRoot;
                 dialog.Title = "Précision";
@@ -119,6 +120,7 @@ namespace ProjetFinal
             lvEmployesProjet.ItemsSource = SingletonEmploye.getInstance().ListeEmployeProjet;
             SingletonEmploye.getInstance().ListeEmploye.Add(contexte);
             tblNbrEmplo.Text = int.Parse(tblNbrEmplo.Text) - 1 + "";
+           // SingletonEmploye.getInstance().ListeEmploye.Add(memoryListAjoutRetir.IndexOf(contexte);
             // RETIRER ÉGALEMENT LA PARTIE DU TOTAL SALAIRE À PAYER PUISQUE L'EMPLOYÉ N'EST PLUS SUR LE PROJET
         }
     }
