@@ -62,6 +62,7 @@ namespace ProjetFinal
             {
                 if (conn.State == System.Data.ConnectionState.Open)
                     conn.Close();
+                Debug.WriteLine(ex);
             }
             return listeClients;
         }
@@ -90,6 +91,7 @@ namespace ProjetFinal
             {
                 if (conn.State == System.Data.ConnectionState.Open)
                     conn.Close();
+                Debug.WriteLine(ex);
             }
             return conn;
         }
@@ -119,6 +121,7 @@ namespace ProjetFinal
             {
                 if (conn.State == System.Data.ConnectionState.Open)
                     conn.Close();
+                Debug.WriteLine(ex);
             }
             return conn;
         }
@@ -144,6 +147,7 @@ namespace ProjetFinal
             {
                 if (conn.State == System.Data.ConnectionState.Open)
                     conn.Close();
+                Debug.WriteLine(ex);
             }
             return conn;
         }

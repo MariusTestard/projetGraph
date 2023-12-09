@@ -14,6 +14,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using MySql.Data.MySqlClient;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -42,31 +43,45 @@ namespace ProjetFinal
             SingletonAdmin.getInstance().Bt = btnAjouter;
         }
 
-        private void btnTogglePermanent_Click(object sender, RoutedEventArgs e)
+        private async void btnTogglePermanent_Click(object sender, RoutedEventArgs e)
         {
-            Button b = (Button)sender;
-            var contexte = b.DataContext as Employe;
-            int pos = lvListeEmployes.Items.IndexOf(contexte);
+            if (SingletonAdmin.getInstance().LoginAdmin())
+            {
+                Button b = (Button)sender;
+                var contexte = b.DataContext as Employe;
+                int pos = lvListeEmployes.Items.IndexOf(contexte);
 
             
-            Employe emp = new Employe { 
-                Nom = SingletonEmploye.getInstance().ListeEmploye[pos].Nom,
-                Prenom = SingletonEmploye.getInstance().ListeEmploye[pos].Prenom,
-                DateEmbauche = SingletonEmploye.getInstance().ListeEmploye[pos].DateEmbauche,
-                DateNaissance = SingletonEmploye.getInstance().ListeEmploye[pos].DateNaissance,
-                Matricule = SingletonEmploye.getInstance().ListeEmploye[pos].Matricule,
-                Email = SingletonEmploye.getInstance().ListeEmploye[pos].Email,
-                Photo = SingletonEmploye.getInstance().ListeEmploye[pos].Photo,
-                TauxHoraire = SingletonEmploye.getInstance().ListeEmploye[pos].TauxHoraire,
-                Adresse = SingletonEmploye.getInstance().ListeEmploye[pos].Adresse,
-                Statut = true
-            };
-            
-            emp.Statut = true;
-            
-            SingletonEmploye.getInstance().changeStatusFromEmploye(emp, pos);
-            //SingletonEmploye.getInstance().swap(emp, pos);
-            //b.Visibility = Visibility.Collapsed;
+                Employe emp = new Employe { 
+                    Nom = SingletonEmploye.getInstance().ListeEmploye[pos].Nom,
+                    Prenom = SingletonEmploye.getInstance().ListeEmploye[pos].Prenom,
+                    DateEmbauche = SingletonEmploye.getInstance().ListeEmploye[pos].DateEmbauche,
+                    DateNaissance = SingletonEmploye.getInstance().ListeEmploye[pos].DateNaissance,
+                    Matricule = SingletonEmploye.getInstance().ListeEmploye[pos].Matricule,
+                    Email = SingletonEmploye.getInstance().ListeEmploye[pos].Email,
+                    Photo = SingletonEmploye.getInstance().ListeEmploye[pos].Photo,
+                    TauxHoraire = SingletonEmploye.getInstance().ListeEmploye[pos].TauxHoraire,
+                    Adresse = SingletonEmploye.getInstance().ListeEmploye[pos].Adresse,
+                    Statut = true
+                };
+                emp.Statut = true;
+                try
+                {
+                    SingletonEmploye.getInstance().changeStatusFromEmploye(emp, pos);
+                }
+                catch (MySqlException ex)
+                {
+                    ErreurCD dialog = new ErreurCD();
+                    dialog.SetIndex("moisAncien3");
+                    dialog.XamlRoot = afficherEmployePA.XamlRoot;
+                    dialog.Title = "Erreur";
+                    dialog.PrimaryButtonText = "OK";
+                    dialog.DefaultButton = ContentDialogButton.Primary;
+                    var result = await dialog.ShowAsync();
+                }
+                    //SingletonEmploye.getInstance().swap(emp, pos);
+                    //b.Visibility = Visibility.Collapsed;
+            }
         }
 
         private async void btnAjouter_Click(object sender, RoutedEventArgs e)
@@ -82,7 +97,7 @@ namespace ProjetFinal
 
         private async void lvListeEmployes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (lvListeEmployes.SelectedIndex != -1) {
+            if (lvListeEmployes.SelectedIndex != -1 && SingletonAdmin.getInstance().LoginAdmin()) {
                 ModifierEmployeCD dialog = new ModifierEmployeCD();
                 dialog.setEmploye(lvListeEmployes.SelectedItem as Employe);
                 dialog.XamlRoot = afficherEmployePA.XamlRoot;

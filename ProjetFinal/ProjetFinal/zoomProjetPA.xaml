@@ -56,12 +56,12 @@
                     HorizontalAlignment="Center">
                     <TextBlock Text="Description:"
                          Margin="0,0,5,0"
-                         FontWeight="Bold"
                          FontSize="20"/>
                     <TextBlock 
                          x:Name="tblDescription"
                          FontSize="20"
-                         TextWrapping="Wrap"/>
+                         TextWrapping="Wrap"
+                            FontWeight="Bold"/>
                 </StackPanel>
                 <StackPanel 
                     Orientation="Horizontal"
@@ -69,12 +69,12 @@
                     HorizontalAlignment="Center">
                     <TextBlock 
                          Text="Date d'embauche:"
-                         FontWeight="Bold"
                          FontSize="20"
                          Margin="0,0,5,0"/>
                     <TextBlock 
                          x:Name="tblDateDeb"
-                         FontSize="20"/>
+                         FontSize="20"
+                        FontWeight="Bold"/>
                                 </StackPanel>
                 <Grid Grid.Row="1">
                     <Grid.RowDefinitions>
@@ -95,11 +95,11 @@
                         <TextBlock 
                              Text="Titre:"
                              FontSize="20"
-                             Margin="0,0,5,0"
-                             FontWeight="Bold"/>
+                             Margin="0,0,5,0"/>
                         <TextBlock 
                             x:Name="tblTitre"
-                            FontSize="20"/>
+                            FontSize="20"
+                            FontWeight="Bold"/>
                     </StackPanel>
                     <StackPanel
                          Orientation="Horizontal"
@@ -107,11 +107,11 @@
                             Grid.Column="1"
                          HorizontalAlignment="Center">
                         <TextBlock Margin="0,0,5,0"
-                            FontWeight="Bold"
                             Text="Budget:"
                             FontSize="20"/>
                         <TextBlock 
                              x:Name="tblBudget"
+                            FontWeight="Bold"
                              FontSize="20" />
                         <TextBlock 
                              Text="$"
@@ -125,11 +125,11 @@
                         <TextBlock 
                              Text="Nombre d'employés:"
                              Margin="0,0,5,0"
-                             FontWeight="Bold"
                              FontSize="20"/>
                         <TextBlock 
                              x:Name="tblNbrEmplo"
-                             FontSize="20"/>
+                             FontSize="20"
+                            FontWeight="Bold"/>
                     </StackPanel>
                     <StackPanel
                         Orientation="Horizontal"
@@ -139,13 +139,13 @@
                         <TextBlock 
                               Text="Salaire total à payer:"
                               Margin="0,0,5,0"
-                              FontWeight="Bold"
                               FontSize="20"/>
                         <TextBlock 
                              Text=""
                              x:Name="tblTotSalaireApay"
                              Grid.Row="6"
-                             FontSize="20"/>
+                             FontSize="20"
+                            FontWeight="Bold"/>
                         <TextBlock 
                               Text="$"
                               FontSize="20"/>
@@ -158,13 +158,21 @@
                         <TextBlock 
                              Text="Le client:"
                              Margin="0,0,5,0"
-                             FontWeight="Bold"
                              FontSize="20"/>
                         <TextBlock 
                              Text=""
                              x:Name="tblClient"
                              Grid.Row="7"
-                             FontSize="20"/>
+                             FontSize="20"
+                            FontWeight="Bold"
+                             Margin="0,0,10,0"/>
+                        <TextBlock  Text="[" Foreground="White" FontSize="20"  FontWeight="Bold"/>
+                        <TextBlock  
+                            x:Name="tblIdClient"
+                            Foreground="White"
+                            FontWeight="Bold"
+                            FontSize="20"/>
+                        <TextBlock  Text="]" Foreground="White" FontSize="20"  FontWeight="Bold"/>
                     </StackPanel>
                     <StackPanel 
                         Orientation="Horizontal"
@@ -174,13 +182,13 @@
                         <TextBlock 
                             Text="Statut:"
                             Margin="0,0,5,0"
-                            FontWeight="Bold"
                             FontSize="20"/>
                         <TextBlock 
                             Text=""
                             x:Name="tblStatut"
                             Grid.Row="8"
-                            FontSize="20"/>
+                            FontSize="20"
+                            FontWeight="Bold"/>
                     </StackPanel>
                 </Grid>
             </Grid>

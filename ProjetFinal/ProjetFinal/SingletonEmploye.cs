@@ -3,6 +3,7 @@ using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -76,6 +77,7 @@ namespace ProjetFinal
             {
                 if (conn.State == System.Data.ConnectionState.Open)
                     conn.Close();
+                Debug.WriteLine(ex);
             }
             return listeEmployes;
         }
@@ -120,6 +122,7 @@ namespace ProjetFinal
             {
                 if (conn.State == System.Data.ConnectionState.Open)
                     conn.Close();
+                Debug.WriteLine(ex);
             }
             return empProjet;
         }
@@ -152,6 +155,7 @@ namespace ProjetFinal
             {
                 if (conn.State == System.Data.ConnectionState.Open)
                     conn.Close();
+                Debug.WriteLine(ex);
             }
             return conn;
         }
@@ -185,6 +189,7 @@ namespace ProjetFinal
             {
                 if (conn.State == System.Data.ConnectionState.Open)
                     conn.Close();
+                Debug.WriteLine(ex);
             }
             return conn;
         }
@@ -217,6 +222,7 @@ namespace ProjetFinal
             {
                 if (conn.State == System.Data.ConnectionState.Open)
                     conn.Close();
+                Debug.WriteLine(ex);
             }
             return conn;
         }
@@ -239,6 +245,7 @@ namespace ProjetFinal
             {
                 if (conn.State == System.Data.ConnectionState.Open)
                     conn.Close();
+                throw ex;
             }
         }
 
@@ -285,6 +292,7 @@ namespace ProjetFinal
             {
                 if (conn.State == System.Data.ConnectionState.Open)
                     conn.Close();
+                Debug.WriteLine(ex);
             }
             getEmployeFromAProject(idProjet);
         }

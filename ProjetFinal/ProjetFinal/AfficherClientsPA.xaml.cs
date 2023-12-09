@@ -49,7 +49,7 @@ namespace ProjetFinal
 
         private async void lvListeClients_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (lvListeClients.SelectedIndex != -1)
+            if (lvListeClients.SelectedIndex != -1 && SingletonAdmin.getInstance().LoginAdmin())
             {
                 ModifierClientCD dialog = new ModifierClientCD();
                 dialog.setClient(lvListeClients.SelectedItem as Client);

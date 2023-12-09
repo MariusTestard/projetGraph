@@ -28,25 +28,34 @@ namespace ProjetFinal
         public MainWindow()
         {
             this.InitializeComponent();
-            mainFrame.Navigate(typeof(AfficherProjetsPA));
+            if (SingletonAdmin.getInstance().firstTimeAdmin())
+            {
+                SingletonAdmin.getInstance().NavView = navView;
+                navView.OpenPaneLength = 50;
+                mainFrame.Navigate(typeof(CreerAdminPA));
+            }  
+            else
+            {
+                mainFrame.Navigate(typeof(AfficherProjetsPA));
+            } 
         }
 
         private async void navView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
             NavigationViewItem selectedNavItem = args.SelectedItem as NavigationViewItem;
-            if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "listeClients")
+            if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "listeClients" && !SingletonAdmin.getInstance().firstTimeAdmin())
             {
                 mainFrame.Navigate(typeof(AfficherClientsPA));
             }
-            else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "listeEmployes")
+            else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "listeEmployes" && !SingletonAdmin.getInstance().firstTimeAdmin())
             {
                 mainFrame.Navigate(typeof(AfficherEmployesPA));
             }
-            else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "listeProjets")
+            else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "listeProjets" && !SingletonAdmin.getInstance().firstTimeAdmin())
             {
                 mainFrame.Navigate(typeof(AfficherProjetsPA));
             }
-            else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "SaveFile")
+            else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "SaveFile" && !SingletonAdmin.getInstance().firstTimeAdmin())
             {
                 var picker = new Windows.Storage.Pickers.FileSavePicker();
 
@@ -68,7 +77,7 @@ namespace ProjetFinal
 
                 navView.SelectedItem = null;
             }
-            else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "Admin")
+            else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "Admin" && !SingletonAdmin.getInstance().firstTimeAdmin())
             {
                 LoginAdminCD dialog = new LoginAdminCD();
                 dialog.XamlRoot = testgrid.XamlRoot;
@@ -84,7 +93,7 @@ namespace ProjetFinal
                 }
                 navView.SelectedItem = null;
             }
-            else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "Connecté")
+            else if (selectedNavItem != null && selectedNavItem.Tag.ToString() == "Connecté" && !SingletonAdmin.getInstance().firstTimeAdmin())
             {
 
                 SingletonAdmin.getInstance().deconnexionAdmin();

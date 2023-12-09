@@ -9,23 +9,25 @@
     mc:Ignorable="d">
 
     <Grid x:Name="testgrid">
-
-        <NavigationView x:Name="navView"
-                            PaneDisplayMode="Left"
-                            SelectionChanged="navView_SelectionChanged"
-                            IsSettingsVisible="False"
-                            IsBackButtonVisible="Collapsed" 
-                            PaneTitle="Gestion">
+        <NavigationView 
+            x:Name="navView"
+            PaneDisplayMode="Left"
+            SelectionChanged="navView_SelectionChanged"
+            IsSettingsVisible="False"
+            IsBackButtonVisible="Collapsed" 
+            PaneTitle="Gestion"
+            OpenPaneLength="220">
             <NavigationView.MenuItems>
                 <NavigationViewItem Content="Gérer les projets" Icon="Library" Tag="listeProjets" />
                 <NavigationViewItem Content="Gérer les employés" Icon="People" Tag="listeEmployes" />
                 <NavigationViewItem Content="Gérer les clients" Icon="Contact" Tag="listeClients" />
             </NavigationView.MenuItems>
+
             <NavigationView.FooterMenuItems>
                 <NavigationViewItem Content="Sauvegarder les projets" Tag="SaveFile" Icon="Save" />
                 <NavigationViewItem Content="Compte Administrateur" Tag="Admin" Icon="Permissions" />
             </NavigationView.FooterMenuItems>
-            <Frame x:Name="mainFrame" Grid.Row="1"/>
+            <Frame x:Name="mainFrame"/>
         </NavigationView>
     </Grid>
 </Window>

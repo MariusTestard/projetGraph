@@ -18,13 +18,11 @@ using Windows.Foundation.Collections;
 
 namespace ProjetFinal
 {
-    public sealed partial class ErreurAdmin : ContentDialog
+    public sealed partial class ReussiteCD : UserControl
     {
-        public ErreurAdmin()
+        public ReussiteCD()
         {
             this.InitializeComponent();
         }
-
-      
     }
 }

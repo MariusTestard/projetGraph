@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentDialog
+    x:Class="ProjetFinal.ErreurCD"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ProjetFinal"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid>
+
+        <StackPanel >
+            
+            <TextBlock 
+                x:Name="moisAncien3"
+                Text="Cet employé ne possède pas trois ans d'ancienneté"/>
+            
+            <TextBlock 
+                x:Name="notAdmin"
+                Text="Vous n'êtes pas connecté en tant qu'administrateur"/>
+
+            <TextBlock 
+                x:Name="empDejAffili"
+                Text="Cet employé est déja affilié à un autre projet"/> 
+
+        </StackPanel>
+    </Grid>
+</ContentDialog>

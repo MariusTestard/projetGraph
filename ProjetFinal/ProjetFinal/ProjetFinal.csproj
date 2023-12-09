@@ -19,11 +19,12 @@
     <None Remove="AjouterEmploAProjetCD.xaml" />
     <None Remove="AjouterEmployeCD.xaml" />
     <None Remove="AjouterProjetCD.xaml" />
-    <None Remove="EmploDejaAffilie.xaml" />
-    <None Remove="ErreurAdmin.xaml" />
+    <None Remove="CreerAdminPA.xaml" />
+    <None Remove="ErreurCD.xaml" />
     <None Remove="LoginAdminCD.xaml" />
     <None Remove="ModifierClientCD.xaml" />
     <None Remove="ModifierEmployeCD.xaml" />
+    <None Remove="ReussiteCD.xaml" />
     <None Remove="ZoomProjetPA.xaml" />
   </ItemGroup>
 
@@ -53,7 +54,17 @@
     <ProjectCapability Include="Msix" />
   </ItemGroup>
   <ItemGroup>
-    <Page Update="EmploDejaAffilie.xaml">
+    <Page Update="CreerAdminPA.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="ErreurCD.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="ReussiteCD.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
@@ -74,11 +85,6 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="ModifierEmployeCD.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Update="ErreurAdmin.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

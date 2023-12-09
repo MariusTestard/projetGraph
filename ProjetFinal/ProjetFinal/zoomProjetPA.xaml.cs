@@ -50,7 +50,8 @@ namespace ProjetFinal
                 tblBudget.Text = leProjet.budget.ToString();
                 tblNbrEmplo.Text = leProjet.nbrEmplo.ToString();
                 tblTotSalaireApay.Text = leProjet.totSalaireApay.ToString();
-                tblClient.Text = leProjet.client.ToString();
+                tblClient.Text = SingletonProjet.getInstance().getNomClient(leProjet.numProjet);
+                tblIdClient.Text = leProjet.client.ToString();
                 if (leProjet.statut)
                     tblStatut.Text = "Le statut: Terminé";
                 else
@@ -88,46 +89,53 @@ namespace ProjetFinal
 
         private async void btnAjouter_Click(object sender, RoutedEventArgs e)
         {
-            Button b = (Button)sender;
-            var c = b.Tag.ToString();
-            var contexte = b.DataContext as Employe;
-            pos = lvListeEmployes.Items.IndexOf(contexte);
-            AjouterEmploAProjetCD dialog = new AjouterEmploAProjetCD();
-                dialog.XamlRoot = ajouterEmploProjet.XamlRoot;
-                dialog.Title = "Précision";
-                dialog.PrimaryButtonText = "Confirmer";
-                dialog.SecondaryButtonText = "Annuler";
-                dialog.DefaultButton = ContentDialogButton.Secondary;
-                var result = await dialog.ShowAsync();
-            try
+            if (SingletonAdmin.getInstance().LoginAdmin())
             {
-                SingletonEmploye.getInstance().ajoutEmpProjet(leProjet.numProjet, c, SingletonEmploye.getInstance().NbHeure);
-                lvEmployesProjet.ItemsSource = SingletonEmploye.getInstance().ListeEmployeProjet;
-                SingletonEmploye.getInstance().ListeEmploye.Remove(contexte);
-                tblNbrEmplo.Text = int.Parse(tblNbrEmplo.Text) + 1 + "";
-            }
-            catch (Exception ex)
-            {
-                EmploDejaAffilie dial = new EmploDejaAffilie();
-                dialog.XamlRoot = ajouterEmploProjet.XamlRoot;
-                dialog.Title = "Erreur";
-                dialog.PrimaryButtonText = "OK";
-                dialog.DefaultButton = ContentDialogButton.Primary;
-                var retu = await dialog.ShowAsync();
+                Button b = (Button)sender;
+                var c = b.Tag.ToString();
+                var contexte = b.DataContext as Employe;
+                pos = lvListeEmployes.Items.IndexOf(contexte);
+                AjouterEmploAProjetCD dialog = new AjouterEmploAProjetCD();
+                    dialog.XamlRoot = ajouterEmploProjet.XamlRoot;
+                    dialog.Title = "Précision";
+                    dialog.PrimaryButtonText = "Confirmer";
+                    dialog.SecondaryButtonText = "Annuler";
+                    dialog.DefaultButton = ContentDialogButton.Secondary;
+                    var result = await dialog.ShowAsync();
+                try
+                {
+                    SingletonEmploye.getInstance().ajoutEmpProjet(leProjet.numProjet, c, SingletonEmploye.getInstance().NbHeure);
+                    lvEmployesProjet.ItemsSource = SingletonEmploye.getInstance().ListeEmployeProjet;
+                    SingletonEmploye.getInstance().ListeEmploye.Remove(contexte);
+                    tblNbrEmplo.Text = int.Parse(tblNbrEmplo.Text) + 1 + "";
+                }
+                catch (Exception ex)
+                {
+                    ErreurCD dialog1 = new ErreurCD();
+                    dialog1.SetIndex("empDejAffili");
+                    dialog1.XamlRoot = ajouterEmploProjet.XamlRoot;
+                    dialog1.Title = "Erreur";
+                    dialog1.PrimaryButtonText = "OK";
+                    dialog1.DefaultButton = ContentDialogButton.Primary;
+                    var result1 = await dialog1.ShowAsync();
+                }
             }
         }
 
         private void btnRetirer_Click(object sender, RoutedEventArgs e)
         {
-            Button b = (Button)sender;
-            var c = b.Tag.ToString();
-            var contexte = b.DataContext as Employe;
-            SingletonEmploye.getInstance().retirerEmpProjet(leProjet.numProjet, c);
-            lvEmployesProjet.ItemsSource = SingletonEmploye.getInstance().ListeEmployeProjet;
-            SingletonEmploye.getInstance().ListeEmploye.Add(contexte);
-            tblNbrEmplo.Text = int.Parse(tblNbrEmplo.Text) - 1 + "";
-            
-            // RETIRER ÉGALEMENT LA PARTIE DU TOTAL SALAIRE À PAYER PUISQUE L'EMPLOYÉ N'EST PLUS SUR LE PROJET
+            if (SingletonAdmin.getInstance().LoginAdmin())
+            {
+                Button b = (Button)sender;
+                var c = b.Tag.ToString();
+                var contexte = b.DataContext as Employe;
+                SingletonEmploye.getInstance().retirerEmpProjet(leProjet.numProjet, c);
+                lvEmployesProjet.ItemsSource = SingletonEmploye.getInstance().ListeEmployeProjet;
+                SingletonEmploye.getInstance().ListeEmploye.Add(contexte);
+                tblNbrEmplo.Text = int.Parse(tblNbrEmplo.Text) - 1 + "";
+                // RETIRER ÉGALEMENT LA PARTIE DU TOTAL SALAIRE À PAYER PUISQUE L'EMPLOYÉ N'EST PLUS SUR LE PROJET
+            }
         }
+
     }
 }

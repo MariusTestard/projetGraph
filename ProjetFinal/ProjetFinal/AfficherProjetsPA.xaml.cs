@@ -29,6 +29,7 @@ namespace ProjetFinal
             this.InitializeComponent();
             SingletonProjet.getInstance().getListeProjets().Clear();
             lvListeProjets.ItemsSource = SingletonProjet.getInstance().getListeProjetsEnCours();
+            SingletonAdmin.getInstance().NavView.OpenPaneLength = 220;
 
             if (SingletonAdmin.getInstance().LoginAdmin())
             {

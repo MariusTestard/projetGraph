@@ -3,6 +3,7 @@ using MySqlX.XDevAPI;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -65,8 +66,36 @@ namespace ProjetFinal
             {
                 if (conn.State == System.Data.ConnectionState.Open)
                     conn.Close();
+                Debug.WriteLine(ex);
             }
             return listeProjets;
+        }
+
+        public string getNomClient(string numProjet)
+        {
+            string theName = "";
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand("get_nom_client");
+                cmd.Connection = conn;
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("_numProjet", numProjet);
+                conn.Open();
+                MySqlDataReader result = cmd.ExecuteReader();
+                while (result.Read())
+                { 
+                    theName = result[0].ToString();
+                }
+                result.Close();
+                conn.Close();
+            }
+            catch (MySqlException ex)
+            {
+                if (conn.State == System.Data.ConnectionState.Open)
+                    conn.Close();
+                Debug.WriteLine(ex);
+            }
+            return theName;
         }
 
         // AJOUTER UN PROJET DANS LA BASE DE DONNÉES
@@ -93,6 +122,7 @@ namespace ProjetFinal
             {
                 if (conn.State == System.Data.ConnectionState.Open)
                     conn.Close();
+                Debug.WriteLine(ex);
             }
             return conn;
         }
@@ -126,6 +156,7 @@ namespace ProjetFinal
             {
                 if (conn.State == System.Data.ConnectionState.Open)
                     conn.Close();
+                Debug.WriteLine(ex);
             }
             return conn;
         }
@@ -152,6 +183,7 @@ namespace ProjetFinal
             {
                 if (conn.State == System.Data.ConnectionState.Open)
                     conn.Close();
+                Debug.WriteLine(ex);
             }
             return conn;
         }
@@ -187,6 +219,7 @@ namespace ProjetFinal
             {
                 if (conn.State == System.Data.ConnectionState.Open)
                     conn.Close();
+                Debug.WriteLine(ex);
             }
             return listeProjets;
         }
@@ -222,6 +255,7 @@ namespace ProjetFinal
             {
                 if (conn.State == System.Data.ConnectionState.Open)
                     conn.Close();
+                Debug.WriteLine(ex);
             }
             return listeProjets;
         }

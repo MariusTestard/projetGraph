@@ -34,6 +34,13 @@ namespace ProjetFinal
         public double totSalaireApay { get; set; }
         public int client { get; set; }
         public bool statut { get; set; }
+        public string NomClient
+        {
+            get
+            {
+                return SingletonProjet.getInstance().getNomClient(numProjet);
+            }
+        }
 
         public override string ToString()
         {
