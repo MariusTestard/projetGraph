@@ -25,5 +25,6 @@
                 Text="Cet employé est déja affilié à un autre projet"/> 
 
         </StackPanel>
+        
     </Grid>
 </ContentDialog>

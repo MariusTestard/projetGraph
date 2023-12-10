@@ -356,6 +356,7 @@
                                         <RowDefinition Height="*"/>
                                         <RowDefinition Height="*"/>
                                         <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
                                     <Ellipse
                                         x:Name="Ellipse"
@@ -407,15 +408,29 @@
                                             Style="{ThemeResource BodyTextBlockStyle}"
                                             Margin="0,0,0,6"/>
                                     </StackPanel>
-                                    <TextBlock  
+                                    <StackPanel
+                                        Orientation="Horizontal"
                                         Grid.Row="4"
+                                        HorizontalAlignment="Center">
+                                        <TextBlock 
+                                            Text="$/h:"
+                                            Margin="0,0,5,6"
+                                            FontWeight="SemiBold"
+                                            FontStyle="Italic"/>
+                                        <TextBlock 
+                                            Text="{x:Bind TauxHoraire}"/>
+                                        <TextBlock 
+                                              Text="$"/>
+                                    </StackPanel>
+                                    <TextBlock  
+                                        Grid.Row="5"
                                         Text="{x:Bind Email}"
                                         x:Phase="2"
                                         Style="{ThemeResource BodyTextBlockStyle}"
                                         Margin="0,0,0,6"
                                          HorizontalAlignment="Center"/>
                                     <Button 
-                                        Grid.Row="5"
+                                        Grid.Row="6"
                                         Content="Ajouter"
                                         x:Name="btnAjouter"
                                         Background="DarkOliveGreen"

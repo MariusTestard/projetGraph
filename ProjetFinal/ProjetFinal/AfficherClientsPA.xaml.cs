@@ -8,6 +8,7 @@ using Microsoft.UI.Xaml.Navigation;
 using Microsoft.WindowsAppSDK.Runtime.Packages;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -40,13 +41,6 @@ namespace ProjetFinal
             SingletonAdmin.getInstance().Bt = btnAjouter;
         }
 
-        private void btnSuppr_Click(object sender, RoutedEventArgs e)
-        {
-            Button b = (Button)sender;
-            var c = b.Tag.ToString();
-            SingletonClient.getInstance().supprimerClients(c);
-        }
-
         private async void lvListeClients_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (lvListeClients.SelectedIndex != -1 && SingletonAdmin.getInstance().LoginAdmin())
@@ -59,6 +53,7 @@ namespace ProjetFinal
                 dialog.SecondaryButtonText = "Annuler";
                 dialog.DefaultButton = ContentDialogButton.Secondary;
                 var result = await dialog.ShowAsync();
+                modifSuccess();
             }
         }
 
@@ -71,6 +66,32 @@ namespace ProjetFinal
             dialog.SecondaryButtonText = "Annuler";
             dialog.DefaultButton = ContentDialogButton.Secondary;
             var result = await dialog.ShowAsync();
+            Debug.WriteLine(result);
+            if (result.Equals("Primary"))
+                ajoutSuccess();
         }
+
+        public async void ajoutSuccess()
+        {
+            SuccessCD dialog = new SuccessCD();
+            dialog.SetIndex("ajoutCliSucc");
+            dialog.XamlRoot = afficherClientsPA.XamlRoot;
+            dialog.Title = "Succès";
+            dialog.PrimaryButtonText = "OK";
+            dialog.DefaultButton = ContentDialogButton.Primary;
+            var result1 = await dialog.ShowAsync();
+        }
+
+        private async void modifSuccess()
+        {
+            SuccessCD dialog = new SuccessCD();
+            dialog.SetIndex("modifCliSucc");
+            dialog.XamlRoot = afficherClientsPA.XamlRoot;
+            dialog.Title = "Succès";
+            dialog.PrimaryButtonText = "OK";
+            dialog.DefaultButton = ContentDialogButton.Primary;
+            var result = await dialog.ShowAsync();
+        }
+
     }
 }

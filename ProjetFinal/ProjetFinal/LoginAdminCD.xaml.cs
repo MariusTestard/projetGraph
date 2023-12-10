@@ -35,7 +35,7 @@ namespace ProjetFinal
             if (String.IsNullOrEmpty(tbxuser.Text))
             {
                 tbxuser.BorderBrush = new SolidColorBrush(Colors.Red);
-                tbxuser.PlaceholderText = "Nom d'utilisateur requis !";
+                tbxuser.PlaceholderText = "Nom d'utilisateur requis";
                 args.Cancel = true;
             }
             else
@@ -47,7 +47,7 @@ namespace ProjetFinal
             if (String.IsNullOrEmpty(mdp.Password))
             {
                 mdp.BorderBrush = new SolidColorBrush(Colors.Red);
-                mdp.PlaceholderText = "Mot de passe requis !";
+                mdp.PlaceholderText = "Mot de passe requis";
                 args.Cancel = true;
             }
             else
@@ -67,10 +67,10 @@ namespace ProjetFinal
                 {
                     mdp.BorderBrush = new SolidColorBrush(Colors.Red);
                     mdp.Password = String.Empty;
-                    mdp.PlaceholderText = "Cet utilisateur n'existe pas !";
+                    mdp.PlaceholderText = "Cet utilisateur n'existe pas";
                     tbxuser.BorderBrush = new SolidColorBrush(Colors.Red);
                     tbxuser.Text = String.Empty;
-                    tbxuser.PlaceholderText = "Cet utilisateur n'existe pas !";
+                    tbxuser.PlaceholderText = "Cet utilisateur n'existe pas";
                     args.Cancel = true;
                 }
             }

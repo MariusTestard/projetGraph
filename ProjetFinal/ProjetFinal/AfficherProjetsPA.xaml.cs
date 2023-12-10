@@ -29,7 +29,8 @@ namespace ProjetFinal
             this.InitializeComponent();
             SingletonProjet.getInstance().getListeProjets().Clear();
             lvListeProjets.ItemsSource = SingletonProjet.getInstance().getListeProjetsEnCours();
-            SingletonAdmin.getInstance().NavView.OpenPaneLength = 220;
+            if (SingletonAdmin.getInstance().firstTimeAdmin())
+                SingletonAdmin.getInstance().NavView.OpenPaneLength = 220;
 
             if (SingletonAdmin.getInstance().LoginAdmin())
             {
@@ -69,6 +70,20 @@ namespace ProjetFinal
             dialog.SecondaryButtonText = "Annuler";
             dialog.DefaultButton = ContentDialogButton.Secondary;
             var result = await dialog.ShowAsync();
+            if (result.Equals("Primary"))
+                ajoutSucces();
         }
+
+        private async void ajoutSucces()
+        {
+            SuccessCD dialog = new SuccessCD();
+            dialog.SetIndex("ajoutProjSucc");
+            dialog.XamlRoot = afficherProjetPA.XamlRoot;
+            dialog.Title = "Succès";
+            dialog.PrimaryButtonText = "OK";
+            dialog.DefaultButton = ContentDialogButton.Primary;
+            var result = await dialog.ShowAsync();
+        }
+
     }
 }

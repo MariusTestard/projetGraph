@@ -48,7 +48,7 @@ namespace ProjetFinal
             if (String.IsNullOrEmpty(tbxNom.Text))
             {
                 tbxNom.BorderBrush = new SolidColorBrush(Colors.Red);
-                tbxNom.PlaceholderText = "Requis";
+                tbxNom.PlaceholderText = "Nom requis";
                 args.Cancel = true;
             }
             else
@@ -60,7 +60,7 @@ namespace ProjetFinal
             if (String.IsNullOrEmpty(tbxAdresse.Text))
             {
                 tbxAdresse.BorderBrush = new SolidColorBrush(Colors.Red);
-                tbxAdresse.PlaceholderText = "Requis";
+                tbxAdresse.PlaceholderText = "Adresse requise";
                 args.Cancel = true;
             }
             else
@@ -72,7 +72,7 @@ namespace ProjetFinal
             if (String.IsNullOrEmpty(tbxNumTel.Text))
             {
                 tbxNumTel.BorderBrush = new SolidColorBrush(Colors.Red);
-                tbxNumTel.PlaceholderText = "Requis";
+                tbxNumTel.PlaceholderText = "# de téléphone requis";
                 args.Cancel = true;
             }
             else
@@ -84,7 +84,7 @@ namespace ProjetFinal
             if (String.IsNullOrEmpty(tbxEmail.Text))
             {
                 tbxEmail.BorderBrush = new SolidColorBrush(Colors.Red);
-                tbxEmail.PlaceholderText = "Requis";
+                tbxEmail.PlaceholderText = "Email requis";
                 args.Cancel = true;
             }
             else

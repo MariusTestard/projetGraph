@@ -37,7 +37,7 @@ namespace ProjetFinal
             if (String.IsNullOrEmpty(tbxTitre.Text))
             {
                 tbxTitre.BorderBrush = new SolidColorBrush(Colors.Red);
-                tbxTitre.PlaceholderText = "Titre requis !";
+                tbxTitre.PlaceholderText = "Titre requis";
                 args.Cancel = true;
             }
             else
@@ -49,7 +49,7 @@ namespace ProjetFinal
             if (String.IsNullOrEmpty(tbxDesc.Text))
             {
                 tbxDesc.BorderBrush = new SolidColorBrush(Colors.Red);
-                tbxDesc.PlaceholderText = "Description requise !";
+                tbxDesc.PlaceholderText = "Description requise";
                 args.Cancel = true;
             }
             else
@@ -61,7 +61,7 @@ namespace ProjetFinal
             if (String.IsNullOrEmpty(tbxBudget.Text))
             {
                 tbxBudget.BorderBrush = new SolidColorBrush(Colors.Red);
-                tbxBudget.PlaceholderText = "Budget requis !";
+                tbxBudget.PlaceholderText = "Budget requis";
                 args.Cancel = true;
             }
             else
@@ -74,14 +74,14 @@ namespace ProjetFinal
                 {
                     tbxBudget.BorderBrush = new SolidColorBrush(Colors.Red);
                     tbxBudget.Text = String.Empty;
-                    tbxBudget.PlaceholderText = "Mauvais format !";
+                    tbxBudget.PlaceholderText = "Mauvais format";
                     args.Cancel = true;
                 }
             }
             if (String.IsNullOrEmpty(tbxClient.Text))
             {
                 tbxClient.BorderBrush = new SolidColorBrush(Colors.Red);
-                tbxClient.PlaceholderText = "Client requis !";
+                tbxClient.PlaceholderText = "Client requis";
                 args.Cancel = true;
             }
             else

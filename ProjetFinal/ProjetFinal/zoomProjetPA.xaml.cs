@@ -5,6 +5,7 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using MySqlX.XDevAPI.Common;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -102,6 +103,8 @@ namespace ProjetFinal
                     dialog.SecondaryButtonText = "Annuler";
                     dialog.DefaultButton = ContentDialogButton.Secondary;
                     var result = await dialog.ShowAsync();
+                    if (result.Equals("Primary"))
+                        ajoutSuccess();
                 try
                 {
                     SingletonEmploye.getInstance().ajoutEmpProjet(leProjet.numProjet, c, SingletonEmploye.getInstance().NbHeure);
@@ -133,8 +136,31 @@ namespace ProjetFinal
                 lvEmployesProjet.ItemsSource = SingletonEmploye.getInstance().ListeEmployeProjet;
                 SingletonEmploye.getInstance().ListeEmploye.Add(contexte);
                 tblNbrEmplo.Text = int.Parse(tblNbrEmplo.Text) - 1 + "";
+                    supressSuccess();
                 // RETIRER ÉGALEMENT LA PARTIE DU TOTAL SALAIRE À PAYER PUISQUE L'EMPLOYÉ N'EST PLUS SUR LE PROJET
             }
+        }
+
+        private async void ajoutSuccess()
+        {
+            SuccessCD dialog = new SuccessCD();
+            dialog.SetIndex("ajoutEmpProjSucc");
+            dialog.XamlRoot = ajouterEmploProjet.XamlRoot;
+            dialog.Title = "Succès";
+            dialog.PrimaryButtonText = "OK";
+            dialog.DefaultButton = ContentDialogButton.Primary;
+            var result = await dialog.ShowAsync();
+        }
+
+        private async void supressSuccess()
+        {
+            SuccessCD dialog = new SuccessCD();
+            dialog.SetIndex("retirEmpProjSucc");
+            dialog.XamlRoot = ajouterEmploProjet.XamlRoot;
+            dialog.Title = "Succès";
+            dialog.PrimaryButtonText = "OK";
+            dialog.DefaultButton = ContentDialogButton.Primary;
+            var result = await dialog.ShowAsync();
         }
 
     }

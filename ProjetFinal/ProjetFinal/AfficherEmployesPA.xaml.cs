@@ -93,6 +93,19 @@ namespace ProjetFinal
             dialog.SecondaryButtonText = "Annuler";
             dialog.DefaultButton = ContentDialogButton.Secondary;
             var result = await dialog.ShowAsync();
+            if (result.Equals("Primary"))
+                ajoutSucces();
+        }
+
+        private async void ajoutSucces()
+        {
+            SuccessCD dialog = new SuccessCD();
+            dialog.SetIndex("ajoutEmpSucc");
+            dialog.XamlRoot = afficherEmployePA.XamlRoot;
+            dialog.Title = "Succès";
+            dialog.PrimaryButtonText = "OK";
+            dialog.DefaultButton = ContentDialogButton.Primary;
+            var result = await dialog.ShowAsync();
         }
 
         private async void lvListeEmployes_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -106,7 +119,21 @@ namespace ProjetFinal
                 dialog.SecondaryButtonText = "Annuler";
                 dialog.DefaultButton = ContentDialogButton.Secondary;
                 var result = await dialog.ShowAsync();
+                if (result.Equals("Primary"))
+                    modifSucces();
             }
         }
+
+        private async void modifSucces()
+        {
+            SuccessCD dialog = new SuccessCD();
+            dialog.SetIndex("modifEmpSucc");
+            dialog.XamlRoot = afficherEmployePA.XamlRoot;
+            dialog.Title = "Succès";
+            dialog.PrimaryButtonText = "OK";
+            dialog.DefaultButton = ContentDialogButton.Primary;
+            var result = await dialog.ShowAsync();
+        }
+
     }
 }

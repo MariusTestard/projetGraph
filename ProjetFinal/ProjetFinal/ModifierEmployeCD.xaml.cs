@@ -59,7 +59,7 @@ namespace ProjetFinal
             if (String.IsNullOrEmpty(tbxNom.Text))
             {
                 tbxNom.BorderBrush = new SolidColorBrush(Colors.Red);
-                tbxNom.PlaceholderText = "Nom requis !";
+                tbxNom.PlaceholderText = "Nom requis";
                 args.Cancel = true;
             }
             else
@@ -71,7 +71,7 @@ namespace ProjetFinal
             if (String.IsNullOrEmpty(tbxPrenom.Text))
             {
                 tbxPrenom.BorderBrush = new SolidColorBrush(Colors.Red);
-                tbxPrenom.PlaceholderText = "Prénom requis !";
+                tbxPrenom.PlaceholderText = "Prénom requis";
                 args.Cancel = true;
             }
             else
@@ -83,7 +83,7 @@ namespace ProjetFinal
             if (String.IsNullOrEmpty(tbxEmail.Text))
             {
                 tbxEmail.BorderBrush = new SolidColorBrush(Colors.Red);
-                tbxEmail.PlaceholderText = "Email requis !";
+                tbxEmail.PlaceholderText = "Email requis";
                 args.Cancel = true;
             }
             else
@@ -95,7 +95,7 @@ namespace ProjetFinal
             if (String.IsNullOrEmpty(tbxAdresse.Text))
             {
                 tbxAdresse.BorderBrush = new SolidColorBrush(Colors.Red);
-                tbxAdresse.PlaceholderText = "Adresse requise !";
+                tbxAdresse.PlaceholderText = "Adresse requise";
                 args.Cancel = true;
             }
             else
@@ -107,7 +107,7 @@ namespace ProjetFinal
             if (String.IsNullOrEmpty(tbxPhoto.Text))
             {
                 tbxPhoto.BorderBrush = new SolidColorBrush(Colors.Red);
-                tbxPhoto.PlaceholderText = "Photo requise !";
+                tbxPhoto.PlaceholderText = "Photo requise";
                 args.Cancel = true;
             }
             else
@@ -130,7 +130,20 @@ namespace ProjetFinal
                     {
                         tbxTauxH.BorderBrush = new SolidColorBrush(Colors.Red);
                         tbxTauxH.Text = String.Empty;
-                        tbxTauxH.PlaceholderText = "? >= 15 !";
+                        tbxTauxH.PlaceholderText = "? >= 15";
+                        args.Cancel = true;
+                    }
+                    else if (Double.Parse(tbxTauxH.Text) > 100)
+                    {
+                        tbxTauxH.BorderBrush = new SolidColorBrush(Colors.Red);
+                        tbxTauxH.Text = String.Empty;
+                        tbxTauxH.PlaceholderText = "Taux horaire trop élevé";
+                        args.Cancel = true;
+                    }
+                    else
+                    {
+                        tbxTauxH.BorderBrush = new SolidColorBrush(Colors.LightGray);
+                        tbxTauxH.PlaceholderText = "";
                         args.Cancel = true;
                     }
                 }
@@ -138,7 +151,7 @@ namespace ProjetFinal
                 {
                     tbxTauxH.BorderBrush = new SolidColorBrush(Colors.Red);
                     tbxTauxH.Text = String.Empty;
-                    tbxTauxH.PlaceholderText = "Mauvais format !";
+                    tbxTauxH.PlaceholderText = "Mauvais format";
                     args.Cancel = true;
                 }
             }

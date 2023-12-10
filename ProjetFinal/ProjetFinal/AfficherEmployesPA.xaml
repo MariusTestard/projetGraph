@@ -49,10 +49,10 @@
                 <DataTemplate x:DataType="local:Employe">
                     <StackPanel 
                         Padding="20"
-                        BorderBrush="White"
-                        BorderThickness="1"
-                        Height="489"
-                        Width="271">
+                        BorderBrush="DarkGray"
+                        BorderThickness=".5"
+                        Height="auto"
+                        Width="270">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="auto"/>
@@ -62,49 +62,94 @@
                                 Text="{x:Bind Matricule}"
                                 FontWeight="Bold"
                                 FontSize="20"
-                                Grid.Column="0"/>
+                                Grid.Column="0"
+                                Margin="0,0,0,5"/>
                             
                         </Grid>
-                        <Image Stretch="UniformToFill" Source="{x:Bind Photo}" Width="192" Height="192"/>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="auto"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
+                        <Image 
+                            Stretch="UniformToFill" 
+                            Source="{x:Bind Photo}" 
+                            Width="244" 
+                            Height="244" 
+                            Margin="0,0,0,5"/>
+                        <StackPanel 
+                            Orientation="Horizontal">
                             <TextBlock 
-                                Grid.Column="0"
-                                Grid.Row="0"
+                                Text="Nom:"
+                                FontSize="20"
+                                Margin="0,0,10,0"/>
+                            <TextBlock 
                                 Text="{x:Bind Prenom}"
-                                FontSize="20"/>
+                                FontSize="20" 
+                                FontWeight="SemiBold"/>
                             <TextBlock 
-                                Grid.Column="1"
-                                Grid.Row="0"
                                 Text="{x:Bind Nom}"
                                 FontSize="20"
+                                FontWeight="SemiBold"
                                 Margin="5 0 0 0"/>
-                        </Grid>
+                            </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock 
+                                Text="Naissance"
+                                FontSize="20"
+                                Margin="0,0,10,0"/>
+                            <TextBlock 
+                                Text="{x:Bind DateNaissance}"
+                                FontSize="20"
+                                FontWeight="SemiBold"/>
+                        </StackPanel>
                         <TextBlock 
-                            Text="{x:Bind DateNaissance}"
-                            FontSize="20"/>
-                        <TextBlock 
-                            Text="{x:Bind Email}"
-                            FontSize="20"/>
-                        <TextBlock 
+                                Text="{x:Bind Email}"
+                                FontSize="20"
+                                FontWeight="SemiBold"/>
+                        <StackPanel
+                            Orientation="Horizontal">
+                            <TextBlock 
+                                Text="Adr:"
+                                FontSize="20"
+                                Margin="0,0,10,0"/>
+                            <TextBlock 
                             Text="{x:Bind Adresse}"
-                            FontSize="20"/>
-                        <TextBlock 
-                            Text="{x:Bind DateEmbauche}"
-                            FontSize="20"/>
-                        <TextBlock 
-                            Text="{x:Bind TauxHoraire}"
-                            FontSize="20"/>
-                        <TextBlock 
-                            x:Name="tblStatut"
-                            Foreground="{x:Bind Couleur}"
-                            Text="{x:Bind StatutString}"
                             FontSize="20"
-                            Margin="0 0 0 5"/>
-                        
+                            FontWeight="SemiBold"/>
+                        </StackPanel>
+                        <StackPanel 
+                            Orientation="Horizontal">
+                            <TextBlock 
+                                Text="Embauche:"
+                                FontSize="20"
+                                Margin="0,0,10,0"/>
+                            <TextBlock 
+                                Text="{x:Bind DateEmbauche}"
+                                FontSize="20"
+                                FontWeight="SemiBold"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock 
+                                 Text="$/h:"
+                                 FontSize="20"
+                                 Margin="0,0,10,0"/>
+                            <TextBlock 
+                                Text="{x:Bind TauxHoraire}"
+                                FontSize="20"
+                                FontWeight="SemiBold"/>
+                            <TextBlock 
+                                 Text="$"
+                                 FontSize="20"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock 
+                                 Text="Statut:"
+                                 FontSize="20"
+                                 Margin="0,0,10,10"/>
+                            <TextBlock 
+                                x:Name="tblStatut"
+                                Foreground="{x:Bind Couleur}"
+                                Text="{x:Bind StatutString}"
+                                FontSize="20"
+                                Margin="0 0 0 5"
+                                FontWeight="SemiBold"/>
+                        </StackPanel>
                         <Button 
                             x:Name="btnTogglePermanent"
                             Content="Mettre Permanent" 

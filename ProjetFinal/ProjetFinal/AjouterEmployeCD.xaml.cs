@@ -110,12 +110,14 @@ namespace ProjetFinal
                     if (Double.Parse(tbxTauxH.Text) < 15)
                     {
                         tbxTauxH.BorderBrush = new SolidColorBrush(Colors.Red);
-                        tbxTauxH.PlaceholderText = "Taux horaire minimum de 15$";
+                        tbxTauxH.PlaceholderText = "? >= 15";
+                        tbxTauxH.Text = String.Empty;
                         args.Cancel = true;
                     }
                     else if (Double.Parse(tbxTauxH.Text) > 100)
                     {
                         tbxTauxH.BorderBrush = new SolidColorBrush(Colors.Red);
+                        tbxTauxH.Text = String.Empty;
                         tbxTauxH.PlaceholderText = "Taux horaire trop élevé";
                         args.Cancel = true;
                     }

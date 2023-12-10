@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentDialog
+    x:Class="ProjetFinal.SuccessCD"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ProjetFinal"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid>
+        <StackPanel >
+
+            <TextBlock 
+                 x:Name="ajoutEmpProjSucc"
+                 Text="Assignation de l'employé sur le projet effectué avec succès"/>
+
+            <TextBlock 
+                 x:Name="retirEmpProjSucc"
+                 Text="Supression de l'employé sur le projet effectué avec succès"/>
+
+            <TextBlock 
+                 x:Name="ajoutEmpSucc"
+                 Text="Ajout de l'employé effectué avec succès"/>
+
+            <TextBlock 
+                 x:Name="ajoutCliSucc"
+                 Text="Ajout du client effectué avec succès"/>
+
+            <TextBlock 
+                  x:Name="ajoutProjSucc"
+                  Text="Ajout du projet effectué avec succès"/>
+
+            <TextBlock 
+                x:Name="modifEmpSucc"
+                Text="Modification de l'employé effectué avec succès"/>
+
+            <TextBlock 
+                x:Name="modifCliSucc"
+                Text="Modification du client effectué avec succès"/>
+
+        </StackPanel>
+    </Grid>
+</ContentDialog>

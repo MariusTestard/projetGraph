@@ -32,7 +32,7 @@ namespace ProjetFinal
             if (String.IsNullOrEmpty(tbxNbrHeure.Text))
             {
                 tbxNbrHeure.BorderBrush = new SolidColorBrush(Colors.Red);
-                tbxNbrHeure.PlaceholderText = "Nombre d'heures consacrées requis !";
+                tbxNbrHeure.PlaceholderText = "Nombre d'heures consacrées requis";
                 args.Cancel = true;
             }
             else
@@ -45,7 +45,7 @@ namespace ProjetFinal
                 {
                     tbxNbrHeure.BorderBrush = new SolidColorBrush(Colors.Red);
                     tbxNbrHeure.Text = String.Empty;
-                    tbxNbrHeure.PlaceholderText = "Mauvais format !";
+                    tbxNbrHeure.PlaceholderText = "Mauvais format";
                     args.Cancel = true;
                     goto inputValidation;
                 }

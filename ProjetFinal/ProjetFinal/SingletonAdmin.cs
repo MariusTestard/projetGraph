@@ -38,6 +38,8 @@ namespace ProjetFinal
             bool bToF = false;
             try
             {
+                if (conn.State == System.Data.ConnectionState.Open)
+                    conn.Close();
                 MySqlCommand cmd = new MySqlCommand("see_admin");
                 cmd.Connection = conn;
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;

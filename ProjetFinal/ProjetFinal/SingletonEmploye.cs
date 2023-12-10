@@ -58,13 +58,15 @@ namespace ProjetFinal
                 MySqlDataReader result = cmd.ExecuteReader();
                 while (result.Read())
                 {
+                    string[] splitDateNais = result["dateNais"].ToString().Split(" ");
+                    string[] splitDateEmb = result["dateNais"].ToString().Split(" ");
                     Employe employe = new Employe(matricule: result["matricule"].ToString(),
                         nom: result["nom"].ToString(),
                         prenom: result["prenom"].ToString(),
-                        dateNaissance: result["dateNais"].ToString(),
+                        dateNaissance: splitDateNais[0].Replace('/', '-'),
                         email: result["email"].ToString(),
                         adresse: result["adresse"].ToString(),
-                        dateEmbauche: result["dateEmbauche"].ToString(),
+                        dateEmbauche: splitDateEmb[0].Replace('/', '-'),
                         tauxHoraire: (double)result["tauxHoraire"],
                         photo: result["photo"].ToString(),
                         statut: Boolean.Parse(result["statut"].ToString()));
