@@ -30,7 +30,8 @@ namespace ProjetFinal
             ajoutCliSucc.Visibility = Visibility.Collapsed; 
             ajoutProjSucc.Visibility = Visibility.Collapsed; 
             modifEmpSucc.Visibility = Visibility.Collapsed; 
-            modifCliSucc.Visibility = Visibility.Collapsed; 
+            modifCliSucc.Visibility = Visibility.Collapsed;
+            modifProjSucc.Visibility = Visibility.Collapsed;
         }
 
         public string indexErr;
@@ -54,6 +55,8 @@ namespace ProjetFinal
                     modifEmpSucc.Visibility = Visibility.Visible;
                 else if (indexErr == "adminCoSucc")
                     adminCoSucc.Visibility = Visibility.Visible;
+                else if (indexErr == "modifProjSucc")
+                    modifProjSucc.Visibility = Visibility.Visible;
                 else
                     modifCliSucc.Visibility = Visibility.Visible;
             }

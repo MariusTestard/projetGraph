@@ -28,6 +28,7 @@ namespace ProjetFinal
             notAdmin.Visibility = Visibility.Collapsed;
             empDejAffili.Visibility = Visibility.Collapsed;
             excedeBudget.Visibility = Visibility.Collapsed;
+            maxProj.Visibility = Visibility.Collapsed;
         }
 
         public string indexErr;
@@ -43,6 +44,8 @@ namespace ProjetFinal
                     notAdmin.Visibility = Visibility.Visible;
                 else if (indexErr == "empDejAffili")
                     empDejAffili.Visibility = Visibility.Visible;
+                else if (indexErr == "maxProj")
+                    maxProj.Visibility = Visibility.Visible;
                 else
                     excedeBudget.Visibility = Visibility.Visible;
             }

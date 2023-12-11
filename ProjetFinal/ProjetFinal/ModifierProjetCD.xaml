@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentDialog
+    x:Class="ProjetFinal.ModifierProjetCD"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ProjetFinal"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid>
+        <StackPanel 
+        Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <TextBox 
+                    x:Name="tbxTitre"
+                    Margin="0 8 1 8"
+                    PlaceholderText="Titre"
+                    Width="180"/>
+                <ToggleButton 
+                    Content="{x:Bind StatutString}" 
+                    x:Name="tgStatut"
+                    Margin="0 8 1 8"
+                    Width="180"
+                    IsEnabled="{x:Bind IsEnable}"/>
+            </StackPanel>
+            <TextBox 
+                x:Name="tbxDescription"
+                Margin="1 8 0 8"
+                PlaceholderText="Description"
+                Width="360"/>   
+        </StackPanel>
+    </Grid>
+</ContentDialog>

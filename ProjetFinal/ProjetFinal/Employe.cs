@@ -13,7 +13,7 @@ namespace ProjetFinal
     {
         public Employe() { }
 
-        public Employe(string matricule, string nom, string prenom, string dateNaissance, string email, string adresse, string dateEmbauche, double tauxHoraire, string photo, bool statut)
+        public Employe(string matricule, string nom, string prenom, string dateNaissance, string email, string adresse, string dateEmbauche, decimal tauxHoraire, string photo, bool statut)
         {
             Matricule = matricule;
             Nom = nom;
@@ -34,7 +34,7 @@ namespace ProjetFinal
         public string Email { get; set; }
         public string Adresse { get; set; }
         public string DateEmbauche { get; set; }
-        public double TauxHoraire { get; set; }
+        public decimal TauxHoraire { get; set; }
         public string Photo { get; set; }
         public bool Statut { get; set; }
 

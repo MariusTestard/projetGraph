@@ -52,11 +52,12 @@ namespace ProjetFinal
                         titre: result["titre"].ToString(),
                         dateDeb: splitDate[0].Replace('/', '-'),
                         description: result["description"].ToString(),
-                        budget: (double)result["budget"],
+                        budget: (int)result["budget"],
                         nbrEmplo: int.Parse(result["nbrEmplo"].ToString()),
-                        totSalaireApay: (double)result["totSalaireApay"],
+                        totSalaireApay: (decimal)result["totSalaireApay"],
                         client: int.Parse(result["client"].ToString()),
-                        statut: Boolean.Parse(result["statut"].ToString()));
+                        statut: Boolean.Parse(result["statut"].ToString()),
+                        nbrEmploMax: int.Parse(result["nbrEmploMax"].ToString()));
                     listeProjets.Add(projet);
                 }
                 result.Close();
@@ -126,7 +127,7 @@ namespace ProjetFinal
         }
 
         // AJOUTER UN PROJET DANS LA BASE DE DONNÉES
-        public MySqlConnection ajouterProjets(string titre, string dateDeb, string description, double budget, string client)
+        public MySqlConnection ajouterProjets(string titre, string dateDeb, string description, double budget, string client, int nbrEmploMax)
         {
             try
             {
@@ -138,6 +139,7 @@ namespace ProjetFinal
                 cmd.Parameters.AddWithValue("_description", description);
                 cmd.Parameters.AddWithValue("_budget", budget);
                 cmd.Parameters.AddWithValue("_client", client);
+                cmd.Parameters.AddWithValue("_nbrEmploMax", nbrEmploMax);
                 conn.Open();
                 cmd.Prepare();
                 cmd.ExecuteNonQuery();
@@ -155,56 +157,22 @@ namespace ProjetFinal
         }
 
         // MODIFIER UN PROJET DANS LA BASE DE DONNÉES
-        public MySqlConnection modifierProjets(string numProjet, string titre, string dateDeb, string description, double budget, int nbrEmplo, double totSalaireApay, string client, bool statut)
+        public MySqlConnection modifierProjets(string numProjet, string titre, string description, bool statut)
         {
             try
             {
+                Debug.WriteLine("IM IN THE PROCEDURE");
                 MySqlCommand cmd = new MySqlCommand("modifier_projet");
                 cmd.Connection = conn;
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("_numProjet", numProjet);
                 cmd.Parameters.AddWithValue("_titre", titre);
-                cmd.Parameters.AddWithValue("_dateDeb", dateDeb);
                 cmd.Parameters.AddWithValue("_description", description);
-                cmd.Parameters.AddWithValue("_budget", budget);
-                cmd.Parameters.AddWithValue("_nbrEmplo", nbrEmplo);
-                cmd.Parameters.AddWithValue("_totSalaireApay", totSalaireApay);
-                cmd.Parameters.AddWithValue("_client", client);
                 cmd.Parameters.AddWithValue("_statut", statut);
                 conn.Open();
                 cmd.Prepare();
                 cmd.ExecuteNonQuery();
                 conn.Close();
-                getListeProjets();
-                getListeProjets().Clear();
-                getListeProjets();
-            }
-            catch (MySqlException ex)
-            {
-                if (conn.State == System.Data.ConnectionState.Open)
-                    conn.Close();
-                Debug.WriteLine(ex);
-            }
-            return conn;
-        }
-
-        // SUPPRIMER UN PROJET DANS LA BASE DE DONNÉES
-        public MySqlConnection supprimerProjets(Projet projet)
-        {
-            numProjet = projet.numProjet.ToString();
-            try
-            {
-                MySqlCommand cmd = new MySqlCommand("supprimer_projet");
-                cmd.Connection = conn;
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("_numProjet", numProjet);
-                conn.Open();
-                cmd.Prepare();
-                cmd.ExecuteNonQuery();
-                conn.Close();
-                getListeProjets();
-                getListeProjets().Clear();
-                getListeProjets();
             }
             catch (MySqlException ex)
             {
@@ -232,11 +200,12 @@ namespace ProjetFinal
                         titre: result["titre"].ToString(),
                         dateDeb: splitDate[0].Replace('/', '-'),
                         description: result["description"].ToString(),
-                        budget: (double)result["budget"],
+                        budget: (int)result["budget"],
                         nbrEmplo: int.Parse(result["nbrEmplo"].ToString()),
-                        totSalaireApay: (double)result["totSalaireApay"],
+                        totSalaireApay: (decimal)result["totSalaireApay"],
                         client: int.Parse(result["client"].ToString()),
-                        statut: Boolean.Parse(result["statut"].ToString()));
+                        statut: Boolean.Parse(result["statut"].ToString()),
+                        nbrEmploMax: int.Parse(result["nbrEmploMax"].ToString()));
                     listeProjets.Add(projet);
                 }
                 result.Close();
@@ -268,11 +237,12 @@ namespace ProjetFinal
                         titre: result["titre"].ToString(),
                         dateDeb: splitDate[0].Replace('/', '-'),
                         description: result["description"].ToString(),
-                        budget: (double)result["budget"],
+                        budget: (int)result["budget"],
                         nbrEmplo: int.Parse(result["nbrEmplo"].ToString()),
-                        totSalaireApay: (double)result["totSalaireApay"],
+                        totSalaireApay: (decimal)result["totSalaireApay"],
                         client: int.Parse(result["client"].ToString()),
-                        statut: Boolean.Parse(result["statut"].ToString()));
+                        statut: Boolean.Parse(result["statut"].ToString()),
+                        nbrEmploMax: int.Parse(result["nbrEmploMax"].ToString()));
                     listeProjets.Add(projet);
                 }
                 result.Close();

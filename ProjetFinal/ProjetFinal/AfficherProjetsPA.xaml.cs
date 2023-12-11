@@ -72,10 +72,41 @@ namespace ProjetFinal
                 ajoutSucces();
         }
 
+        private async void btnModifier_Click(object sender, RoutedEventArgs e)
+        {
+            Button b = (Button)sender;
+            var contexte = b.DataContext as Projet;
+            ModifierProjetCD dialog = new ModifierProjetCD();
+            dialog.setProjet(contexte.titre, contexte.description, contexte.numProjet, contexte.statut);
+            dialog.XamlRoot = afficherProjetPA.XamlRoot;
+            dialog.Title = "Modifier un projet";
+            dialog.PrimaryButtonText = "Modifier";
+            dialog.SecondaryButtonText = "Annuler";
+            dialog.DefaultButton = ContentDialogButton.Secondary;
+            var result = await dialog.ShowAsync();
+            if (result == ContentDialogResult.Primary)
+            {
+                modifProjSucc();
+                lvListeProjets.ItemsSource = SingletonProjet.getInstance().getListeProjetsEnCours();
+            }
+              
+        }
+
         private async void ajoutSucces()
         {
             SuccessCD dialog = new SuccessCD();
             dialog.SetIndex("ajoutProjSucc");
+            dialog.XamlRoot = afficherProjetPA.XamlRoot;
+            dialog.Title = "Succès";
+            dialog.PrimaryButtonText = "OK";
+            dialog.DefaultButton = ContentDialogButton.Primary;
+            var result = await dialog.ShowAsync();
+        }
+
+        private async void modifProjSucc()
+        {
+            SuccessCD dialog = new SuccessCD();
+            dialog.SetIndex("modifProjSucc");
             dialog.XamlRoot = afficherProjetPA.XamlRoot;
             dialog.Title = "Succès";
             dialog.PrimaryButtonText = "OK";

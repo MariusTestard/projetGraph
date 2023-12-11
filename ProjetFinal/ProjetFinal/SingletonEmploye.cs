@@ -67,7 +67,7 @@ namespace ProjetFinal
                         email: result["email"].ToString(),
                         adresse: result["adresse"].ToString(),
                         dateEmbauche: splitDateEmb[0].Replace('/', '-'),
-                        tauxHoraire: (double)result["tauxHoraire"],
+                        tauxHoraire: (decimal)result["tauxHoraire"],
                         photo: result["photo"].ToString(),
                         statut: Boolean.Parse(result["statut"].ToString()));
                     listeEmployes.Add(employe);
@@ -110,11 +110,11 @@ namespace ProjetFinal
                         result["email"].ToString(),
                         result["adresse"].ToString(),
                         result["dateEmbauche"].ToString(),
-                        (double)result["tauxHoraire"],
+                        (decimal)result["tauxHoraire"],
                         result["photo"].ToString(),
                         Boolean.Parse(resultBool),
                         (int)result["nbrHeureTravail"],
-                        (double)result["totSalaireAPay"]);
+                        (decimal)result["totSalaireAPay"]);
                     empProjet.Add(employe);
                 }
                 result.Close();

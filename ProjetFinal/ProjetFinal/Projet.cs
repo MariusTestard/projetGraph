@@ -12,7 +12,7 @@ namespace ProjetFinal
     {
         public Projet() { }
 
-        public Projet(string numProjet, string titre, string dateDeb, string description, double budget, int nbrEmplo, double totSalaireApay, int client, bool statut)
+        public Projet(string numProjet, string titre, string dateDeb, string description, int budget, int nbrEmplo, decimal totSalaireApay, int client, bool statut, int nbrEmploMax)
         {
             this.numProjet = numProjet;
             this.titre = titre;
@@ -23,17 +23,20 @@ namespace ProjetFinal
             this.totSalaireApay = totSalaireApay;
             this.client = client;
             this.statut = statut;
+            this.nbrEmploMax = nbrEmploMax;
         }
 
         public string numProjet { get; set; }
         public string titre { get; set; }
         public string dateDeb { get; set; }
         public string description { get; set; }
-        public double budget { get; set; }
+        public int budget { get; set; }
         public int nbrEmplo { get; set; }
-        public double totSalaireApay { get; set; }
+        public decimal totSalaireApay { get; set; }
         public int client { get; set; }
         public bool statut { get; set; }
+        public int nbrEmploMax { get; set; }
+
         public string NomClient
         {
             get

@@ -71,7 +71,6 @@ namespace ProjetFinal
                 }
                 catch (MySqlException ex)
                 {
-                    Debug.WriteLine(ex);
                     ErreurCD dialog = new ErreurCD();
                     dialog.SetIndex("moisAncien3");
                     dialog.XamlRoot = afficherEmployePA.XamlRoot;

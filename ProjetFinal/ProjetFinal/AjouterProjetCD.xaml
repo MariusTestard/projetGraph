@@ -26,11 +26,18 @@
                 PlaceholderText="Budget"
                 Width="180"/>
             </StackPanel>
-            <TextBox 
-                x:Name="tbxClient"
-                Margin="0 8 0 8"
-                PlaceholderText="Client"
-                Width="360"/>
+            <StackPanel Orientation="Horizontal">
+                <TextBox 
+                    x:Name="tbxNbrEmploMax"
+                    Margin="0 8 2 8"
+                    PlaceholderText="Employé maximum"
+                    Width="180"/>
+                <TextBox 
+                    x:Name="tbxClient"
+                    Margin="2 8 0 8"
+                    PlaceholderText="Client"
+                    Width="180"/>
+            </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBox 
                 x:Name="tbxDesc"

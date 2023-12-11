@@ -22,11 +22,16 @@
 
             <TextBlock 
                 x:Name="empDejAffili"
-                Text="Cet employé est déja affilié à un autre projet test"/>
+                Text="Cet employé est déja affilié à un autre projet"/>
 
             <TextBlock 
                 x:Name="excedeBudget"
                 Text="En ajoutant cet employé, le budget se retrouve dépassé"/>
+
+            <TextBlock 
+                x:Name="maxProj"
+                Text="En ajoutant cet employé, vous dépassez la capacité maximum d'employés sur ce projet"
+                TextWrapping="Wrap"/>    
 
         </StackPanel>
 

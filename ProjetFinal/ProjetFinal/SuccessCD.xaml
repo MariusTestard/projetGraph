@@ -40,6 +40,10 @@
                 Text="Modification du client effectué avec succès"/>
 
             <TextBlock 
+                 x:Name="modifProjSucc"
+                 Text="Modification du projet effectué avec succès"/>
+
+            <TextBlock 
                 x:Name="adminCoSucc"
                 Text="Connecté"/>        
 

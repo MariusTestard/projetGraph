@@ -24,6 +24,7 @@
     <None Remove="LoginAdminCD.xaml" />
     <None Remove="ModifierClientCD.xaml" />
     <None Remove="ModifierEmployeCD.xaml" />
+    <None Remove="ModifierProjetCD.xaml" />
     <None Remove="SuccessCD.xaml" />
     <None Remove="ZoomProjetPA.xaml" />
   </ItemGroup>
@@ -52,6 +53,11 @@
   -->
   <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
     <ProjectCapability Include="Msix" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="ModifierProjetCD.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="SuccessCD.xaml">

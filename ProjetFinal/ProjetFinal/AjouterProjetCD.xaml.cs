@@ -30,7 +30,7 @@ namespace ProjetFinal
             tbxDesc.BorderBrush = new SolidColorBrush(Colors.LightGray);
             tbxBudget.BorderBrush = new SolidColorBrush(Colors.LightGray);
             tbxClient.BorderBrush = new SolidColorBrush(Colors.LightGray);
-
+            tbxNbrEmploMax.BorderBrush = new SolidColorBrush(Colors.LightGray);
         }
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
@@ -114,13 +114,42 @@ namespace ProjetFinal
                 tblDateDebLabel.Foreground = new SolidColorBrush(Colors.LightGray);
                 args.Cancel = true;
             }
+            if (String.IsNullOrEmpty(tbxNbrEmploMax.Text))
+            {
+                tbxNbrEmploMax.BorderBrush = new SolidColorBrush(Colors.Red);
+                tbxNbrEmploMax.PlaceholderText = "Employé maximum requis";
+                args.Cancel = true;
+            }
+            else
+            {
+                try
+                {
+                    int test = int.Parse(tbxNbrEmploMax.Text);
+                    if (test <= 0 && test > 5)
+                    {
+                        tbxNbrEmploMax.BorderBrush = new SolidColorBrush(Colors.Red);
+                        tbxNbrEmploMax.PlaceholderText = "] 0, 5 ]";
+                        tbxNbrEmploMax.Text = String.Empty;
+                        args.Cancel = true;
+                    }
+                    else
+                        tbxNbrEmploMax.BorderBrush = new SolidColorBrush(Colors.LightGray);
+                }
+                catch (Exception e)
+                {
+                    tbxNbrEmploMax.BorderBrush = new SolidColorBrush(Colors.Red);
+                    tbxNbrEmploMax.Text = String.Empty;
+                    tbxNbrEmploMax.PlaceholderText = "Mauvais format";
+                    args.Cancel = true;
+                }
+            }
             if (tbxTitre.Text != String.Empty && tbxDesc.Text != String.Empty && tbxBudget.Text != String.Empty
                 && tbxClient.Text != String.Empty && DPDateDeb.SelectedDate != null)
             {
                 args.Cancel = false;
                 try
                 {
-                    SingletonProjet.getInstance().ajouterProjets(tbxTitre.Text, DPDateDeb.SelectedDate.Value.ToString("yyyy-MM-dd"), tbxDesc.Text, double.Parse(tbxBudget.Text), tbxClient.Text);
+                    SingletonProjet.getInstance().ajouterProjets(tbxTitre.Text, DPDateDeb.SelectedDate.Value.ToString("yyyy-MM-dd"), tbxDesc.Text, double.Parse(tbxBudget.Text), tbxClient.Text, int.Parse(tbxNbrEmploMax.Text));
                 }
                 catch (MySqlException ex)
                 {

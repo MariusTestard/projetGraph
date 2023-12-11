@@ -1,24 +1,10 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using MySql.Data.MySqlClient;
-using MySqlX.XDevAPI.Common;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Text;
-using Windows.ApplicationModel.Contacts;
-using Windows.ApplicationModel.DataTransfer;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -31,8 +17,8 @@ namespace ProjetFinal
     public sealed partial class ZoomProjetPA : Page
     {
         Projet leProjet;
-        List<int> matriculeMatchRM = new List<int>();
-        int pos;
+        List<Employe> matriculeMatchRM = new List<Employe>();
+        int temporaryCalcEmplo = 0;
 
         public ZoomProjetPA()
         {
@@ -53,6 +39,7 @@ namespace ProjetFinal
                 tblDateDeb.Text = leProjet.dateDeb;
                 tblBudget.Text = leProjet.budget.ToString();
                 tblNbrEmplo.Text = leProjet.nbrEmplo.ToString();
+                tblNbrEmploMax.Text = "(" + leProjet.nbrEmploMax + " max)";
                 tblTotSalaireApay.Text = leProjet.totSalaireApay.ToString();
                 tblClient.Text = SingletonProjet.getInstance().getNomClient(leProjet.numProjet);
                 tblIdClient.Text = leProjet.client.ToString();
@@ -61,6 +48,7 @@ namespace ProjetFinal
                 else
                     tblStatut.Text = "En cours";
                 lvEmployesProjet.ItemsSource = SingletonEmploye.getInstance().getEmployeFromAProject(leProjet.numProjet);
+                matriculeMatchRM.Clear();
                 foreach (EmployeProjet emp in SingletonEmploye.getInstance().ListeEmployeProjet)
                 {
                     Employe empCast = new Employe(
@@ -79,14 +67,13 @@ namespace ProjetFinal
                         if (empCast.Matricule.Equals(realEmp.Matricule))
                         {
                             int pos = SingletonEmploye.getInstance().ListeEmploye.IndexOf(realEmp);
-                            matriculeMatchRM.Add(pos);
-                            Debug.WriteLine("Index has been saved");
+                            matriculeMatchRM.Add(realEmp);
                         }
                     }
                 }
                 for (int i = 0; i < matriculeMatchRM.Count; i++)
                 {
-                    SingletonEmploye.getInstance().ListeEmploye.RemoveAt(matriculeMatchRM[i]);
+                    SingletonEmploye.getInstance().ListeEmploye.Remove(matriculeMatchRM[i]);
                 }
             }
         }
@@ -98,7 +85,7 @@ namespace ProjetFinal
                 Button b = (Button)sender;
                 var c = b.Tag.ToString();
                 var contexte = b.DataContext as Employe;
-                pos = lvListeEmployes.Items.IndexOf(contexte);
+                int pos = lvListeEmployes.Items.IndexOf(contexte);
                 AjouterEmploAProjetCD dialog = new AjouterEmploAProjetCD();
                 dialog.XamlRoot = ajouterEmploProjet.XamlRoot;
                 dialog.Title = "Précision";
@@ -106,7 +93,6 @@ namespace ProjetFinal
                 dialog.SecondaryButtonText = "Annuler";
                 dialog.DefaultButton = ContentDialogButton.Secondary;
                 var result = await dialog.ShowAsync();
-                Debug.WriteLine(result);
                 if (result == ContentDialogResult.Primary)
                 {
                     try
@@ -121,13 +107,11 @@ namespace ProjetFinal
                     catch (MySqlException ex)
                     {
                         if (ex.Message.Equals("En ajoutant cet employé, le budget se retrouve dépassé."))
-                        {
                             excedingBudget();
-                        }
+                        else if (ex.Message.Equals("Ce projet possède déja le nombre maximum d'employés possible"))
+                            maxProj();
                         else
-                        {
                             alreadyAffiliated();
-                        }
                     }
                 }
             }
@@ -206,6 +190,17 @@ namespace ProjetFinal
         {
             ErreurCD dialog = new ErreurCD();
             dialog.SetIndex("excedeBudget");
+            dialog.XamlRoot = ajouterEmploProjet.XamlRoot;
+            dialog.Title = "Erreur";
+            dialog.PrimaryButtonText = "OK";
+            dialog.DefaultButton = ContentDialogButton.Primary;
+            var result = await dialog.ShowAsync();
+        }
+
+        private async void maxProj()
+        {
+            ErreurCD dialog = new ErreurCD();
+            dialog.SetIndex("maxProj");
             dialog.XamlRoot = ajouterEmploProjet.XamlRoot;
             dialog.Title = "Erreur";
             dialog.PrimaryButtonText = "OK";
