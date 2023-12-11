@@ -6,7 +6,8 @@
     xmlns:local="using:ProjetFinal"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick">
 
     <Grid>
         <StackPanel 
@@ -22,7 +23,8 @@
                     x:Name="tgStatut"
                     Margin="0 8 1 8"
                     Width="180"
-                    IsEnabled="{x:Bind IsEnable}"/>
+                    IsEnabled="{x:Bind IsEnable}"
+                    Tapped="tgStatut_Tapped"/>
             </StackPanel>
             <TextBox 
                 x:Name="tbxDescription"

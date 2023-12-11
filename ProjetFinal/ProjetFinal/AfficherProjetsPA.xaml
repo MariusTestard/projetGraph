@@ -51,13 +51,13 @@
                 FontSize="30"
                 Click="btnAjouter_Click"
                 HorizontalAlignment="Center"/>
-        
+
         <GridView x:Name="lvListeProjets"
-      Grid.Row="2"
-      Padding="40 5 40 40"
-      HorizontalAlignment="Center"
-      SelectionChanged="lvListeProjets_SelectionChanged">
-            <GridView.ItemTemplate>
+              Grid.Row="2"
+              Padding="40 5 40 40"
+              HorizontalAlignment="Center"
+              SelectionChanged="lvListeProjets_SelectionChanged">
+                <GridView.ItemTemplate>
                 <DataTemplate   x:DataType="local:Projet">
                     <StackPanel Padding="15"
                     Background="LightGray"
@@ -124,8 +124,10 @@
                                 x:Name="btnModifier"
                                 Click="btnModifier_Click"
                                 Content="Modifier"
-                                Background="LightSlateGray"
-                                Tag="{x:Bind numProjet}"/>
+                                Width="300"
+                                HorizontalAlignment="Center"
+                                Height="40"
+                                Background="LightSlateGray"/>
                         </StackPanel>
                 </DataTemplate>
             </GridView.ItemTemplate>

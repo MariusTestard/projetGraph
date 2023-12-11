@@ -81,14 +81,25 @@ namespace ProjetFinal
                 tbxDescription.PlaceholderText = String.Empty;
                 args.Cancel = true;
             }
-            Debug.WriteLine("IM GONNA LOOK IF THE INPUTS ARE GOOD");
             if (tbxTitre.Text != String.Empty && tbxDescription.Text != String.Empty)
             {
                 args.Cancel = false;
-                Debug.WriteLine("ALL THE INPUTS WERE GOOD");
-                SingletonProjet.getInstance().modifierProjets(numProjet, tbxTitre.Text, tbxDescription.Text, IsEnable);
+                SingletonProjet.getInstance().modifierProjets(numProjet, tbxTitre.Text, tbxDescription.Text, Statut);
             }
         }
 
+        private void tgStatut_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            if ((bool)tgStatut.IsChecked)
+            {
+                Statut = true;
+                tgStatut.Content = "Terminé";
+            }
+            else
+            {
+                Statut = false;
+                tgStatut.Content = "En cours";
+            }
+        }
     }
 }

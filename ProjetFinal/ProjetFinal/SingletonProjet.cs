@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Microsoft.UI.Xaml.Controls;
+using MySql.Data.MySqlClient;
 using MySqlX.XDevAPI;
 using System;
 using System.Collections.Generic;
@@ -31,6 +32,7 @@ namespace ProjetFinal
             return instance;
         }
 
+        public Button ModButt { get; set; }
 
         public ObservableCollection<Projet> ListeProjet { get { return listeProjets; } }
 
@@ -161,7 +163,6 @@ namespace ProjetFinal
         {
             try
             {
-                Debug.WriteLine("IM IN THE PROCEDURE");
                 MySqlCommand cmd = new MySqlCommand("modifier_projet");
                 cmd.Connection = conn;
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
@@ -188,6 +189,7 @@ namespace ProjetFinal
         {
             try
             {
+                listeProjets.Clear();
                 MySqlCommand cmd = new MySqlCommand("affiche_projet_enCours");
                 cmd.Connection = conn;
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
@@ -225,6 +227,7 @@ namespace ProjetFinal
         {
             try
             {
+                listeProjets.Clear();
                 MySqlCommand cmd = new MySqlCommand("affiche_projet_termine");
                 cmd.Connection = conn;
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;

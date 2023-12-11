@@ -7,6 +7,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -74,22 +75,31 @@ namespace ProjetFinal
 
         private async void btnModifier_Click(object sender, RoutedEventArgs e)
         {
-            Button b = (Button)sender;
-            var contexte = b.DataContext as Projet;
-            ModifierProjetCD dialog = new ModifierProjetCD();
-            dialog.setProjet(contexte.titre, contexte.description, contexte.numProjet, contexte.statut);
-            dialog.XamlRoot = afficherProjetPA.XamlRoot;
-            dialog.Title = "Modifier un projet";
-            dialog.PrimaryButtonText = "Modifier";
-            dialog.SecondaryButtonText = "Annuler";
-            dialog.DefaultButton = ContentDialogButton.Secondary;
-            var result = await dialog.ShowAsync();
-            if (result == ContentDialogResult.Primary)
+            if (SingletonAdmin.getInstance().LoginAdmin())
             {
-                modifProjSucc();
-                lvListeProjets.ItemsSource = SingletonProjet.getInstance().getListeProjetsEnCours();
+                Button b = (Button)sender;
+                var contexte = b.DataContext as Projet;
+                ModifierProjetCD dialog = new ModifierProjetCD();
+                dialog.setProjet(contexte.titre, contexte.description, contexte.numProjet, contexte.statut);
+                dialog.XamlRoot = afficherProjetPA.XamlRoot;
+                dialog.Title = "Modifier un projet";
+                dialog.PrimaryButtonText = "Modifier";
+                dialog.SecondaryButtonText = "Annuler";
+                dialog.DefaultButton = ContentDialogButton.Secondary;
+                var result = await dialog.ShowAsync();
+                if (result == ContentDialogResult.Primary && contexte.statut == false)
+                {
+                    lvListeProjets.ItemsSource = SingletonProjet.getInstance().getListeProjetsEnCours();
+                    modifProjSucc();
+                }
+                else 
+                {
+                    lvListeProjets.ItemsSource = SingletonProjet.getInstance().getListeProjetsTermine();
+                    modifProjSucc();
+                }
             }
-              
+            else
+                notAdmin();
         }
 
         private async void ajoutSucces()
@@ -109,6 +119,17 @@ namespace ProjetFinal
             dialog.SetIndex("modifProjSucc");
             dialog.XamlRoot = afficherProjetPA.XamlRoot;
             dialog.Title = "Succès";
+            dialog.PrimaryButtonText = "OK";
+            dialog.DefaultButton = ContentDialogButton.Primary;
+            var result = await dialog.ShowAsync();
+        }
+
+        private async void notAdmin()
+        {
+            ErreurCD dialog = new ErreurCD();
+            dialog.SetIndex("notAdmin");
+            dialog.XamlRoot = afficherProjetPA.XamlRoot;
+            dialog.Title = "Erreur";
             dialog.PrimaryButtonText = "OK";
             dialog.DefaultButton = ContentDialogButton.Primary;
             var result = await dialog.ShowAsync();
