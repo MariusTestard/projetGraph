@@ -52,7 +52,8 @@
                         BorderBrush="DarkGray"
                         BorderThickness=".5"
                         Height="auto"
-                        Width="270">
+                        Width="270"
+                        Background="DimGray">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="auto"/>

@@ -6,6 +6,7 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -69,6 +70,15 @@ namespace ProjetFinal
                 try
                 {
                     int test = int.Parse(tbxBudget.Text);
+                    if (test < 0)
+                    {
+                        tbxBudget.BorderBrush = new SolidColorBrush(Colors.Red);
+                        tbxBudget.PlaceholderText = "Ne peut être négatif";
+                        tbxBudget.Text = String.Empty;
+                        args.Cancel = true;
+                    }
+                    else
+                    tbxBudget.BorderBrush = new SolidColorBrush(Colors.LightGray);
                 }
                 catch (Exception e)
                 {
@@ -93,20 +103,32 @@ namespace ProjetFinal
             if (DPDateDeb.SelectedDate == null)
             {
                 DPDateDeb.BorderBrush = new SolidColorBrush(Colors.Red);
-                tblDateDebLabel.Text = "Requis";
+                tblDateDebLabel.Text = "Date de début requise";
                 tblDateDebLabel.Foreground = new SolidColorBrush(Colors.Red);
                 args.Cancel = true;
             }
             else
             {
                 DPDateDeb.BorderBrush = new SolidColorBrush(Colors.LightGray);
+                tblDateDebLabel.Text = "Date de début";
+                tblDateDebLabel.Foreground = new SolidColorBrush(Colors.LightGray);
                 args.Cancel = true;
             }
             if (tbxTitre.Text != String.Empty && tbxDesc.Text != String.Empty && tbxBudget.Text != String.Empty
                 && tbxClient.Text != String.Empty && DPDateDeb.SelectedDate != null)
             {
                 args.Cancel = false;
-                SingletonProjet.getInstance().ajouterProjets(tbxTitre.Text, DPDateDeb.SelectedDate.Value.ToString("yyyy-MM-dd"), tbxDesc.Text, double.Parse(tbxBudget.Text), tbxClient.Text);
+                try
+                {
+                    SingletonProjet.getInstance().ajouterProjets(tbxTitre.Text, DPDateDeb.SelectedDate.Value.ToString("yyyy-MM-dd"), tbxDesc.Text, double.Parse(tbxBudget.Text), tbxClient.Text);
+                }
+                catch (MySqlException ex)
+                {
+                    args.Cancel = true;
+                    tbxClient.BorderBrush = new SolidColorBrush(Colors.Red);
+                    tbxClient.PlaceholderText = "Ce client n'existe pas";
+                    tbxClient.Text = String.Empty;
+                }
             }
         }
     }

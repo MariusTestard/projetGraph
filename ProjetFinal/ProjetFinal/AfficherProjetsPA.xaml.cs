@@ -29,9 +29,7 @@ namespace ProjetFinal
             this.InitializeComponent();
             SingletonProjet.getInstance().getListeProjets().Clear();
             lvListeProjets.ItemsSource = SingletonProjet.getInstance().getListeProjetsEnCours();
-            if (SingletonAdmin.getInstance().firstTimeAdmin())
-                SingletonAdmin.getInstance().NavView.OpenPaneLength = 220;
-
+            SingletonAdmin.getInstance().NavView.OpenPaneLength = 220;
             if (SingletonAdmin.getInstance().LoginAdmin())
             {
                 btnAjouter.Visibility = Visibility.Visible;
@@ -70,7 +68,7 @@ namespace ProjetFinal
             dialog.SecondaryButtonText = "Annuler";
             dialog.DefaultButton = ContentDialogButton.Secondary;
             var result = await dialog.ShowAsync();
-            if (result.Equals("Primary"))
+            if (result == ContentDialogResult.Primary)
                 ajoutSucces();
         }
 

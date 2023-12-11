@@ -6,9 +6,11 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using MySql.Data.MySqlClient;
 using MySqlX.XDevAPI.Common;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -63,7 +65,7 @@ namespace ProjetFinal
                     SingletonAdmin.getInstance().connexionAdmin(tbxuser.Text, mdp.Password);
                     args.Cancel = false;
                 }
-                catch (Exception ex)
+                catch (MySqlException ex)
                 {
                     mdp.BorderBrush = new SolidColorBrush(Colors.Red);
                     mdp.Password = String.Empty;

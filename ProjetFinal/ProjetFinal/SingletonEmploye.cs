@@ -59,7 +59,7 @@ namespace ProjetFinal
                 while (result.Read())
                 {
                     string[] splitDateNais = result["dateNais"].ToString().Split(" ");
-                    string[] splitDateEmb = result["dateNais"].ToString().Split(" ");
+                    string[] splitDateEmb = result["dateEmbauche"].ToString().Split(" ");
                     Employe employe = new Employe(matricule: result["matricule"].ToString(),
                         nom: result["nom"].ToString(),
                         prenom: result["prenom"].ToString(),
@@ -247,6 +247,7 @@ namespace ProjetFinal
             {
                 if (conn.State == System.Data.ConnectionState.Open)
                     conn.Close();
+                Debug.WriteLine(ex);
                 throw ex;
             }
         }

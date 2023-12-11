@@ -28,9 +28,9 @@ namespace ProjetFinal
         public MainWindow()
         {
             this.InitializeComponent();
+            SingletonAdmin.getInstance().NavView = navView;
             if (SingletonAdmin.getInstance().firstTimeAdmin())
             {
-                SingletonAdmin.getInstance().NavView = navView;
                 navView.OpenPaneLength = 50;
                 mainFrame.Navigate(typeof(CreerAdminPA));
             }  
@@ -88,6 +88,7 @@ namespace ProjetFinal
                 ContentDialogResult resultat = await dialog.ShowAsync();
                 if (resultat == ContentDialogResult.Primary)
                 {
+                    adminCoSucc();
                     selectedNavItem.Tag = "Connecté";
                     selectedNavItem.Content = "Déconnexion";
                 }
@@ -100,8 +101,22 @@ namespace ProjetFinal
                 selectedNavItem.Tag = "Admin";
                 selectedNavItem.Content = "Compte Administrateur";
                 navView.SelectedItem = null;
-                mainFrame.Navigate(mainFrame.CurrentSourcePageType);
+                if (mainFrame.CurrentSourcePageType == SingletonAdmin.getInstance().pageInstance && SingletonAdmin.getInstance().codeReference == 1)
+                    mainFrame.Navigate(typeof(AfficherProjetsPA));
+                else
+                    mainFrame.Navigate(mainFrame.CurrentSourcePageType);
             }
+        }
+
+        private async void adminCoSucc()
+        {
+            SuccessCD dialog = new SuccessCD();
+            dialog.SetIndex("adminCoSucc");
+            dialog.XamlRoot = testgrid.XamlRoot;
+            dialog.Title = "Succès";
+            dialog.PrimaryButtonText = "OK";
+            dialog.DefaultButton = ContentDialogButton.Primary;
+            var result = await dialog.ShowAsync();
         }
 
     }

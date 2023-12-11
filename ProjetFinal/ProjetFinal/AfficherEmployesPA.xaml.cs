@@ -71,6 +71,7 @@ namespace ProjetFinal
                 }
                 catch (MySqlException ex)
                 {
+                    Debug.WriteLine(ex);
                     ErreurCD dialog = new ErreurCD();
                     dialog.SetIndex("moisAncien3");
                     dialog.XamlRoot = afficherEmployePA.XamlRoot;
@@ -79,9 +80,9 @@ namespace ProjetFinal
                     dialog.DefaultButton = ContentDialogButton.Primary;
                     var result = await dialog.ShowAsync();
                 }
-                    //SingletonEmploye.getInstance().swap(emp, pos);
-                    //b.Visibility = Visibility.Collapsed;
             }
+            else
+                notAdmin();
         }
 
         private async void btnAjouter_Click(object sender, RoutedEventArgs e)
@@ -93,7 +94,7 @@ namespace ProjetFinal
             dialog.SecondaryButtonText = "Annuler";
             dialog.DefaultButton = ContentDialogButton.Secondary;
             var result = await dialog.ShowAsync();
-            if (result.Equals("Primary"))
+            if (result == ContentDialogResult.Primary)
                 ajoutSucces();
         }
 
@@ -119,7 +120,7 @@ namespace ProjetFinal
                 dialog.SecondaryButtonText = "Annuler";
                 dialog.DefaultButton = ContentDialogButton.Secondary;
                 var result = await dialog.ShowAsync();
-                if (result.Equals("Primary"))
+                if (result == ContentDialogResult.Primary)
                     modifSucces();
             }
         }
@@ -130,6 +131,17 @@ namespace ProjetFinal
             dialog.SetIndex("modifEmpSucc");
             dialog.XamlRoot = afficherEmployePA.XamlRoot;
             dialog.Title = "Succès";
+            dialog.PrimaryButtonText = "OK";
+            dialog.DefaultButton = ContentDialogButton.Primary;
+            var result = await dialog.ShowAsync();
+        }
+
+        private async void notAdmin()
+        {
+            ErreurCD dialog = new ErreurCD();
+            dialog.SetIndex("notAdmin");
+            dialog.XamlRoot = afficherEmployePA.XamlRoot;
+            dialog.Title = "Erreur";
             dialog.PrimaryButtonText = "OK";
             dialog.DefaultButton = ContentDialogButton.Primary;
             var result = await dialog.ShowAsync();

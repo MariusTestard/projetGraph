@@ -53,7 +53,8 @@ namespace ProjetFinal
                 dialog.SecondaryButtonText = "Annuler";
                 dialog.DefaultButton = ContentDialogButton.Secondary;
                 var result = await dialog.ShowAsync();
-                modifSuccess();
+                if (result == ContentDialogResult.Primary)
+                    modifSuccess();
             }
         }
 
@@ -67,7 +68,7 @@ namespace ProjetFinal
             dialog.DefaultButton = ContentDialogButton.Secondary;
             var result = await dialog.ShowAsync();
             Debug.WriteLine(result);
-            if (result.Equals("Primary"))
+            if (result == ContentDialogResult.Primary)
                 ajoutSuccess();
         }
 

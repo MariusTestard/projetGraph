@@ -98,6 +98,33 @@ namespace ProjetFinal
             return theName;
         }
 
+        public string getTotSalaire(string numProjet)
+        {
+            string totSalaire = "";
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand("get_totSalaire_Projet");
+                cmd.Connection = conn;
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("_numProjet", numProjet);
+                conn.Open();
+                MySqlDataReader result = cmd.ExecuteReader();
+                while (result.Read())
+                {
+                    totSalaire = result[0].ToString();
+                }
+                result.Close();
+                conn.Close();
+            }
+            catch (MySqlException ex)
+            {
+                if (conn.State == System.Data.ConnectionState.Open)
+                    conn.Close();
+                Debug.WriteLine(ex);
+            }
+            return totSalaire;
+        }
+
         // AJOUTER UN PROJET DANS LA BASE DE DONNÉES
         public MySqlConnection ajouterProjets(string titre, string dateDeb, string description, double budget, string client)
         {
@@ -122,7 +149,7 @@ namespace ProjetFinal
             {
                 if (conn.State == System.Data.ConnectionState.Open)
                     conn.Close();
-                Debug.WriteLine(ex);
+                throw ex;
             }
             return conn;
         }

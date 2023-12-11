@@ -44,10 +44,10 @@ namespace ProjetFinal
             matricule = e.Matricule.ToString();
             tbxNom.Text = e.Nom.ToString();
             tbxPrenom.Text = e.Prenom.ToString();
-            string[] dateEmbaucheSplit = e.DateEmbauche.Split('/');
-            string[] dateNaisSplit = e.DateEmbauche.Split('/');
-            DPdateEmbauche.SelectedDate = new DateTime(int.Parse(dateEmbaucheSplit[2].Substring(0, 4)), int.Parse(dateEmbaucheSplit[0]), int.Parse(dateEmbaucheSplit[1]));
-            DPdateNais.SelectedDate = new DateTime(int.Parse(dateNaisSplit[2].Substring(0, 4)), int.Parse(dateNaisSplit[0]), int.Parse(dateNaisSplit[1]));
+            string[] dateEmbaucheSplit = e.DateEmbauche.Split('-');
+            string[] dateNaisSplit = e.DateNaissance.Split('-');
+            DPdateEmbauche.SelectedDate = new DateTime(int.Parse(dateEmbaucheSplit[2]), int.Parse(dateEmbaucheSplit[0]), int.Parse(dateEmbaucheSplit[1]));
+            DPdateNais.SelectedDate = new DateTime(int.Parse(dateNaisSplit[2]), int.Parse(dateNaisSplit[0]), int.Parse(dateNaisSplit[1]));
             tbxPhoto.Text = e.Photo.ToString();
             tbxAdresse.Text = e.Adresse.ToString();
             tbxEmail.Text = e.Email.ToString();

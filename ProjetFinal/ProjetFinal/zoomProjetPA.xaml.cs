@@ -5,6 +5,7 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using MySql.Data.MySqlClient;
 using MySqlX.XDevAPI.Common;
 using System;
 using System.Collections.Generic;
@@ -36,6 +37,8 @@ namespace ProjetFinal
         public ZoomProjetPA()
         {
             this.InitializeComponent();
+            SingletonAdmin.getInstance().pageInstance = this.GetType();
+            SingletonAdmin.getInstance().codeReference = 1;
             lvListeEmployes.ItemsSource = SingletonEmploye.getInstance().getListeEmployes();
         }
         //(, double budget, int nbrEmplo, double totSalaireApay, int client, bool statut)
@@ -54,9 +57,9 @@ namespace ProjetFinal
                 tblClient.Text = SingletonProjet.getInstance().getNomClient(leProjet.numProjet);
                 tblIdClient.Text = leProjet.client.ToString();
                 if (leProjet.statut)
-                    tblStatut.Text = "Le statut: Terminé";
+                    tblStatut.Text = "Terminé";
                 else
-                    tblStatut.Text = "Le statut: En cours";
+                    tblStatut.Text = "En cours";
                 lvEmployesProjet.ItemsSource = SingletonEmploye.getInstance().getEmployeFromAProject(leProjet.numProjet);
                 foreach (EmployeProjet emp in SingletonEmploye.getInstance().ListeEmployeProjet)
                 {
@@ -97,32 +100,39 @@ namespace ProjetFinal
                 var contexte = b.DataContext as Employe;
                 pos = lvListeEmployes.Items.IndexOf(contexte);
                 AjouterEmploAProjetCD dialog = new AjouterEmploAProjetCD();
-                    dialog.XamlRoot = ajouterEmploProjet.XamlRoot;
-                    dialog.Title = "Précision";
-                    dialog.PrimaryButtonText = "Confirmer";
-                    dialog.SecondaryButtonText = "Annuler";
-                    dialog.DefaultButton = ContentDialogButton.Secondary;
-                    var result = await dialog.ShowAsync();
-                    if (result.Equals("Primary"))
+                dialog.XamlRoot = ajouterEmploProjet.XamlRoot;
+                dialog.Title = "Précision";
+                dialog.PrimaryButtonText = "Confirmer";
+                dialog.SecondaryButtonText = "Annuler";
+                dialog.DefaultButton = ContentDialogButton.Secondary;
+                var result = await dialog.ShowAsync();
+                Debug.WriteLine(result);
+                if (result == ContentDialogResult.Primary)
+                {
+                    try
+                    {
+                        SingletonEmploye.getInstance().ajoutEmpProjet(leProjet.numProjet, c, SingletonEmploye.getInstance().NbHeure);
+                        lvEmployesProjet.ItemsSource = SingletonEmploye.getInstance().ListeEmployeProjet;
+                        SingletonEmploye.getInstance().ListeEmploye.Remove(contexte);
+                        tblNbrEmplo.Text = int.Parse(tblNbrEmplo.Text) + 1 + "";
+                        tblTotSalaireApay.Text = SingletonProjet.getInstance().getTotSalaire(leProjet.numProjet);
                         ajoutSuccess();
-                try
-                {
-                    SingletonEmploye.getInstance().ajoutEmpProjet(leProjet.numProjet, c, SingletonEmploye.getInstance().NbHeure);
-                    lvEmployesProjet.ItemsSource = SingletonEmploye.getInstance().ListeEmployeProjet;
-                    SingletonEmploye.getInstance().ListeEmploye.Remove(contexte);
-                    tblNbrEmplo.Text = int.Parse(tblNbrEmplo.Text) + 1 + "";
-                }
-                catch (Exception ex)
-                {
-                    ErreurCD dialog1 = new ErreurCD();
-                    dialog1.SetIndex("empDejAffili");
-                    dialog1.XamlRoot = ajouterEmploProjet.XamlRoot;
-                    dialog1.Title = "Erreur";
-                    dialog1.PrimaryButtonText = "OK";
-                    dialog1.DefaultButton = ContentDialogButton.Primary;
-                    var result1 = await dialog1.ShowAsync();
+                    }
+                    catch (MySqlException ex)
+                    {
+                        if (ex.Message.Equals("En ajoutant cet employé, le budget se retrouve dépassé."))
+                        {
+                            excedingBudget();
+                        }
+                        else
+                        {
+                            alreadyAffiliated();
+                        }
+                    }
                 }
             }
+            else
+                notAdmin();
         }
 
         private void btnRetirer_Click(object sender, RoutedEventArgs e)
@@ -136,9 +146,11 @@ namespace ProjetFinal
                 lvEmployesProjet.ItemsSource = SingletonEmploye.getInstance().ListeEmployeProjet;
                 SingletonEmploye.getInstance().ListeEmploye.Add(contexte);
                 tblNbrEmplo.Text = int.Parse(tblNbrEmplo.Text) - 1 + "";
-                    supressSuccess();
-                // RETIRER ÉGALEMENT LA PARTIE DU TOTAL SALAIRE À PAYER PUISQUE L'EMPLOYÉ N'EST PLUS SUR LE PROJET
+                tblTotSalaireApay.Text = SingletonProjet.getInstance().getTotSalaire(leProjet.numProjet);
+                supressSuccess();
             }
+            else
+                notAdmin();
         }
 
         private async void ajoutSuccess()
@@ -158,6 +170,44 @@ namespace ProjetFinal
             dialog.SetIndex("retirEmpProjSucc");
             dialog.XamlRoot = ajouterEmploProjet.XamlRoot;
             dialog.Title = "Succès";
+            dialog.PrimaryButtonText = "OK";
+            dialog.DefaultButton = ContentDialogButton.Primary;
+            var result = await dialog.ShowAsync();
+        }
+
+        private void btnGoBack_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(AfficherProjetsPA));
+        }
+
+        private async void notAdmin()
+        {
+            ErreurCD dialog = new ErreurCD();
+            dialog.SetIndex("notAdmin");
+            dialog.XamlRoot = ajouterEmploProjet.XamlRoot;
+            dialog.Title = "Erreur";
+            dialog.PrimaryButtonText = "OK";
+            dialog.DefaultButton = ContentDialogButton.Primary;
+            var result = await dialog.ShowAsync();
+        }
+
+        private async void alreadyAffiliated()
+        {
+            ErreurCD dialog = new ErreurCD();
+            dialog.SetIndex("empDejAffili");
+            dialog.XamlRoot = ajouterEmploProjet.XamlRoot;
+            dialog.Title = "Erreur";
+            dialog.PrimaryButtonText = "OK";
+            dialog.DefaultButton = ContentDialogButton.Primary;
+            var result = await dialog.ShowAsync();
+        }
+
+        private async void excedingBudget()
+        {
+            ErreurCD dialog = new ErreurCD();
+            dialog.SetIndex("excedeBudget");
+            dialog.XamlRoot = ajouterEmploProjet.XamlRoot;
+            dialog.Title = "Erreur";
             dialog.PrimaryButtonText = "OK";
             dialog.DefaultButton = ContentDialogButton.Primary;
             var result = await dialog.ShowAsync();

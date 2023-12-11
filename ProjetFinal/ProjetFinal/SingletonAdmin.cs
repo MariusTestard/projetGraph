@@ -22,6 +22,11 @@ namespace ProjetFinal
         }
 
         public NavigationView NavView { get; set; }
+
+        public Type pageInstance { get; set; }
+
+        public int codeReference { get; set; }
+
         public Button Bt { get; set; }
 
         // RÉCUPÈRE L'INSTANCE DE L'OBJET 
@@ -66,21 +71,15 @@ namespace ProjetFinal
         {
             try
             {
-                MySqlCommand cmd = new MySqlCommand("lookup_admin");
+                MySqlCommand cmd = new MySqlCommand("connexion_admin");
                 cmd.Connection = conn;
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("_username", username);
                 cmd.Parameters.AddWithValue("_password", password);
                 conn.Open();
                 MySqlDataReader result = cmd.ExecuteReader();
-                if (!result.HasRows)
-                    throw new Exception();
-                else
-                {
-                    Debug.WriteLine("Connecté");
-                    AdminLogin = true;
-                    Bt.Visibility = Microsoft.UI.Xaml.Visibility.Visible;
-                }
+                AdminLogin = true;
+                Bt.Visibility = Microsoft.UI.Xaml.Visibility.Visible;
                 result.Close();
                 conn.Close();
             }
@@ -88,7 +87,7 @@ namespace ProjetFinal
             {
                 if (conn.State == System.Data.ConnectionState.Open)
                     conn.Close();
-                Debug.WriteLine(ex);
+                throw ex;
             }
         }
 
@@ -124,5 +123,6 @@ namespace ProjetFinal
         { 
             return AdminLogin;
         }
+
     }
 }

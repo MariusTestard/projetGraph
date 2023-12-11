@@ -41,7 +41,7 @@
             SelectionMode="Single"
             ShowsScrollingPlaceholders="True"
             Height="650"
-            Width="420"
+            Width="850"
             BorderThickness="1"
             BorderBrush="{ThemeResource SystemControlForegroundBaseMediumLowBrush}"
             Grid.Row="1"
@@ -50,22 +50,14 @@
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="local:Client">
                     <Grid 
-                        Margin="0,0,0,15">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+                        Padding="10">
                         <Grid Grid.Column="0">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="300" />
+                                <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <Ellipse 
                                     x:Name="Ellipse"
@@ -82,28 +74,39 @@
                                     x:Phase="1"
                                     Style="{ThemeResource BaseTextBlockStyle}"
                                     Margin="12,6,0,6"
-                                    FontWeight="Bold"/>
+                                    FontWeight="Bold"
+                                    VerticalAlignment="Center"/>
+                            <StackPanel
+                                Orientation="Vertical"
+                                Grid.Column="2"
+                                VerticalAlignment="Center">
+                                <TextBlock Text="Nom" FontSize="13" FontWeight="Black"/>
+                                <TextBlock  
+                                     Text="{x:Bind Nom}"
+                                     x:Phase="2"
+                                     Style="{ThemeResource BodyTextBlockStyle}"/>
+                            </StackPanel>
+                            <StackPanel
+                                Orientation="Vertical"
+                                Grid.Column="3"
+                                VerticalAlignment="Center">
+                                <TextBlock Text="Rue" FontSize="13" FontWeight="Black"/>
+                                <TextBlock  
+                                     Text="{x:Bind Adresse}"
+                                     x:Phase="2"
+                                     Style="{ThemeResource BodyTextBlockStyle}"/>
+                            </StackPanel>
+                            <StackPanel
+                                Orientation="Vertical"
+                                Grid.Column="4"
+                                VerticalAlignment="Center">
+                            <TextBlock Text="Email" FontSize="13" FontWeight="Black"/>
                             <TextBlock  
-                                    Grid.Column="1"
-                                    Grid.Row="1"
-                                    Text="{x:Bind Nom}"
-                                    x:Phase="2"
-                                    Style="{ThemeResource BodyTextBlockStyle}"
-                                    Margin="12,0,0,6"/>
-                            <TextBlock  
-                                    Grid.Column="1"
-                                    Grid.Row="2"
-                                    Text="{x:Bind Adresse}"
-                                    x:Phase="2"
-                                    Style="{ThemeResource BodyTextBlockStyle}"
-                                    Margin="12,0,0,6"/>
-                            <TextBlock  
-                                    Grid.Column="1"
-                                    Grid.Row="3"
-                                    Text="{x:Bind Email}"
-                                    x:Phase="2"
-                                    Style="{ThemeResource BodyTextBlockStyle}"
-                                    Margin="12,0,0,6"/>
+                                 Text="{x:Bind Email}"
+                                 x:Phase="2"
+                                 Style="{ThemeResource BodyTextBlockStyle}"/>
+                            </StackPanel>
+                           
 
                         </Grid>
                         <StackPanel 

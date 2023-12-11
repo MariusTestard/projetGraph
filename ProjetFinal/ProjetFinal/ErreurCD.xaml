@@ -10,21 +10,25 @@
 
     <Grid>
 
-        <StackPanel >
-            
+        <StackPanel>
+
             <TextBlock 
                 x:Name="moisAncien3"
                 Text="Cet employé ne possède pas trois ans d'ancienneté"/>
-            
+
             <TextBlock 
                 x:Name="notAdmin"
                 Text="Vous n'êtes pas connecté en tant qu'administrateur"/>
 
             <TextBlock 
                 x:Name="empDejAffili"
-                Text="Cet employé est déja affilié à un autre projet"/> 
+                Text="Cet employé est déja affilié à un autre projet test"/>
+
+            <TextBlock 
+                x:Name="excedeBudget"
+                Text="En ajoutant cet employé, le budget se retrouve dépassé"/>
 
         </StackPanel>
-        
+
     </Grid>
 </ContentDialog>

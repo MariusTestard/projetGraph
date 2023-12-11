@@ -25,11 +25,12 @@ namespace ProjetFinal
             this.InitializeComponent();
             ajoutEmpProjSucc.Visibility = Visibility.Collapsed;
             retirEmpProjSucc.Visibility = Visibility.Collapsed;
-            ajoutEmpSucc.Visibility = Visibility.Collapsed; // FAIT
-            ajoutCliSucc.Visibility = Visibility.Collapsed; // FAIT
-            ajoutProjSucc.Visibility = Visibility.Collapsed; // FAIT
-            modifEmpSucc.Visibility = Visibility.Collapsed; // FAIT
-            modifCliSucc.Visibility = Visibility.Collapsed; // FAIT
+            adminCoSucc.Visibility = Visibility.Collapsed;
+            ajoutEmpSucc.Visibility = Visibility.Collapsed;
+            ajoutCliSucc.Visibility = Visibility.Collapsed; 
+            ajoutProjSucc.Visibility = Visibility.Collapsed; 
+            modifEmpSucc.Visibility = Visibility.Collapsed; 
+            modifCliSucc.Visibility = Visibility.Collapsed; 
         }
 
         public string indexErr;
@@ -51,6 +52,8 @@ namespace ProjetFinal
                     ajoutProjSucc.Visibility = Visibility.Visible;
                 else if (indexErr == "modifEmpSucc")
                     modifEmpSucc.Visibility = Visibility.Visible;
+                else if (indexErr == "adminCoSucc")
+                    adminCoSucc.Visibility = Visibility.Visible;
                 else
                     modifCliSucc.Visibility = Visibility.Visible;
             }

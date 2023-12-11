@@ -7,6 +7,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -26,6 +27,7 @@ namespace ProjetFinal
             moisAncien3.Visibility = Visibility.Collapsed;
             notAdmin.Visibility = Visibility.Collapsed;
             empDejAffili.Visibility = Visibility.Collapsed;
+            excedeBudget.Visibility = Visibility.Collapsed;
         }
 
         public string indexErr;
@@ -41,6 +43,8 @@ namespace ProjetFinal
                     notAdmin.Visibility = Visibility.Visible;
                 else if (indexErr == "empDejAffili")
                     empDejAffili.Visibility = Visibility.Visible;
+                else
+                    excedeBudget.Visibility = Visibility.Visible;
             }
         }
     

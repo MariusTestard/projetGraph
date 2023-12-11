@@ -110,7 +110,7 @@ namespace ProjetFinal
                     if (Double.Parse(tbxTauxH.Text) < 15)
                     {
                         tbxTauxH.BorderBrush = new SolidColorBrush(Colors.Red);
-                        tbxTauxH.PlaceholderText = "? >= 15";
+                        tbxTauxH.PlaceholderText = "[ 15, 100 ]";
                         tbxTauxH.Text = String.Empty;
                         args.Cancel = true;
                     }
@@ -170,7 +170,7 @@ namespace ProjetFinal
             }
             else
             {
-                    if (DPdateEmbauche.SelectedDate<=DateTimeOffset.Now)
+                    if (DPdateEmbauche.SelectedDate >= DateTimeOffset.Now)
                     { 
                     DPdateEmbauche.BorderBrush = new SolidColorBrush(Colors.Red);
                     tblDateEmbaucheLabel.Text = "La date d’embauche ne doit pas être dans le futur";

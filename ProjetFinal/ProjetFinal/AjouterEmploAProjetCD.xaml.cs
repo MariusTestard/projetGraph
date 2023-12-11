@@ -40,6 +40,13 @@ namespace ProjetFinal
                 try
                 {
                     int test = int.Parse(tbxNbrHeure.Text);
+                    if (test < 0)
+                    {
+                        tbxNbrHeure.BorderBrush = new SolidColorBrush(Colors.Red);
+                        tbxNbrHeure.PlaceholderText = "Ne peut être négatif";
+                        tbxNbrHeure.Text = String.Empty;
+                        args.Cancel = true;
+                    }
                 }
                 catch (Exception e)
                 {
@@ -54,10 +61,17 @@ namespace ProjetFinal
                 args.Cancel = true;
             }
             inputValidation:
-            if (tbxNbrHeure.Text != String.Empty)
+            if (tbxNbrHeure.Text != String.Empty && int.Parse(tbxNbrHeure.Text) <= 500)
             {
                 args.Cancel = false;
                 SingletonEmploye.getInstance().nbHeureMethod(int.Parse(tbxNbrHeure.Text));
+            }
+            else
+            {
+                tbxNbrHeure.BorderBrush = new SolidColorBrush(Colors.Red);
+                tbxNbrHeure.Text = String.Empty;
+                tbxNbrHeure.PlaceholderText = "Ne peut dépasser les 500 heures";
+                args.Cancel = true;
             }
         }
     }
